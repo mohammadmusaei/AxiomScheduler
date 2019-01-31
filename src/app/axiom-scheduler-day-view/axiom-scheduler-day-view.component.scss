@@ -5,15 +5,17 @@ $header-bg: #eee;
 $row-header-label-bg : #3f51b5;
 
 %row-header-label {
-  color: #fff;
-  background-color:$row-header-label-bg;
+  color: #666;
+  background-color:#fff;
   border-radius: 5px 0 0 5px;
+  border:1px solid #ccc;
+  border-right: none;
   -webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   &:after{
     content: '';
     position: absolute;
-    background-color: #888;
+    background-color: #999;
     border-radius: 50%;
     top: -5px;
     bottom: -5px;
