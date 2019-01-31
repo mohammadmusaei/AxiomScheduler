@@ -1,0 +1,16 @@
+
+<div class="ax-scheduler__day-view__header">
+   
+</div>
+<div class="ax-scheduler__day-view__body">
+  <div *ngFor="let hour of hours;let index = index">
+    <div>
+      <span *ngIf="index > 0">
+        {{ hour.start.format('HH:mm') }}
+      </span>
+    </div>
+    <div ax-scheduler-hour [hour]="hour" [events]="events">
+
+    </div>
+  </div>
+</div>
