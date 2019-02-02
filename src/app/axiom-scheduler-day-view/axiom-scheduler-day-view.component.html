@@ -1,15 +1,35 @@
-
 <div class="ax-scheduler__day-view__header">
-   
+  <div>
+
+  </div>
+  <div>
+    <div>
+      <span class="header_number">
+        {{ date.format('D') }}
+        <span class="header_day_title">
+          <p>th</p>
+          <p>{{ date.format('dddd') }}</p>
+        </span>
+      </span>
+      <span class="header_month_year">
+        {{ date.format('MMMM') }} {{ date.format('YYYY')}}
+      </span>
+    </div>
+  </div>
 </div>
 <div class="ax-scheduler__day-view__body">
+  <div class="ax-scheduler__event-tile" appDragTry></div>
   <div *ngFor="let hour of hours;let index = index">
     <div>
       <span *ngIf="index > 0">
         {{ hour.start.format('HH:mm') }}
       </span>
     </div>
-    <div ax-scheduler-hour [hour]="hour" [events]="events">
+    <div ax-scheduler-hour 
+      [hour]="hour" 
+      [axEventTemplate]="axEventTemplate" 
+      [axEventFormatter]="axEventFormatter"
+      [axEvents]="axEvents">
 
     </div>
   </div>

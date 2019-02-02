@@ -1,5 +1,5 @@
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Renderer2, ElementRef, AfterContentInit, AfterViewInit } from '@angular/core';
 import * as moment from 'moment';
 
 export class AxiomSchedulerHour{
@@ -20,19 +20,22 @@ export class AxiomSchedulerHour{
     'class' : 'ax-scheduler__day-view'
   }
 })
-export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommon implements OnInit {
-
+export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommon implements OnInit,AfterViewInit {
+  
   @Input() date : moment.Moment;
-
   public hours : AxiomSchedulerHour[];
 
-  constructor() { 
+  constructor(private _renderer : Renderer2,private _element : ElementRef) { 
     super();
   }
 
   ngOnInit() {
     this.date = this.date || moment(Date.now());
     this.setHours();
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   private setHours() : void {

@@ -20,6 +20,30 @@ export class AppComponent implements OnInit {
         }
       },
       {
+        date: moment(Date.now()).add(-1,'hours'),
+        data : {
+          title : "Meeting #54677"
+        }
+      },
+      {
+        date: moment(Date.now()).add(-1,'hours').add(5,'minutes'),
+        data : {
+          title : "Meeting #54HYYT7"
+        }
+      },
+      {
+        date: moment(Date.now()).add(-1,'hours').add(20,'minutes'),
+        data : {
+          title : "Meeting #5RE77"
+        }
+      },
+      {
+        date: moment(Date.now()).add(-1,'hours').add(40,'minutes'),
+        data : {
+          title : "Meeting #F457"
+        }
+      },
+      {
         date: moment(Date.now()).add(-2,'hours'),
         data : {
           title : "Meeting #1334"
@@ -29,6 +53,18 @@ export class AppComponent implements OnInit {
         date: moment(Date.now()).add(-4,'hours'),
         data : {
           title : "Meeting #097"
+        }
+      },
+      {
+        date: moment(Date.now()).add(-4,'hours'),
+        data : {
+          title : "Meeting #T453"
+        }
+      },
+      {
+        date: moment(Date.now()).add(-4,'hours'),
+        data : {
+          title : "Meeting #H7886"
         }
       }
       ,

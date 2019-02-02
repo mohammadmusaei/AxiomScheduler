@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, TemplateRef } from '@angular/core';
 
-export class AxiomSchedulerComponentCommon{
-  @Input() events : AxiomSchedulerEvent [] ;
-  @Input() startDate : Date;
+export class AxiomSchedulerComponentCommon {
+  @Input() axEvents : AxiomSchedulerEvent [] ;
+  @Input() axStartDate : Date;
+  @Input() axEventTemplate: TemplateRef<any>;
+  @Input() axEventFormatter : (data : any,date? : Date) => string;
 }
 
 export class  AxiomSchedulerEvent{

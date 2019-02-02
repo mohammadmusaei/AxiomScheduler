@@ -1,7 +1,10 @@
 
+<ng-template #t let-item="item">
+    {{ item.data.title }}
+</ng-template>
 
 <div class="container pt-3">
 
-    <ax-scheduler [events]="events"></ax-scheduler>
+    <ax-scheduler [axEventTemplate]="t" [axEvents]="events"></ax-scheduler>
   
 </div>

@@ -1,19 +1,21 @@
+@import '../animations.scss';
+
 $border-color: #ddd;
-$header-h: 50px;
+$header-h: 60px;
 $row-header-w: 50px;
 $header-bg: #eee;
-$row-header-label-bg : #3f51b5;
+$row-header-label-bg: #3f51b5;
 
 %row-header-label {
   color: #666;
-  background-color:#fff;
+  background-color: #fff;
   border-radius: 5px 0 0 5px;
-  border:1px solid #ccc;
+  border: 1px solid #ccc;
   border-right: none;
-  -webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  &:after{
-    content: '';
+  -webkit-animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  &:after {
+    content: "";
     position: absolute;
     background-color: #999;
     border-radius: 50%;
@@ -57,6 +59,8 @@ $row-header-label-bg : #3f51b5;
     padding: 0;
     width: 100%;
     position: relative;
+  }
+  .ax-scheduler__day-view__body {
     > div {
       position: relative;
       display: block;
@@ -101,6 +105,7 @@ $row-header-label-bg : #3f51b5;
       }
       > div:last-child {
         width: calc(100% - #{$row-header-w + 2px});
+        padding-left: 5px;
       }
     }
     > div:last-child {
@@ -111,6 +116,50 @@ $row-header-label-bg : #3f51b5;
     height: $header-h;
     background: $header-bg;
     outline: 1px solid $header-bg;
+    > div {
+      height: 100%;
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      vertical-align: top;
+      position: relative;
+    }
+    > div:first-child {
+      width: $row-header-w;
+      max-width: $row-header-w;
+      min-width: $row-header-w;
+    }
+    > div:last-child {
+      > div {
+        display: inline-block;
+        height: 100%;
+        border:none;
+        -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        >span.header_number{
+          font-size: 36px;
+          font-weight: bold;
+          color: #444;
+          margin: 0;
+          line-height: 19px;
+          >span.header_day_title{
+            display: inline-block;
+            font-size: 11px;
+            margin-left: -5px;
+            >p{
+              padding: 0;
+              margin: 0;
+            }
+          }
+        }
+        >span.header_month_year{
+          margin: 0;
+          display: block;
+          font-size: 11px;
+          color: #888;
+        }
+      }
+    }
   }
   .ax-scheduler__day-view__body {
     height: calc(100% - #{$header-h});
@@ -119,28 +168,12 @@ $row-header-label-bg : #3f51b5;
   }
 }
 
-@-webkit-keyframes slide-in-left {
-    0% {
-      -webkit-transform: translateX(-1000px);
-              transform: translateX(-1000px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slide-in-left {
-    0% {
-      -webkit-transform: translateX(-1000px);
-              transform: translateX(-1000px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
+
+.ax-scheduler__event-tile{
+  position: absolute !important;
+  height: 100px;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  background:rgba(3,169,244,.4);
+}
