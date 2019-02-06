@@ -1,5 +1,6 @@
 .ax-scheduler__event {
   text-align: left;
+  overflow: hidden;
 }
 
 .ax-scheduler__event > p {

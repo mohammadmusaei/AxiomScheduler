@@ -20,7 +20,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         animate(`${150}ms ease-in`, style({ transform: 'scale(1)' }))
       ]),
       transition(':leave', [
-        animate(`${100}ms ease-out`, style({ transform: 'scale(0)' }))
+        animate(`${80}ms ease-out`, style({ transform: 'translateX(-100%)' }))
       ])
     ])
   ]
