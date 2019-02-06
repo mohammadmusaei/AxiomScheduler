@@ -23,6 +23,7 @@ export class AxiomSchedulerHour{
 export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommon implements OnInit,AfterViewInit {
   
   @Input() date : moment.Moment;
+  @Input() axDragStep : number; 
   public hours : AxiomSchedulerHour[];
 
   edge = {
@@ -38,6 +39,7 @@ export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommo
 
   ngOnInit() {
     this.date = this.date || moment(Date.now());
+    this.axDragStep = this.axDragStep || 15;
     this.setHours();
   }
 
