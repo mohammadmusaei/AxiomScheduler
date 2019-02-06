@@ -25,6 +25,13 @@ export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommo
   @Input() date : moment.Moment;
   public hours : AxiomSchedulerHour[];
 
+  edge = {
+    top: true,
+    bottom: true,
+    left: true,
+    right: true
+  };
+
   constructor(private _renderer : Renderer2,private _element : ElementRef) { 
     super();
   }
@@ -36,6 +43,17 @@ export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommo
 
   ngAfterViewInit(): void {
 
+  }
+
+  checkEdge(event) {
+    this.edge = event;
+  }
+
+  moveHandler(e): void {
+    if(e && e.y > -1){
+      var a = moment(Date.now()).startOf('day').add(e.y, 'minutes');
+      console.log(a.format('HH:mm'));
+    }
   }
 
   private setHours() : void {

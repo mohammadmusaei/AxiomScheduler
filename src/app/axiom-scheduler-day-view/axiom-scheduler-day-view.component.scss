@@ -5,6 +5,7 @@ $header-h: 60px;
 $row-header-w: 50px;
 $header-bg: #eee;
 $row-header-label-bg: #3f51b5;
+$event-height:50px;
 
 %row-header-label {
   color: #666;
@@ -14,6 +15,7 @@ $row-header-label-bg: #3f51b5;
   border-right: none;
   -webkit-animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
   &:after {
     content: "";
     position: absolute;
@@ -52,6 +54,7 @@ $row-header-label-bg: #3f51b5;
   display: block;
   height: 100%;
   border: 1px solid $border-color;
+  user-select: none;
   .ax-scheduler__day-view__header,
   .ax-scheduler__day-view__body {
     display: block;
@@ -60,15 +63,17 @@ $row-header-label-bg: #3f51b5;
     width: 100%;
     position: relative;
   }
+
   .ax-scheduler__day-view__body {
-    > div {
+    >div:not(.ax-scheduler__event-tile) {
       position: relative;
       display: block;
       height: 60px;
       padding: 0;
       margin: 0;
       border-bottom: 1px solid $border-color;
-      > div {
+
+      >div {
         height: 100%;
         display: inline-block;
         padding: 0;
@@ -76,13 +81,15 @@ $row-header-label-bg: #3f51b5;
         vertical-align: top;
         position: relative;
       }
-      > div:first-child {
+
+      >div:first-child:not(.ax-scheduler__event-tile__box) {
         width: $row-header-w;
         max-width: $row-header-w;
         min-width: $row-header-w;
         border-right: 1px solid $border-color;
         text-align: right;
-        > span {
+
+        >span {
           position: absolute;
           font-size: 10px;
           vertical-align: top;
@@ -93,6 +100,7 @@ $row-header-label-bg: #3f51b5;
           z-index: 2;
           @extend %row-header-label;
         }
+
         &:after {
           content: "";
           position: absolute;
@@ -103,20 +111,24 @@ $row-header-label-bg: #3f51b5;
           background: #fff;
         }
       }
-      > div:last-child {
+
+      >div:last-child:not(.ax-scheduler__event-tile__box) {
         width: calc(100% - #{$row-header-w + 2px});
         padding-left: 5px;
       }
     }
-    > div:last-child {
+
+    >div:last-child:not(.ax-scheduler__event-tile__box) {
       border: none;
     }
   }
+
   .ax-scheduler__day-view__header {
     height: $header-h;
     background: $header-bg;
     outline: 1px solid $header-bg;
-    > div {
+
+    >div {
       height: 100%;
       display: inline-block;
       padding: 0;
@@ -124,35 +136,41 @@ $row-header-label-bg: #3f51b5;
       vertical-align: top;
       position: relative;
     }
-    > div:first-child {
+
+    >div:first-child {
       width: $row-header-w;
       max-width: $row-header-w;
       min-width: $row-header-w;
     }
-    > div:last-child {
-      > div {
+
+    >div:last-child {
+      >div {
         display: inline-block;
         height: 100%;
-        border:none;
+        border: none;
         -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-        >span.header_number{
+        animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+        >span.header_number {
           font-size: 36px;
           font-weight: bold;
           color: #444;
           margin: 0;
           line-height: 19px;
-          >span.header_day_title{
+
+          >span.header_day_title {
             display: inline-block;
             font-size: 11px;
             margin-left: -5px;
-            >p{
+
+            >p {
               padding: 0;
               margin: 0;
             }
           }
         }
-        >span.header_month_year{
+
+        >span.header_month_year {
           margin: 0;
           display: block;
           font-size: 11px;
@@ -161,6 +179,7 @@ $row-header-label-bg: #3f51b5;
       }
     }
   }
+
   .ax-scheduler__day-view__body {
     height: calc(100% - #{$header-h});
     overflow-x: hidden;
@@ -169,11 +188,25 @@ $row-header-label-bg: #3f51b5;
 }
 
 
-.ax-scheduler__event-tile{
+.ax-scheduler__event-tile {
   position: absolute !important;
-  height: 100px;
+  height: $event-height;
   z-index: 3;
   left: 0;
   right: 0;
-  background:rgba(3,169,244,.4);
+  padding-left: $row-header-w;
+  background: transparent;
+  border: none;
+  text-align: right;
+  cursor: grab;
+
+  >.ax-scheduler__event-tile__box {
+    background: rgba(255, 87, 34, .4);
+    height: 100%;
+    width: calc(100% - #{ $row-header-w});
+    max-width: calc(100% - #{ $row-header-w});
+    min-width: calc(100% - #{ $row-header-w});
+    position: relative;
+    display: block;
+  }
 }
