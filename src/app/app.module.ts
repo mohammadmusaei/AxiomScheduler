@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularDraggableModule } from 'angular2-draggable';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +26,8 @@ import { DragTryDirective } from './drag-try.directive';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularDraggableModule
+    AngularDraggableModule,
+    BrowserAnimationsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

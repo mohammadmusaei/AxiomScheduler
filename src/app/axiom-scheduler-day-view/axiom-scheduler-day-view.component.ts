@@ -22,8 +22,7 @@ export class AxiomSchedulerHour{
 })
 export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommon implements OnInit,AfterViewInit {
   
-  @Input() date : moment.Moment;
-  @Input() axDragStep : number; 
+  @Input() date : moment.Moment; 
   public hours : AxiomSchedulerHour[];
 
   edge = {

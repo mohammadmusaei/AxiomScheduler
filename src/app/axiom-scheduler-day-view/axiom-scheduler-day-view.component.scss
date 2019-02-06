@@ -198,15 +198,17 @@ $event-height:25px;
   background: transparent;
   border: none;
   text-align: right;
-  cursor: grab;
-
+  cursor: move;
+  overflow: visible;
   >.ax-scheduler__event-tile__box {
     background: #2196F3;
     height: 100%;
-    width: calc(100% - #{ $row-header-w});
-    max-width: calc(100% - #{ $row-header-w});
-    min-width: calc(100% - #{ $row-header-w});
     position: relative;
     display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition:box-shadow .3s ease-in-out;
+    &:hover{
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
   }
 }

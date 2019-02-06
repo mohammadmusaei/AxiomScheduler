@@ -5,6 +5,7 @@ export class AxiomSchedulerComponentCommon {
   @Input() axStartDate : Date;
   @Input() axEventTemplate: TemplateRef<any>;
   @Input() axEventFormatter : (data : any,date? : Date) => string;
+  @Input() axDragStep: number;
 }
 
 export class  AxiomSchedulerEvent{

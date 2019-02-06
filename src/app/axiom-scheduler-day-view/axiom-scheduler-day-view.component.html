@@ -18,11 +18,11 @@
   </div>
 </div>
 <div class="ax-scheduler__day-view__body" #b>
-<div class="ax-scheduler__event-tile" ngDraggable (movingOffset)="moveHandler($event)" (edge)="checkEdge($event)"
+<div class="ax-scheduler__event-tile" ngDraggable (movingOffset)="ev.timeChange($event)" (endOffset)="ev.timeChanged($event)" (edge)="checkEdge($event)"
   [gridSize]="axDragStep" [bounds]="b"
   [inBounds]="true"
     [lockAxis]="'x'">
-<div class="ax-scheduler__event-tile__box"></div>
+        <div class="ax-scheduler__event-tile__box" #ev ax-scheduler-event></div>
   </div>
   <div *ngFor="let hour of hours;let index = index">
     <div>

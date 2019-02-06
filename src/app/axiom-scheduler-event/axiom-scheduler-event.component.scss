@@ -1,14 +1,25 @@
-
-
 $event-border-left-color : #FF5722;
 $event-border-color : #eee;
 
-.ax-scheduler__event{
-    font-size: 10px;
-    border:1px solid $event-border-color; 
-    border-left : 4px solid $event-border-left-color;
-    display: inline;
+.ax-scheduler__event {
+  // font-size: 10px;
+  // border:1px solid $event-border-color; 
+  // border-left : 4px solid $event-border-left-color;
+  // display: inline;
+  // margin: 0;
+  // padding: 0 8px;
+  // vertical-align: top;
+  text-align: left;
+
+  >p {
+    display: inherit;
+    height: 100%;
+    background: #263238;
+    width: 50px;
+    color: #fff;
+    padding: 0 10px;
     margin: 0;
-    padding: 0 8px;
-    vertical-align: top;
+    font-size: 13px;
+    line-height: 24px;
+  }
 }
