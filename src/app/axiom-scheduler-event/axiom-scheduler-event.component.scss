@@ -2,24 +2,40 @@ $event-border-left-color : #FF5722;
 $event-border-color : #eee;
 
 .ax-scheduler__event {
-  // font-size: 10px;
-  // border:1px solid $event-border-color; 
-  // border-left : 4px solid $event-border-left-color;
-  // display: inline;
-  // margin: 0;
-  // padding: 0 8px;
-  // vertical-align: top;
   text-align: left;
   overflow: hidden;
-  >p {
-    display: inherit;
+  >.ax-scheduler__event__content{
+    display: inline-block;
+    vertical-align: middle;
     height: 100%;
-    background: #263238;
+    position: relative;
+    color: #eee;
+    font-size: 13px;
+    font-weight:normal;
+    margin: 0 10px;
+    padding: 5px 10px;
+  }
+  >p {
+    vertical-align: top;
+    display: inline-block;
+    height: 100%;
     width: 50px;
     color: #fff;
-    padding: 0 10px;
+    padding: 0;
     margin: 0;
-    font-size: 13px;
-    line-height: 24px;
+    font-size: 11px;
+    position: relative;
+    >span{
+      position: absolute;
+      background: #37474F;
+      color: #fff;
+      padding: 0 5px;
+    }
+    >span:first-child{
+      top: 0;
+    }
+    >span:last-child{
+      bottom: 0;
+    }
   }
 }

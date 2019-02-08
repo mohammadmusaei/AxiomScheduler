@@ -1,6 +1,6 @@
 
 <ng-template #t let-item="item">
-    {{ item.data.title }}
+    {{ item.data.title }} ({{ item.from | date:'mediumTime' }} - {{ item.to | date:'mediumTime' }})
 </ng-template>
 
 <div class="container-fluid pt-3">

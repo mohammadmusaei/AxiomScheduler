@@ -1,0 +1,34 @@
+<div class="ax-scheduler__week-view__header">
+  <div>
+
+  </div>
+  <div>
+    <div *ngFor="let day of days">
+      <span class="header_number">
+        {{ day.format('D') }}
+        <span class="header_day_title">
+          <p>th</p>
+          <p>{{ day.format('dddd') }}</p>
+        </span>
+      </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="ax-scheduler__week-view__body">
+    <div class="ax-scheduler__week-view__body__hour-column">
+        <div *ngFor="let hour of hours;let index = index">
+            <div>
+              <span *ngIf="index > 0">
+                {{ hour.start.format('HH:mm') }}
+              </span>
+            </div>
+          </div>
+    </div>
+    <div class="ax-scheduler__week-view__body__day-column">
+      <div *ngFor="let hour of hours">
+          <div *ngFor="let day of days"></div>
+      </div>
+    </div>
+</div>

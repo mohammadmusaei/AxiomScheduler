@@ -19,37 +19,39 @@
 </div>
 <div class="ax-scheduler__day-view__body" #b>
 
-<div class="ax-scheduler__event-tile" *ngFor="let event of dayEvents" 
-ngDraggable 
-(movingOffset)="ev.fromTimeChanging($event)" 
-(endOffset)="ev.fromTimeChanged($event)" 
-(edge)="checkEdge($event)"
-[gridSize]="axDragStep" [bounds]="b"
-[inBounds]="true"
-[zIndexMoving]="'1000'"
-[lockAxis]="'x'"
+    <div class="ax-scheduler__event-tile" *ngFor="let event of dayEvents" 
+    ngDraggable 
+    (movingOffset)="ev.fromTimeChanging($event)" 
+    (endOffset)="ev.fromTimeChanged($event)" 
+    (started)="ev.fromTimeChangeStart($event)" 
+    (edge)="checkEdge($event)"
+    [gridSize]="axDragStep" [bounds]="b"
+    [inBounds]="true"
+    [zIndexMoving]="'1000'"
+    [lockAxis]="'x'"
 
-ngResizable 
-[rzHandles]="'s,n'"
+    ngResizable 
+    [rzHandles]="'s,n'"
 
-(rzResizing)="ev.toTimeChanging($event)"
-(rzStop)="ev.toTimeChanged($event)"
-(rzStart)="ev.toTimeChangeStart($event)"
-[rzGrid]="axDragStep" >
+    (rzResizing)="ev.toTimeChanging($event)"
+    (rzStop)="ev.toTimeChanged($event)"
+    (rzStart)="ev.toTimeChangeStart($event)"
+    [rzGrid]="axDragStep" >
 
-        <div class="ax-scheduler__event-tile__box" #ev 
-        [event]="event"
-        ax-scheduler-event></div>
-        
-  </div>
+            <div class="ax-scheduler__event-tile__box" #ev 
+            [event]="event"
+            [axEventTemplate] = "axEventTemplate"
+            ax-scheduler-event></div>
+            
+      </div>
 
   <div *ngFor="let hour of hours;let index = index">
-    <div>
+    <div class="ax-scheduler__day-view__hour-column">
       <span *ngIf="index > 0">
         {{ hour.start.format('HH:mm') }}
       </span>
     </div>
-    <div ax-scheduler-hour [hour]="hour" [axEventTemplate]="axEventTemplate" [axEventFormatter]="axEventFormatter"
+    <div  class="ax-scheduler__day-view__event-column" ax-scheduler-hour [hour]="hour" [axEventTemplate]="axEventTemplate" [axEventFormatter]="axEventFormatter"
       [axEvents]="axEvents">
 
     </div>

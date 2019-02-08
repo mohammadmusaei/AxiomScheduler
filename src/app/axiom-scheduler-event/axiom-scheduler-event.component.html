@@ -1,8 +1,11 @@
-<!-- <ng-container *ngTemplateOutlet="axEventTemplate;context:ctx">
-</ng-container> -->
 
-<p [@timeAnimate]>
-    {{ fromTime && fromTime.format('HH:mm') }}
-    <br>
-    {{ toTime && toTime.format('HH:mm') }}
+
+<p [@timeAnimate] *ngIf="showTime">
+    <span>{{ fromTime && fromTime.format('HH:mm') }}</span>
+    <span>{{ toTime && toTime.format('HH:mm') }}</span>
 </p>
+
+<div class="ax-scheduler__event__content">
+        <ng-container *ngTemplateOutlet="axEventTemplate;context:ctx">
+            </ng-container>
+</div>
