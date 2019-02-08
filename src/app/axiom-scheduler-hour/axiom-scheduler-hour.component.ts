@@ -32,17 +32,17 @@ export class AxiomSchedulerHourComponent extends AxiomSchedulerComponentCommon i
 
   private setInRangeEvent(){
     this.inRnageEvents = [];
-    this.inRnageEvents = this.axEvents.filter(event=>{
-      var evt = moment(event.date);
-      const inRange = evt.isSameOrAfter(this.hour.start) && evt.isSameOrBefore(this.hour.end);
-      if(inRange){
-        var index = this.minuteRows.findIndex(i=>i.minute === +event.date.getMinutes());
-        if(index >= 0){
-          this.minuteRows[index].events.push(event);
-        }
-      }
-      return inRange;
-    });
+    // this.inRnageEvents = this.axEvents.filter(event=>{
+    //   var evt = moment(event.date);
+    //   const inRange = evt.isSameOrAfter(this.hour.start) && evt.isSameOrBefore(this.hour.end);
+    //   if(inRange){
+    //     var index = this.minuteRows.findIndex(i=>i.minute === +event.date.getMinutes());
+    //     if(index >= 0){
+    //       this.minuteRows[index].events.push(event);
+    //     }
+    //   }
+    //   return inRange;
+    // });
   }
 
 }

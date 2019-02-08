@@ -9,11 +9,13 @@ export class AxiomSchedulerComponentCommon {
 }
 
 export class  AxiomSchedulerEvent{
-  date : Date;
+  from : Date;
+  to : Date;
   data : any;
-  constructor(date : Date = null , data : any = null) {
+  constructor(from : Date = null ,to : Date = null , data : any = null) {
     this.data = data;
-    this.date = date;
+    this.from = from;
+    this.to = to;
   }
 }
 

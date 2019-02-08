@@ -194,11 +194,13 @@ $event-height:25px;
   z-index: 3;
   left: 0;
   right: 0;
+  padding: 0;
   padding-left: $row-header-w;
   background: transparent;
   border: none;
   text-align: right;
-  cursor: move;
+  // min-height: 30px;
+  // cursor: move;
   overflow: visible;
   >.ax-scheduler__event-tile__box {
     background: #2196F3;

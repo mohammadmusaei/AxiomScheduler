@@ -10,7 +10,6 @@ import { AxiomSchedulerComponent } from './axiom-scheduler/axiom-scheduler.compo
 import { AxiomSchedulerDayViewComponent } from './axiom-scheduler-day-view/axiom-scheduler-day-view.component';
 import { AxiomSchedulerHourComponent } from './axiom-scheduler-hour/axiom-scheduler-hour.component';
 import { AxiomSchedulerEventComponent } from './axiom-scheduler-event/axiom-scheduler-event.component';
-import { DragTryDirective } from './drag-try.directive';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { DragTryDirective } from './drag-try.directive';
     AxiomSchedulerComponent,
     AxiomSchedulerDayViewComponent,
     AxiomSchedulerHourComponent,
-    AxiomSchedulerEventComponent,
-    DragTryDirective
+    AxiomSchedulerEventComponent
   ],
   imports: [
     BrowserModule, 
