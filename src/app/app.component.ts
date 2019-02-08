@@ -69,14 +69,14 @@ export class AppComponent implements OnInit {
       //     title : "Meeting #T453"
       //   }
       // },
-      // {
-      //   from: moment(Date.now()).add(-4,'hours'),
-      //   to: moment(Date.now()).add(-1,'hours'),
-      //   data : {
-      //     title : "Meeting #H7886"
-      //   }
-      // }
-      // ,
+      {
+        from: moment(Date.now()).add(-2,'days').add(-4,'hours'),
+        to: moment(Date.now()).add(-2,'days').add(-1,'hours'),
+        data : {
+          title : "Meeting #H7886"
+        }
+      }
+      ,
       {
         from: moment(Date.now()).add(-12,'hours'),
         to: moment(Date.now()).add(-11,'hours'),

@@ -11,6 +11,7 @@ import { AxiomSchedulerDayViewComponent } from './axiom-scheduler-day-view/axiom
 import { AxiomSchedulerHourComponent } from './axiom-scheduler-hour/axiom-scheduler-hour.component';
 import { AxiomSchedulerEventComponent } from './axiom-scheduler-event/axiom-scheduler-event.component';
 import { AxiomSchedulerWeekViewComponent } from './axiom-scheduler-week-view-component/axiom-scheduler-week-view-component.component';
+import { AxiomSchedulerDayColumnComponent } from './axiom-scheduler-day-column/axiom-scheduler-day-column.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AxiomSchedulerWeekViewComponent } from './axiom-scheduler-week-view-com
     AxiomSchedulerDayViewComponent,
     AxiomSchedulerHourComponent,
     AxiomSchedulerEventComponent,
-    AxiomSchedulerWeekViewComponent
+    AxiomSchedulerWeekViewComponent,
+    AxiomSchedulerDayColumnComponent
   ],
   imports: [
     BrowserModule, 

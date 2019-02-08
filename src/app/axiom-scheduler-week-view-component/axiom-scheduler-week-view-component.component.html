@@ -27,8 +27,15 @@
           </div>
     </div>
     <div class="ax-scheduler__week-view__body__day-column">
-      <div *ngFor="let hour of hours">
-          <div *ngFor="let day of days"></div>
-      </div>
+        <div>
+            <div *ngFor="let day of days"
+            ax-scheduler-day-column
+            [axEvents]="axEvents" 
+            [hourColumn]="false"
+            [axEventTemplate] = "axEventTemplate"
+            [axEventFormatter] = "axEventFormatter"
+            [axDragStep]="axDragStep"
+            [axStartDate]="day.toDate()"></div>
+        </div>
     </div>
 </div>

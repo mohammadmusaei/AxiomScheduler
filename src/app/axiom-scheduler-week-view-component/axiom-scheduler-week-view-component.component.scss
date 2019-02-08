@@ -80,6 +80,12 @@ $event-height: 25px;
             >div{
                 height: $header-h;
                 display: table-cell;
+                width: auto;
+                overflow: hidden;
+                border-left: 1px solid $border-color;
+            }
+            >div:first-child{
+              border-left: none;
             }
         }
     }

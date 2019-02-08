@@ -1,8 +1,235 @@
-
 @import "~angular2-draggable/css/resizable.min.css";
+@import "../animations.scss";
 
-.ax-scheduler{
-    height: 90vh;
-    display: block;
-    overflow: hidden;
+.ax-scheduler {
+  height: 90vh;
+  display: block;
+  overflow: hidden;
 }
+
+$border-color: #ddd;
+$header-h: 60px;
+$row-header-w: 50px;
+$header-bg: #eee;
+$row-header-label-bg: #3f51b5;
+$event-height: 25px;
+
+%row-header-label {
+  color: #666;
+  background-color: #fff;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  border-right: none;
+  -webkit-animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: #999;
+    border-radius: 50%;
+    top: -5px;
+    bottom: -5px;
+    width: 2px;
+    right: 0;
+    left: auto;
+    z-index: -1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ax-scheduler__day-view {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: block;
+  height: 100%;
+  border: 1px solid $border-color;
+  user-select: none;
+}
+
+.ax-scheduler__day-view__header,
+.ax-scheduler__day-view__body {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+
+.ax-scheduler__day-view__body {
+  > div:not(.ax-scheduler__event-tile) {
+    position: relative;
+    display: block;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid $border-color;
+
+    > div {
+      height: 100%;
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      vertical-align: top;
+      position: relative;
+    }
+
+    > div.ax-scheduler__day-view__hour-column {
+      width: $row-header-w;
+      max-width: $row-header-w;
+      min-width: $row-header-w;
+      border-right: 1px solid $border-color;
+      text-align: right;
+
+      > span {
+        position: absolute;
+        font-size: 10px;
+        vertical-align: top;
+        padding-right: 5px;
+        padding-left: 5px;
+        top: -7px;
+        right: -1px;
+        z-index: 2;
+        @extend %row-header-label;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #fff;
+      }
+    }
+
+    > div.ax-scheduler__day-view__event-column {
+      width: calc(100% - #{$row-header-w + 2px});
+      padding-left: 5px;
+    }
+  }
+
+  > div:last-child:not(.ax-scheduler__event-tile__box) {
+    border: none;
+  }
+}
+
+.ax-scheduler__day-view__header {
+  height: $header-h;
+  background: $header-bg;
+  outline: 1px solid $header-bg;
+
+  > div {
+    height: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    position: relative;
+  }
+
+  > div:first-child {
+    width: $row-header-w;
+    max-width: $row-header-w;
+    min-width: $row-header-w;
+  }
+
+  > div:last-child {
+    > div {
+      display: inline-block;
+      height: 100%;
+      border: none;
+      -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+      > span.header_number {
+        font-size: 36px;
+        font-weight: bold;
+        color: #444;
+        margin: 0;
+        line-height: 19px;
+
+        > span.header_day_title {
+          display: inline-block;
+          font-size: 11px;
+          margin-left: -5px;
+
+          > p {
+            padding: 0;
+            margin: 0;
+          }
+        }
+      }
+
+      > span.header_month_year {
+        margin: 0;
+        display: block;
+        font-size: 11px;
+        color: #888;
+      }
+    }
+  }
+}
+
+.ax-scheduler__day-view__body {
+  height: calc(100% - #{$header-h});
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.ax-scheduler__event-tile {
+  position: absolute !important;
+  height: $event-height;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  padding: 0;
+  padding-left: $row-header-w;
+  background: transparent;
+  border: none;
+  text-align: right;
+  overflow: visible;
+  > .ax-scheduler__event-tile__box {
+    background: #2196f3;
+    height: 100%;
+    position: relative;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.ax-scheduler__day-view__body.hour-none {
+    div.ax-scheduler__day-view__event-column {
+     width: calc(100% - 2px);
+     padding-left: 5px;
+   }
+    div.ax-scheduler__day-view__hour-column {
+     display: none;
+   }
+   .ax-scheduler__event-tile {
+       padding-left: 0;
+   }
+ }
+ 
