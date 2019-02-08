@@ -26,7 +26,7 @@ $event-height: 25px;
   &:after {
     content: "";
     position: absolute;
-    background-color: #999;
+    background-color:#fff;
     border-radius: 50%;
     top: -5px;
     bottom: -5px;
@@ -104,8 +104,8 @@ $event-height: 25px;
         vertical-align: top;
         padding-right: 5px;
         padding-left: 5px;
-        top: -7px;
-        right: -1px;
+        top: -9px;
+            right: -3px;
         z-index: 2;
         @extend %row-header-label;
       }

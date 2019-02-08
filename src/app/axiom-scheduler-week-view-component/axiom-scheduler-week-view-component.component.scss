@@ -19,7 +19,7 @@ $event-height: 25px;
   &:after {
     content: "";
     position: absolute;
-    background-color: #999;
+    background-color: #fff;
     border-radius: 50%;
     top: -5px;
     bottom: -5px;
@@ -55,8 +55,7 @@ $event-height: 25px;
   height: 100%;
   border: 1px solid $border-color;
   user-select: none;
-  .ax-scheduler__week-view__header,
-  .ax-scheduler__week-view__body {
+  .ax-scheduler__week-view__header {
     display: block;
     margin: 0;
     padding: 0;
@@ -73,7 +72,7 @@ $event-height: 25px;
       vertical-align: top;
     }
     >.ax-scheduler__week-view__body__day-column{
-        width: calc(100% - #{$row-header-w});
+      width: calc(100% - #{$row-header-w});
         >div{
             display: table;
             width: 100%;
@@ -83,6 +82,7 @@ $event-height: 25px;
                 width: auto;
                 overflow: hidden;
                 border-left: 1px solid $border-color;
+                width: percentage(7/100);
             }
             >div:first-child{
               border-left: none;
@@ -119,8 +119,8 @@ $event-height: 25px;
             vertical-align: top;
             padding-right: 5px;
             padding-left: 5px;
-            top: -7px;
-            right: -1px;
+            top: -9px;
+            right: -3px;
             z-index: 2;
             @extend %row-header-label;
           }
@@ -166,6 +166,7 @@ $event-height: 25px;
         display: table-cell;
         height: 100%;
         border: none;
+        width: percentage(7/100);
         -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         > span.header_number {
@@ -199,32 +200,5 @@ $event-height: 25px;
     height: calc(100% - #{$header-h});
     overflow-x: hidden;
     overflow-y: auto;
-  }
-}
-
-.ax-scheduler__event-tile {
-  position: absolute !important;
-  height: $event-height;
-  z-index: 3;
-  left: 0;
-  right: 0;
-  padding: 0;
-  padding-left: $row-header-w;
-  background: transparent;
-  border: none;
-  text-align: right;
-  // min-height: 30px;
-  // cursor: move;
-  overflow: visible;
-  > .ax-scheduler__event-tile__box {
-    background: #2196f3;
-    height: 100%;
-    position: relative;
-    display: block;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;
-    &:hover {
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    }
   }
 }
