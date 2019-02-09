@@ -16,6 +16,7 @@ import { AxiomSchedulerHour } from '../axiom-scheduler-day-view/axiom-scheduler-
 export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
   @Input() hourColumn : boolean = true;
+  @Input() bounds : any;
   public dayEvents: AxiomSchedulerEvent[];
   public date: moment.Moment;
   public hours: AxiomSchedulerHour[];
@@ -29,6 +30,7 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
 
   constructor(public _element : ElementRef) { 
     super();
+    this.bounds  = this._element.nativeElement;
   }
 
   ngOnInit() {

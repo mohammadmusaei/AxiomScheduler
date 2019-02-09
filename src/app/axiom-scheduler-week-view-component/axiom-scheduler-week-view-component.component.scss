@@ -80,7 +80,7 @@ $event-height: 25px;
                 height: $header-h;
                 display: table-cell;
                 width: auto;
-                overflow: hidden;
+                overflow: visible;
                 border-left: 1px solid $border-color;
                 width: percentage(7/100);
             }

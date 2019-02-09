@@ -13,6 +13,7 @@ $row-header-w: 50px;
 $header-bg: #eee;
 $row-header-label-bg: #3f51b5;
 $event-height: 25px;
+$event-bg :#2196f3;
 
 %row-header-label {
   color: #666;
@@ -124,7 +125,16 @@ $event-height: 25px;
     > div.ax-scheduler__day-view__event-column {
       width: calc(100% - #{$row-header-w + 2px});
       padding-left: 5px;
+      outline-color: $border-color;
     }
+
+    &:hover{
+      > div.ax-scheduler__day-view__event-column {
+        // outline: 1px solid $event-bg;
+        z-index: 2;
+      }
+    }
+
   }
 
   > div:last-child:not(.ax-scheduler__event-tile__box) {
@@ -208,7 +218,7 @@ $event-height: 25px;
   text-align: right;
   overflow: visible;
   > .ax-scheduler__event-tile__box {
-    background: #2196f3;
+    background: $event-bg;
     height: 100%;
     position: relative;
     display: block;
@@ -222,8 +232,8 @@ $event-height: 25px;
 
 .ax-scheduler__day-view__body.hour-none {
     div.ax-scheduler__day-view__event-column {
-     width: calc(100% - 2px);
-     padding-left: 5px;
+     width: 100% !important;
+     padding-left: 5px !important;
    }
     div.ax-scheduler__day-view__hour-column {
      display: none;
