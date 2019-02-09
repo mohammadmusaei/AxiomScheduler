@@ -63,6 +63,20 @@ export class AppComponent implements OnInit {
         }
       },
       {
+        from: moment(Date.now()).add(-5,'days').add(-2,'hours'),
+        to: moment(Date.now()).add(-5,'days').add(-2,'hours'),
+        data : {
+          title : "Meeting #3323"
+        }
+      },
+      {
+        from: moment(Date.now()).add(-5,'days').add(-7,'hours'),
+        to: moment(Date.now()).add(-5,'days').add(-2,'hours'),
+        data : {
+          title : "Meeting #43-065"
+        }
+      },
+      {
         from: moment(Date.now()).add(-3,'days').add(-4,'hours'),
         to: moment(Date.now()).add(-3,'days').add(-2,'hours'),
         data : {
@@ -90,6 +104,21 @@ export class AppComponent implements OnInit {
         to: moment(Date.now()).add(-1,'hours'),
         data : {
           title : "Meeting #784"
+        }
+      }
+      ,
+      {
+        from: moment(Date.now()).add(-6,'hours'),
+        to: moment(Date.now()).add(-1,'hours'),
+        data : {
+          title : "Meeting #5455"
+        }
+      } ,
+      {
+        from: moment(Date.now()).add(-1,'hours'),
+        to: moment(Date.now()).add(-1,'minutes'),
+        data : {
+          title : "Meeting #09888"
         }
       }
     ].map(i=>new AxiomSchedulerEvent(i.from.toDate(),i.to.toDate(),i.data));

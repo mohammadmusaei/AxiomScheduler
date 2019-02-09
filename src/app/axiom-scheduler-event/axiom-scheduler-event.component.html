@@ -1,11 +1,19 @@
 
 
-<p [@timeAnimate] *ngIf="showTime">
-    <span>{{ fromTime && fromTime.format('HH:mm') }}</span>
-    <span>{{ toTime && toTime.format('HH:mm') }}</span>
-</p>
-
-<div class="ax-scheduler__event__content">
-        <ng-container *ngTemplateOutlet="axEventTemplate;context:ctx">
-            </ng-container>
-</div>
+<ng-container *ngIf="!monthMode">
+        <p [@timeAnimate] *ngIf="showTime">
+                <span>{{ fromTime && fromTime.format('HH:mm') }}</span>
+                <span>{{ toTime && toTime.format('HH:mm') }}</span>
+            </p>
+            
+            <div class="ax-scheduler__event__content">
+                    <ng-container *ngTemplateOutlet="axEventTemplate;context:ctx">
+                        </ng-container>
+            </div>
+</ng-container>
+<ng-container *ngIf="monthMode">
+            <div class="ax-scheduler__event__content">
+                    <ng-container *ngTemplateOutlet="axEventTemplate;context:ctx">
+                        </ng-container>
+            </div>
+</ng-container>

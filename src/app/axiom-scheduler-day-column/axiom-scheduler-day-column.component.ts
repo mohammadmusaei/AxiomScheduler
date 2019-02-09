@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, Input, Injector } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerComponentCommon, AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 import { AxiomSchedulerHour } from '../axiom-scheduler-day-view/axiom-scheduler-day-view.component';
@@ -18,7 +18,6 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
   @Input() hourColumn : boolean = true;
   @Input() bounds : any;
   public dayEvents: AxiomSchedulerEvent[];
-  public date: moment.Moment;
   public hours: AxiomSchedulerHour[];
   
   edge = {
@@ -28,13 +27,17 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
     right: true
   };
 
-  constructor(public _element : ElementRef) { 
-    super();
+  constructor(injector : Injector,public _element : ElementRef) { 
+    super(injector);
     this.bounds  = this._element.nativeElement;
   }
 
   ngOnInit() {
-    this.date = moment(this.axStartDate) || moment(Date.now());
+    this.refresh();
+    this.refreshView();
+  }
+
+  refreshView() : void{
     this.checkDayEvents();
     this.setHours();
   }
@@ -53,7 +56,7 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
   private checkDayEvents(): void {
     this.dayEvents = [];
     this.axEvents.forEach(ev => {
-      if(moment(ev.from).isSameOrAfter(this.date.startOf('day')) && moment(ev.to).isSameOrBefore(this.date.endOf('day'))){
+      if(moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.date.clone().endOf('day'))){
         this.dayEvents.push(ev);
       }
     });

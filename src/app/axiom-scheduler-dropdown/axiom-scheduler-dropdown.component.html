@@ -1,0 +1,9 @@
+
+<div class="ax-scheduler-dropdown__model" (click)="toggle()">
+  {{ inputFormatter() }}
+</div>
+<div class="ax-scheduler-dropdown__list" *ngIf="open" [@dropdownAnimation] >
+  <div *ngFor="let item of items" (click)="select(item)">
+    {{ item[dataTitle] }}
+  </div>
+</div>

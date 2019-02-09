@@ -1,20 +1,52 @@
+<div class="ax-scheduler__header">
+    <div class="ax-scheduler__header__date-part">
+        <button (click)="todayF()">today</button>
+        <div class="ax-scheduler__header__date-part__nav">
+            <button (click)="prev()">
+                <svg height="24px" version="1.1" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    
+                    <g fill="none" fill-rule="evenodd" id="icon/chevron-back" stroke="none" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1">
+                        <polyline id="lineart" points="15.5 20.4751 6.5 11.4751 15.5 2.4751" stroke="#000000" />
+                    </g>
+                </svg>
+            </button>
+            <button (click)="next()">
+                <svg height="24px" version="1.1" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g fill="none" fill-rule="evenodd" id="icon/chevron-forward" stroke="none" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1">
+                        <polyline id="lineart" points="7.5 20.4751 16.5 11.4751 7.5 2.4751" stroke="#000000" />
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div class="ax-scheduler__header__date-part__title">
+                {{ date.format('MMMM') }} {{ date.format('YYYY') }}
+        </div>
+    </div>
+    <div></div>
+    <div class="ax-scheduler__header__view-part">
+        <ax-scheduler-dropdown [(ngModel)]="axSchedulerView" [modelFormatter]="modelFormatter" [items]="items" [dataTitle]="'title'" [dataId]="'id'">
 
-<!-- 
-<div ax-scheduler-day-view 
-[axEvents]="axEvents" 
-[axEventTemplate] = "axEventTemplate"
-[axEventFormatter] = "axEventFormatter"
-[axDragStep]="axDragStep"
-[axStartDate]="axStartDate">
+        </ax-scheduler-dropdown>
+    </div>
+</div>
 
-</div> -->
+<div class="ax-scheduler__body" [ngSwitch]="axSchedulerView">
 
+    <div *ngSwitchCase="1" ax-scheduler-day-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
 
-<div ax-scheduler-week-view 
-[axEvents]="axEvents" 
-[axEventTemplate] = "axEventTemplate"
-[axEventFormatter] = "axEventFormatter"
-[axDragStep]="axDragStep"
-[axStartDate]="axStartDate">
+    </div>
+    <div *ngSwitchCase="3" ax-scheduler-week-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
+
+    </div>
+    <div *ngSwitchCase="4" ax-scheduler-month-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
+
+    </div>
 
 </div>

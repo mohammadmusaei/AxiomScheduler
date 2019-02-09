@@ -1,5 +1,5 @@
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
-import { Component, OnInit, Input, ViewEncapsulation, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Renderer2, ElementRef, AfterViewInit, Injector } from '@angular/core';
 import { AxiomSchedulerEvent } from '../axiom-scheduler/axiom-scheduler.component';
 import * as moment from 'moment';
 import { trigger, style, transition, animate } from '@angular/animations';
@@ -11,7 +11,8 @@ import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
   styleUrls: ['./axiom-scheduler-event.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'ax-scheduler__event'
+    'class': 'ax-scheduler__event',
+    '[class.expired]': 'expired'
   },
   animations: [
     trigger('timeAnimate', [
@@ -28,23 +29,31 @@ import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
 export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon implements OnInit, AfterViewInit {
 
   @Input() event: AxiomSchedulerEvent;
+  @Input() monthMode : boolean = false;
   ctx: any;
   fromTime: moment.Moment;
   toTime: moment.Moment;
   diff: number;
   showTime : boolean = false;
+  expired : boolean = false;
 
-  constructor(private _renderer: Renderer2, private _element: ElementRef) {
-    super();
+  constructor(injector : Injector,private _renderer: Renderer2, private _element: ElementRef) {
+    super(injector);
   }
 
   ngOnInit() {
-    this.ctx = { item : this.event };
-    this.updateTime();
+    this.refreshView();
   }
 
   ngAfterViewInit(): void {
-    this.checkPosition();
+    if(!this.monthMode){
+      this.checkPosition();
+    }
+  }
+
+  refreshView() : void{
+    this.ctx = { item : this.event };
+    this.updateTime();
   }
 
   fromTimeChanging(e: { x: number, y: number }): void {
@@ -85,7 +94,8 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
       this._renderer.setStyle(this._element.nativeElement.parentElement, 'top', `${from}px`);
       this._renderer.setStyle(this._element.nativeElement.parentElement, 'height', `${Math.abs(from - to)}px`);
       this._renderer.setStyle(this._element.nativeElement, 'height', `100%`);
-    }, 300);
+      this._renderer.setStyle(this._element.nativeElement, 'display', `block`);
+    }, 200);
   }
 
   private getOffsetMinute(): number {
@@ -102,6 +112,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
     this.fromTime = moment(this.event.from).clone();
     this.toTime = moment(this.event.to).clone();
     this.updateDiff();
+    this.expired = moment(this.event.to).isBefore(moment(),'days');
   }
 
 }

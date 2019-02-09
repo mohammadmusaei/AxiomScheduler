@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Injector } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerComponentCommon, AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 
@@ -22,14 +22,16 @@ export class AxiomSchedulerHour {
 })
 export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  public date: moment.Moment;
-  
-  constructor() {
-    super();
+  constructor(injector : Injector) {
+    super(injector);
   }
 
   ngOnInit() {
-    this.date = moment(this.axStartDate) || moment(Date.now());
+    this.refresh();
+    this.refreshView();
+  }
+
+  refreshView() : void{
     this.axDragStep = this.axDragStep || 15;
   }
 
