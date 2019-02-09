@@ -135,15 +135,16 @@ $event-dialog-bg: #fff;
     }
   }
   .ax-scheduler__header__date-part__title {
-    font-size: 20px;
+    font-size: 1em;
     text-align: center;
     margin-left: 15px;
     color: #444;
+    white-space: nowrap;
   }
-  .ax-scheduler__header__view-part{
+  .ax-scheduler__header__view-part {
     text-align: left;
     padding: 0 5px;
-    .ax-scheduler-dropdown{
+    .ax-scheduler-dropdown {
       float: right;
       margin-right: 12px;
       margin-top: 11px;
@@ -270,7 +271,7 @@ $event-dialog-bg: #fff;
       animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 
       > span.header_number {
-        font-size: 36px;
+        font-size: 2.2em;
         font-weight: bold;
         color: #444;
         margin: 0;
@@ -278,7 +279,7 @@ $event-dialog-bg: #fff;
 
         > span.header_day_title {
           display: inline-block;
-          font-size: 11px;
+          font-size: 0.3em;
           margin-left: -5px;
 
           > p {
@@ -352,6 +353,7 @@ $event-dialog-bg: #fff;
   border: 1px solid $border-color;
   border-bottom: none;
   border-left: none;
+  overflow: auto;
 }
 .ax-scheduler__month-view__day {
   position: relative;
@@ -488,5 +490,87 @@ $event-dialog-bg: #fff;
   cursor: pointer;
   &:hover {
     background-color: #eee;
+  }
+}
+
+.ax-scheduler__year-view {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  border: 1px solid $border-color;
+  overflow: auto;
+  > div {
+    position: relative;
+    min-height: 100px;
+    flex: calc(100% / 4);
+    text-align: center;
+  }
+}
+.ax-scheduler__year-view__month {
+  height: 100%;
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
+  .ax-scheduler__year-view__month__header {
+    display: block;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    font-size: 12px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 16px;
+  }
+  .ax-scheduler__year-view__month__body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100% - 30px);
+    padding: 0 70px;
+    > div {
+      position: relative;
+      flex: calc(100% / 7);
+      margin-top: 4px;
+      > span{
+        height: 24px;
+        width: 24px;
+        line-height: 22px;
+        text-align: center;
+        border-radius: 50%;
+        display: block;
+        position: relative;
+        font-size: 11px;
+        color: #444;
+        cursor: pointer;
+        transition: all .1s ease-in-out;
+        &:hover{
+          background-color: #eee;
+        }
+        &:active{
+          background-color: #ddd;
+        }
+      }
+      &.today{
+        >span{
+          background-color: $today-bg-color;
+          color: $today-color !important;
+          border: none !important;
+        }
+      }
+      &.current{
+        >span{
+          color: #222;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+.ax-scheduler__year-view__month__day{
+  &.hasEvent{
+    border:1px solid $event-bg;
   }
 }

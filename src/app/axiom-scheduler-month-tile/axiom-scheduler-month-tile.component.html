@@ -1,0 +1,16 @@
+
+
+<div class="ax-scheduler__year-view__month__header">
+   {{ monthObject.month.format('MMMM') }}
+</div>
+<div class="ax-scheduler__year-view__month__body">
+    <div *ngFor="let day of monthObject.days" [ngClass]="{ 'today' : day.isSame(today,'days') , 'current' : day.isSame(monthObject.month,'months') }">
+        <span ax-scheduler-month-tile-day
+        [axEvents]="axEvents" 
+        [axEventTemplate] = "axEventTemplate"
+        [axEventFormatter] = "axEventFormatter"
+        [axDragStep]="axDragStep"
+        [axStartDate]="axStartDate"
+        [day]="day"></span>
+    </div>
+ </div>

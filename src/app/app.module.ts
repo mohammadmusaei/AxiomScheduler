@@ -15,6 +15,9 @@ import { AxiomSchedulerDayColumnComponent } from './axiom-scheduler-day-column/a
 import { AxiomSchedulerMonthViewComponent } from './axiom-scheduler-month-view/axiom-scheduler-month-view.component';
 import { AxiomSchedulerDayTileComponent } from './axiom-scheduler-day-tile/axiom-scheduler-day-tile.component';
 import { AxiomSchedulerDropdownComponent } from './axiom-scheduler-dropdown/axiom-scheduler-dropdown.component';
+import { AxiomSchedulerYearViewComponent } from './axiom-scheduler-year-view/axiom-scheduler-year-view.component';
+import { AxiomSchedulerMonthTileComponent } from './axiom-scheduler-month-tile/axiom-scheduler-month-tile.component';
+import { AxiomSchedulerMonthTileDayComponent } from './axiom-scheduler-month-tile-day/axiom-scheduler-month-tile-day.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { AxiomSchedulerDropdownComponent } from './axiom-scheduler-dropdown/axio
     AxiomSchedulerDayColumnComponent,
     AxiomSchedulerMonthViewComponent,
     AxiomSchedulerDayTileComponent,
-    AxiomSchedulerDropdownComponent
+    AxiomSchedulerDropdownComponent,
+    AxiomSchedulerYearViewComponent,
+    AxiomSchedulerMonthTileComponent,
+    AxiomSchedulerMonthTileDayComponent
   ],
   imports: [
     BrowserModule, 

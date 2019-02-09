@@ -170,13 +170,13 @@ $event-height: 25px;
         -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         > span.header_number {
-          font-size: 36px;
+          font-size: 2.2em;
           font-weight: bold;
           color: #444;
           margin: 0;
           > span.header_day_title {
             display: inline-block;
-            font-size: 11px;
+            font-size: .3em;
             margin-left: -5px;
 
             > p {

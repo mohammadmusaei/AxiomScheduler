@@ -10,51 +10,52 @@ import { AxiomSchedulerEvent } from './axiom-scheduler/axiom-scheduler.component
 export class AppComponent implements OnInit {
 
   events : AxiomSchedulerEvent[];
+  events2 : AxiomSchedulerEvent[];
 
   ngOnInit(): void {
     this.events = [
-      // {
-      //   from: moment(Date.now()).add(-1,'hours'),
-      //   to: moment(Date.now()),
-      //   data : {
-      //     title : "Meeting #55564"
-      //   }
-      // },
-      // {
-      //   from: moment(Date.now()).add(-1,'hours'),
-      //   to: moment(Date.now()),
-      //   data : {
-      //     title : "Meeting #54677"
-      //   }
-      // },
-      // {
-      //   from: moment(Date.now()).add(-1,'hours').add(5,'minutes'),
-      //   to: moment(Date.now()).add(5,'minutes'),
-      //   data : {
-      //     title : "Meeting #54HYYT7"
-      //   }
-      // },
-      // {
-      //   from: moment(Date.now()).add(-1,'hours').add(20,'minutes'),
-      //   to: moment(Date.now()).add(20,'minutes'),
-      //   data : {
-      //     title : "Meeting #5RE77"
-      //   }
-      // },
-      // {
-      //   from: moment(Date.now()).add(-1,'hours').add(40,'minutes'),
-      //   to: moment(Date.now()).add(40,'minutes'),
-      //   data : {
-      //     title : "Meeting #F457"
-      //   }
-      // },
-      // {
-      //   from: moment(Date.now()).add(-2,'hours'),
-      //   to: moment(Date.now()),
-      //   data : {
-      //     title : "Meeting #1334"
-      //   }
-      //}
+      {
+        from: moment(Date.now()).add(8,'days').add(-1,'hours'),
+        to: moment(Date.now()).add(8,'days'),
+        data : {
+          title : "Meeting #55564"
+        }
+      },
+      {
+        from: moment(Date.now()).add(6,'days').add(-1,'hours'),
+        to: moment(Date.now()).add(6,'days'),
+        data : {
+          title : "Meeting #54677"
+        }
+      },
+      {
+        from: moment(Date.now()).add(4,'days').add(-1,'hours').add(5,'minutes'),
+        to: moment(Date.now()).add(4,'days').add(5,'minutes'),
+        data : {
+          title : "Meeting #54HYYT7"
+        }
+      },
+      {
+        from: moment(Date.now()).add(1,'days').add(-1,'hours').add(20,'minutes'),
+        to: moment(Date.now()).add(1,'days').add(20,'minutes'),
+        data : {
+          title : "Meeting #5RE77"
+        }
+      },
+      {
+        from: moment(Date.now()).add(2,'days').add(-1,'hours').add(40,'minutes'),
+        to: moment(Date.now()).add(2,'days').add(40,'minutes'),
+        data : {
+          title : "Meeting #F457"
+        }
+      },
+      {
+        from: moment(Date.now()).add(5,'days').add(-2,'hours'),
+        to: moment(Date.now()).add(5,'days'),
+        data : {
+          title : "Meeting #1334"
+        }
+      },
       {
         from: moment(Date.now()).add(-5,'days').add(-4,'hours'),
         to: moment(Date.now()).add(-5,'days').add(-2,'hours'),
@@ -122,6 +123,7 @@ export class AppComponent implements OnInit {
         }
       }
     ].map(i=>new AxiomSchedulerEvent(i.from.toDate(),i.to.toDate(),i.data));
+    this.events2 = [...this.events];
   }
 
 
