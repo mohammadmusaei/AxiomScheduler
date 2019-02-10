@@ -31,15 +31,17 @@ $breakpoints: (
   .ax-scheduler__header {
     padding-left: 0 !important;
   }
-  .ax-scheduler__header__nav-view-part{
+}
+@include media(">1000px") {
+  .view-dropdown{
     display: none !important;
   }
-  .ax-scheduler__header__view-part{
-    display: block;
-  }
 }
-@include media(">tablet") {
-  .ax-scheduler__header__view-part{
-    display: none;
+@include media("<1000px") {
+  .view-dropdown{
+    display: inline-block;
+  }
+  .ax-scheduler__header__nav-view-part{
+    display: none !important;
   }
 }

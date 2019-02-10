@@ -1,3 +1,4 @@
+import { AX_LOCALES } from './../locales';
 import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, ViewChildren, AfterViewInit, ViewChild, Injector } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerService } from '../services/axiom-scheduler.service';
@@ -17,6 +18,7 @@ export class AxiomSchedulerComponentCommon {
   @Input() axEventTemplate: TemplateRef<any>;
   @Input() axEventFormatter: (data: any, date?: Date) => string;
   @Input() axDragStep: number;
+  @Input() axLocale: string;
   today: moment.Moment;
   date: moment.Moment;
   service: AxiomSchedulerService;
@@ -27,6 +29,13 @@ export class AxiomSchedulerComponentCommon {
     this.service.refershRequest.subscribe((s) => {
       if (s) {
         this.date = s.clone();
+        this.refreshView();
+      }
+    });
+    this.service.locale.subscribe((locale) => {
+      moment.locale(locale);
+      if(this.date){
+        this.date.locale(this.service.schedulerLocale);
         this.refreshView();
       }
     });
@@ -68,38 +77,46 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   @Input() axTheme : 'light' | 'dark' = 'light';
   items = [
     {id : AxiomSchedulerView.Day , title : 'Day'},
-    //{id : AxiomSchedulerView.FourDay , title : '4 Days'},
     {id : AxiomSchedulerView.Week , title : 'Week'},
     {id : AxiomSchedulerView.Month , title : 'Month'},
     {id : AxiomSchedulerView.Year , title : 'Year'}, 
     {id : AxiomSchedulerView.Schedule , title : 'Schedule'}
   ];
 
+  locales = AX_LOCALES.map((v)=>{
+    return { id : v , title : v };
+  });
+
   constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit() {
+    this.axLocale = 'en';
     this.refresh();
   }
 
   prev(): void {
     this.step(-1);
-    this.service.refershRequest.next(this.date);
+    this.service.refreshDate(this.date);
   }
 
   next(): void {
     this.step(1);
-    this.service.refershRequest.next(this.date);
+    this.service.refreshDate(this.date);
   }
 
   todayF() {
     this.date = moment();
-    this.service.refershRequest.next(this.date);
+    this.service.refreshDate(this.date);
   }
 
   modelFormatter(value : any) : any{
     return value ? value.id : null;
+  }
+
+  setLocale(locale : string):void{
+    this.service.changeLocale(locale);
   }
 
   private step(step : number) : void{
