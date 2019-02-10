@@ -303,9 +303,12 @@
 
       > span.header_number {
         font-size: 2.2em;
-        font-weight: bold;
+        font-weight: normal;
         color: $dayview-day-title-color;
         margin: 0;
+        &.today{
+          color: $today-bg-color;
+        }
         > span.header_day_title {
           display: inline-block;
           font-size: 0.3em;

@@ -4,7 +4,7 @@
   </div>
   <div>
     <div *ngFor="let day of days">
-      <span class="header_number">
+      <span class="header_number" [ngClass]="{ 'today' : day.isSame(today,'days') }">
         {{ day.format('D') }}
         <span class="header_day_title">
           <p>th</p>

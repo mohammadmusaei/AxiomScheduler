@@ -4,7 +4,7 @@
   </div>
   <div>
     <div>
-      <span class="header_number">
+      <span class="header_number" [ngClass]="{ 'today' : date.isSame(today,'days') }">
         {{ date.format('D') }}
         <span class="header_day_title">
           <p>th</p>

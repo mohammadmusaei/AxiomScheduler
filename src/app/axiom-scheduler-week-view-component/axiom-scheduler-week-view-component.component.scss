@@ -141,14 +141,17 @@
         animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         > span.header_number {
           font-size: 2.2em;
-          font-weight: bold;
+          font-weight: normal;
           color: #444;
           margin: 0;
+          &.today{
+            color: $today-bg-color !important;
+          }
           > span.header_day_title {
             display: inline-block;
             font-size: 0.3em;
             margin-left: -5px;
-
+            color: $main-font-color;
             > p {
               padding: 0;
               margin: 0;
@@ -160,7 +163,6 @@
           margin: 0;
           display: block;
           font-size: 11px;
-          color: #888;
         }
       }
     }

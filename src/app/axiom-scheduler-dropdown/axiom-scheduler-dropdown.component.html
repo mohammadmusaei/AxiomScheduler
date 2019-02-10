@@ -1,8 +1,24 @@
-
 <div class="ax-scheduler-dropdown__model" (click)="toggle()">
   {{ inputFormatter() }}
+
+  <svg *ngIf="!open" height="24px" version="1.1" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g fill="none" fill-rule="evenodd" id="icon/chevron-bottom" stroke="none" stroke-linecap="round"
+      stroke-linejoin="round" stroke-width="1">
+      <polyline id="lineart" points="20.5 7.5 11.5 16.5 2.5 7.5" stroke="#000000" />
+    </g>
+  </svg>
+
+  <svg *ngIf="open" height="24px" version="1.1" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g fill="none" fill-rule="evenodd" id="icon/chevron-top" stroke="none" stroke-linecap="round"
+      stroke-linejoin="round" stroke-width="1">
+      <polyline id="lineart" points="20.5 15.5 11.5 6.5 2.5 15.5" stroke="#000000" />
+    </g>
+  </svg>
+
 </div>
-<div class="ax-scheduler-dropdown__list" *ngIf="open" [@dropdownAnimation] >
+<div class="ax-scheduler-dropdown__list" *ngIf="open" [@dropdownAnimation]>
   <div *ngFor="let item of items" (click)="select(item)">
     {{ item[dataTitle] }}
   </div>

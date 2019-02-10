@@ -2,6 +2,8 @@
 
 $dark-main-bg: #37474f;
 $dark-main-color: #fff;
+$dark-today-color: #fff; 
+$dark-today-bg: #e53935; 
 $dark-header-btn-bg: #263238;
 $dark-header-btn-bg-active: #263238;
 $dark-header-active-border: #2196f3;
@@ -131,5 +133,8 @@ $dark-event-tile-bg: #263238;
   .ax-scheduler__day-view__body > div:not(.ax-scheduler__event-tile) > div.ax-scheduler__day-view__event-column,
   .ax-scheduler__month-view__day{
       background-color: $dark-header-btn-bg-active !important;
+  }
+  .ax-scheduler__day-view__header > div:last-child > div > span.header_number.today{
+    color: $dark-today-bg !important;
   }
 }
