@@ -38,6 +38,8 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public showTime: boolean = false;
   public expired: boolean = false;
 
+  private timeout : any;
+
   constructor(injector: Injector, private _renderer: Renderer2, private _element: ElementRef) {
     super(injector);
   }
@@ -66,7 +68,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public fromTimeChanged(e: { x: number, y: number }): void {
     this.event.from = this.fromTime.clone().toDate();
     this.event.to = this.toTime.clone().toDate();
-    this.showTime = false;
+    this.toggleShowTime(false);;
   }
 
   public toTimeChanging(e: IResizeEvent): void {
@@ -78,15 +80,15 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public toTimeChanged(e: IResizeEvent): void {
     this.event.from = this.fromTime.clone().toDate();
     this.event.to = this.toTime.clone().toDate();
-    this.showTime = false;
+    this.toggleShowTime(false);
   }
 
   public toTimeChangeStart(e: IResizeEvent): void {
-    this.showTime = true;
+    this.toggleShowTime(true);
   }
 
   public fromTimeChangeStart(e: IResizeEvent): void {
-    this.showTime = true;
+    this.toggleShowTime(true);
   }
 
   private checkPosition(): void {
@@ -120,6 +122,18 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   private applyColor() : void{
     if(this.event.color){
       this._renderer.setStyle(this._element.nativeElement,'background',this.event.color);
+    }
+  }
+
+  private toggleShowTime(toggle : boolean) : void{
+    if(toggle){
+      this.timeout = setTimeout(() => {
+        this.showTime = toggle;
+      }, 200);
+    }
+    else{
+      clearTimeout(this.timeout);
+      this.showTime = toggle;
     }
   }
 
