@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   events : AxiomSchedulerEvent[];
   events2 : AxiomSchedulerEvent[];
+  colors = ["#673AB7",'#E91E63','#795548','#009688','#03A9F4','#FF9800','#004D40'];
 
   ngOnInit(): void {
     this.events = [
@@ -122,7 +123,7 @@ export class AppComponent implements OnInit {
           title : "Meeting #09888"
         }
       }
-    ].map(i=>new AxiomSchedulerEvent(i.from.toDate(),i.to.toDate(),i.data));
+    ].map(i=>new AxiomSchedulerEvent(i.from.toDate(),i.to.toDate(),i.data,this.colors[Math.floor(Math.random() * this.colors.length)]));
     this.events2 = [...this.events];
   }
 

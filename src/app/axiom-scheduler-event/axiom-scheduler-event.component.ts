@@ -55,6 +55,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public refreshView(): void {
     this.ctx = { item: this.event };
     this.updateTime();
+    this.applyColor();
   }
 
   public fromTimeChanging(e: { x: number, y: number }): void {
@@ -114,6 +115,12 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
     this.toTime = moment(this.event.to).clone();
     this.updateDiff();
     this.expired = moment(this.event.to).isBefore(moment(), 'days');
+  }
+
+  private applyColor() : void{
+    if(this.event.color){
+      this._renderer.setStyle(this._element.nativeElement,'background',this.event.color);
+    }
   }
 
 }

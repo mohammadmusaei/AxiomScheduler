@@ -66,10 +66,12 @@ export class AxiomSchedulerEvent {
   public from: Date;
   public to: Date;
   public data: any;
-  constructor(from: Date = null, to: Date = null, data: any = null) {
+  public color : string;
+  constructor(from: Date = null, to: Date = null, data: any = null,color : string = null) {
     this.data = data;
     this.from = from;
     this.to = to;
+    this.color = color;
   }
 }
 
@@ -94,8 +96,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     { id: AxiomSchedulerView.Day, title: 'Day' },
     { id: AxiomSchedulerView.Week, title: 'Week' },
     { id: AxiomSchedulerView.Month, title: 'Month' },
-    { id: AxiomSchedulerView.Year, title: 'Year' },
-    { id: AxiomSchedulerView.Schedule, title: 'Schedule' }
+    { id: AxiomSchedulerView.Year, title: 'Year' }
   ];
   public locales = AX_LOCALES.map((v) => {
     return { id: v, title: v };
