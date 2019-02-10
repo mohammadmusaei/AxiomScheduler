@@ -1,34 +1,5 @@
 @import "../animations.scss";
-
-$border-color: #ddd;
-$header-h: 60px;
-$row-header-w: 50px;
-$header-bg: #eee;
-$row-header-label-bg: #3f51b5;
-$event-height: 25px;
-
-%row-header-label {
-  color: #666;
-  background-color: #fff;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid #ccc;
-  border-right: none;
-  -webkit-animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-
-  &:after {
-    content: "";
-    position: absolute;
-    background-color: #fff;
-    border-radius: 50%;
-    top: -5px;
-    bottom: -5px;
-    width: 2px;
-    right: 0;
-    left: auto;
-    z-index: -1;
-  }
-}
+@import "../variables.scss";
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -71,23 +42,23 @@ $event-height: 25px;
       margin: 0;
       vertical-align: top;
     }
-    >.ax-scheduler__week-view__body__day-column{
+    > .ax-scheduler__week-view__body__day-column {
       width: calc(100% - #{$row-header-w});
-        >div{
-            display: table;
-            width: 100%;
-            >div{
-                height: $header-h;
-                display: table-cell;
-                width: auto;
-                overflow: visible;
-                border-left: 1px solid $border-color;
-                width: percentage(7/100);
-            }
-            >div:first-child{
-              border-left: none;
-            }
+      > div {
+        display: table;
+        width: 100%;
+        > div {
+          height: $header-h;
+          display: table-cell;
+          width: auto;
+          overflow: visible;
+          border-left: 1px solid $event-tile-border-color;
+          width: percentage(7/100);
         }
+        > div:first-child {
+          border-left: none;
+        }
+      }
     }
     > div.ax-scheduler__week-view__body__hour-column {
       > div:not(.ax-scheduler__event-tile) {
@@ -115,14 +86,14 @@ $event-height: 25px;
 
           > span {
             position: absolute;
-            font-size: 10px;
+            font-size: 12px;
             vertical-align: top;
             padding-right: 5px;
             padding-left: 5px;
             top: -9px;
-            right: -3px;
+            right: 0px;
             z-index: 2;
-            @extend %row-header-label;
+            color: $main-font-color;
           }
 
           &:after {
@@ -176,7 +147,7 @@ $event-height: 25px;
           margin: 0;
           > span.header_day_title {
             display: inline-block;
-            font-size: .3em;
+            font-size: 0.3em;
             margin-left: -5px;
 
             > p {

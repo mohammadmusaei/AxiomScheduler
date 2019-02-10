@@ -1,5 +1,6 @@
 @import "~angular2-draggable/css/resizable.min.css";
 @import "../animations.scss";
+@import "../variables.scss";
 
 .ax-scheduler {
   height: 90vh;
@@ -10,18 +11,6 @@
   margin: 0;
   position: relative;
 }
-
-$border-color: #ddd;
-$viewer-header-h: 60px;
-$header-h: 60px;
-$row-header-w: 50px;
-$header-bg: #eee;
-$row-header-label-bg: #3f51b5;
-$event-height: 25px;
-$event-bg: #2196f3;
-$today-bg-color: #e53935;
-$today-color: #fff;
-$event-dialog-bg: #fff;
 
 %row-header-label {
   color: #666;
@@ -85,11 +74,12 @@ $event-dialog-bg: #fff;
 }
 .ax-scheduler__header {
   height: $viewer-header-h;
-  border: 1px solid $border-color;
   border-bottom: none;
   display: flex;
   flex-direction: row;
-
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-left:30px;
   > div {
     flex: 3;
   }
@@ -102,7 +92,7 @@ $event-dialog-bg: #fff;
     .ax-scheduler__header__date-part__nav {
       display: flex;
       margin-left: 15px;
-      > button {
+      > button,div {
         flex: 2;
         border-left: 1px solid $border-color;
         @extend %nav-buttons;
@@ -117,6 +107,10 @@ $event-dialog-bg: #fff;
           border-radius: 5px 0 0 5px;
           border-right: none;
         }
+      }
+      >div{
+        border: 1px solid $border-color;
+        border-radius: 0;
       }
     }
     button {
@@ -135,19 +129,19 @@ $event-dialog-bg: #fff;
     }
   }
   .ax-scheduler__header__date-part__title {
-    font-size: 1em;
     text-align: center;
-    margin-left: 15px;
-    color: #444;
+    color:$main-font-color;
     white-space: nowrap;
+    padding: 0 8px;
+    min-width: 130px;
+    cursor: default !important;
   }
   .ax-scheduler__header__view-part {
     text-align: left;
     padding: 0 5px;
     .ax-scheduler-dropdown {
       float: right;
-      margin-right: 12px;
-      margin-top: 11px;
+      margin-top: 20px;
       min-width: 80px;
     }
   }
@@ -162,8 +156,6 @@ $event-dialog-bg: #fff;
   margin: 0;
   display: block;
   height: 100%;
-  border: 1px solid $border-color;
-  user-select: none;
 }
 
 .ax-scheduler__day-view__header,
@@ -182,7 +174,7 @@ $event-dialog-bg: #fff;
     height: 60px;
     padding: 0;
     margin: 0;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $event-tile-border-color;
 
     > div {
       height: 100%;
@@ -197,19 +189,19 @@ $event-dialog-bg: #fff;
       width: $row-header-w;
       max-width: $row-header-w;
       min-width: $row-header-w;
-      border-right: 1px solid $border-color;
+      border-right: 1px solid $event-tile-border-color;
       text-align: right;
 
       > span {
         position: absolute;
-        font-size: 10px;
+        font-size: 12px;
         vertical-align: top;
         padding-right: 5px;
         padding-left: 5px;
         top: -9px;
-        right: -3px;
+        right: 0px;
         z-index: 2;
-        @extend %row-header-label;
+        color: $main-font-color;
       }
 
       &:after {
@@ -226,12 +218,11 @@ $event-dialog-bg: #fff;
     > div.ax-scheduler__day-view__event-column {
       width: calc(100% - #{$row-header-w + 2px});
       padding-left: 5px;
-      outline-color: $border-color;
+      background-color: $event-tile-bg;
     }
 
     &:hover {
       > div.ax-scheduler__day-view__event-column {
-        // outline: 1px solid $event-bg;
         z-index: 2;
       }
     }
@@ -245,7 +236,6 @@ $event-dialog-bg: #fff;
 .ax-scheduler__day-view__header {
   height: $header-h;
   background: $header-bg;
-  outline: 1px solid $header-bg;
 
   > div {
     height: 100%;
@@ -273,18 +263,16 @@ $event-dialog-bg: #fff;
       > span.header_number {
         font-size: 2.2em;
         font-weight: bold;
-        color: #444;
+        color:$dayview-day-title-color;
         margin: 0;
-        line-height: 19px;
-
         > span.header_day_title {
           display: inline-block;
           font-size: 0.3em;
           margin-left: -5px;
-
           > p {
             padding: 0;
             margin: 0;
+            color: $dayview-day-title-description-color;
           }
         }
       }
@@ -350,7 +338,7 @@ $event-dialog-bg: #fff;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  border: 1px solid $border-color;
+  border: 1px solid $event-tile-border-color;
   border-bottom: none;
   border-left: none;
   overflow: auto;
@@ -360,8 +348,9 @@ $event-dialog-bg: #fff;
   min-height: 100px;
   flex: calc(100% / 7);
   text-align: center;
-  border-left: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
+  border-left: 1px solid $event-tile-border-color;
+  border-bottom: 1px solid $event-tile-border-color;
+  background-color: $event-tile-bg;
   .more-item {
     padding: 2px 5px !important;
     font-size: 10px;
