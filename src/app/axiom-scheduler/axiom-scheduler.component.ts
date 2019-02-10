@@ -8,7 +8,7 @@ export enum AxiomSchedulerView {
   Week = 3,
   Month = 4,
   Year = 5,
-  Scheduler = 6
+  Schedule = 6
 }
 
 export class AxiomSchedulerComponentCommon {
@@ -58,19 +58,21 @@ export class AxiomSchedulerEvent {
   encapsulation: ViewEncapsulation.None,
   providers: [AxiomSchedulerService],
   host: {
-    'class': 'ax-scheduler'
+    'class': 'ax-scheduler',
+    '[class.dark]' : 'axTheme === "dark"'
   }
 })
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() axSchedulerView: AxiomSchedulerView = AxiomSchedulerView.Month;
+  @Input() axSchedulerView: AxiomSchedulerView = AxiomSchedulerView.Week;
+  @Input() axTheme : 'light' | 'dark' = 'light';
   items = [
     {id : AxiomSchedulerView.Day , title : 'Day'},
     //{id : AxiomSchedulerView.FourDay , title : '4 Days'},
     {id : AxiomSchedulerView.Week , title : 'Week'},
     {id : AxiomSchedulerView.Month , title : 'Month'},
-    {id : AxiomSchedulerView.Year , title : 'Year'},
-    {id : AxiomSchedulerView.Scheduler , title : 'Scheduler'}
+    {id : AxiomSchedulerView.Year , title : 'Year'}, 
+    {id : AxiomSchedulerView.Schedule , title : 'Schedule'}
   ];
 
   constructor(injector: Injector) {
@@ -117,7 +119,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
       case AxiomSchedulerView.Year:
         this.date = this.date.clone().add(step, 'years');
         break;
-      case AxiomSchedulerView.Scheduler:
+      case AxiomSchedulerView.Schedule:
         break;
     }
   }

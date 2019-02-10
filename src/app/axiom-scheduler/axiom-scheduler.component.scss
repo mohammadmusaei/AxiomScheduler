@@ -1,6 +1,9 @@
+@import "~bootstrap-reboot";
 @import "~angular2-draggable/css/resizable.min.css";
 @import "../animations.scss";
 @import "../variables.scss";
+@import "../responsive.scss";
+@import "../themes/dark.scss";
 
 .ax-scheduler {
   height: 90vh;
@@ -46,6 +49,17 @@
   height: 30px;
   background: transparent;
   cursor: pointer;
+  &:active,
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  &:hover {
+    border-color: #aaa;
+  }
+  &:active {
+    background: #eee;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -79,7 +93,7 @@
   flex-direction: row;
   text-transform: uppercase;
   font-size: 12px;
-  padding-left:30px;
+  padding-left: 30px;
   > div {
     flex: 3;
   }
@@ -92,12 +106,14 @@
     .ax-scheduler__header__date-part__nav {
       display: flex;
       margin-left: 15px;
-      > button,div {
+      > button,>div {
         flex: 2;
         border-left: 1px solid $border-color;
         @extend %nav-buttons;
         svg {
           height: 20px;
+          vertical-align: middle;
+          display: block;
         }
         &:last-child {
           border-radius: 0 5px 5px 0;
@@ -108,29 +124,18 @@
           border-right: none;
         }
       }
-      >div{
+      > div {
         border: 1px solid $border-color;
         border-radius: 0;
       }
     }
-    button {
+    > button {
       @extend %nav-buttons;
-      &:hover {
-        border-color: #aaa;
-      }
-      &:active,
-      &:focus {
-        outline: none;
-        box-shadow: none;
-      }
-      &:active {
-        background-color: #eee;
-      }
     }
   }
   .ax-scheduler__header__date-part__title {
     text-align: center;
-    color:$main-font-color;
+    color: $main-font-color;
     white-space: nowrap;
     padding: 0 8px;
     min-width: 130px;
@@ -141,13 +146,48 @@
     padding: 0 5px;
     .ax-scheduler-dropdown {
       float: right;
-      margin-top: 20px;
+      margin-top: 16px;
       min-width: 80px;
     }
   }
 }
 .ax-scheduler__body {
   height: calc(100% - #{$viewer-header-h});
+}
+
+.ax-scheduler__header__nav-view-part {
+  display: flex;
+  flex-direction: row;
+  margin: 0 30px;
+  button {
+    position: relative;
+    color: $main-font-color;
+    padding: 5px 8px;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid transparent;
+    text-transform: uppercase;
+    background: #fff;
+    font-size: 13px;
+    transition: all 0.1s ease-in-out;
+    margin: 0 8px;
+    cursor: pointer;
+    &:hover {
+      color: $event-bg;
+    }
+    &:active,
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    &:active {
+      background-color: #eee;
+    }
+    &.active {
+      border-bottom-color: $event-bg;
+      font-weight: bold;
+    }
+  }
 }
 
 .ax-scheduler__day-view {
@@ -235,7 +275,7 @@
 
 .ax-scheduler__day-view__header {
   height: $header-h;
-  background: $header-bg;
+  background: transparent;
 
   > div {
     height: 100%;
@@ -263,7 +303,7 @@
       > span.header_number {
         font-size: 2.2em;
         font-weight: bold;
-        color:$dayview-day-title-color;
+        color: $dayview-day-title-color;
         margin: 0;
         > span.header_day_title {
           display: inline-block;
@@ -351,9 +391,10 @@
   border-left: 1px solid $event-tile-border-color;
   border-bottom: 1px solid $event-tile-border-color;
   background-color: $event-tile-bg;
+  min-width: 100px;
   .more-item {
     padding: 2px 5px !important;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     cursor: pointer;
     text-align: left;
@@ -449,7 +490,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 10px !important;
+    font-size: 12px !important;
   }
 }
 .ax-scheduler__month-view__day__events__dialog {
@@ -469,19 +510,23 @@
     display: inline-block;
     top: 0;
   }
+  .ax-scheduler__month-view__day__events_container {
+    padding: 10px;
+  }
 }
 
 .ax-scheduler__close-button {
   position: absolute;
-  right: 3px;
-  top: 3px;
+  right: 5px;
+  top: 5px;
+  font-size: 18px;
   display: block;
-  height: 14px;
-  width: 14px;
+  height: 18px;
+  width: 18px;
   border-radius: 50%;
   line-height: 14px;
   z-index: 1;
-  color: #555;
+  color: $main-font-color;
   cursor: pointer;
   &:hover {
     background-color: #eee;
@@ -508,6 +553,7 @@
   display: block;
   padding: 0;
   margin: 0;
+  min-width: 300px;
   .ax-scheduler__year-view__month__header {
     display: block;
     text-align: center;
@@ -557,7 +603,7 @@
       }
       &.current:not(.today) {
         > span {
-          color: #222;
+          color: $main-font-color;
           font-weight: bold;
         }
       }
@@ -575,12 +621,12 @@
       display: inline-block;
     }
   }
-  .ax-scheduler__month-view__day__events__dialog{
-    min-width: 200px;
+  .ax-scheduler__month-view__day__events__dialog {
+    min-width: 250px;
     z-index: 1000;
   }
-  .ax-scheduler__event{
-    &:after{
+  .ax-scheduler__event {
+    &:after {
       top: 11px;
     }
   }

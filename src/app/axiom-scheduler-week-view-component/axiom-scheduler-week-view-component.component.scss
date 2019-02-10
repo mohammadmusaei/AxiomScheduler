@@ -24,7 +24,6 @@
   margin: 0;
   display: block;
   height: 100%;
-  border: 1px solid $border-color;
   user-select: none;
   .ax-scheduler__week-view__header {
     display: block;
@@ -112,8 +111,8 @@
 
   .ax-scheduler__week-view__header {
     height: $header-h;
-    background: $header-bg;
-    outline: 1px solid $header-bg;
+    background: transparent;
+    outline: 1px solid transparent;
     display: flex;
     > div {
       height: 100%;

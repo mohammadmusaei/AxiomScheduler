@@ -6,12 +6,12 @@
 <div class="container-fluid pt-3">
 
 <div class="row">
-    <div class="col-md-12">
-            <ax-scheduler [axEventTemplate]="t" [axEvents]="events" [axDragStep]="5"></ax-scheduler>
+    <div class="col-md-6">
+            <ax-scheduler [axEventTemplate]="t" [axTheme]="'light'" [axEvents]="events" [axDragStep]="5"></ax-scheduler>
     </div>
-    <!-- <div class="col-md-6">
-            <ax-scheduler [axEventTemplate]="t" [axEvents]="events2" [axDragStep]="5"></ax-scheduler>
-    </div> -->
+    <div class="col-md-6">
+            <ax-scheduler [axEventTemplate]="t" [axTheme]="'dark'" [axEvents]="events2" [axDragStep]="5"></ax-scheduler>
+    </div>
 </div>
   
 </div>

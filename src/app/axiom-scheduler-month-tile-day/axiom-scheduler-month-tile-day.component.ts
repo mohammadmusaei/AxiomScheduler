@@ -51,11 +51,13 @@ export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponent
   }
 
   showEventsDialog(): void {
-    this.showEvents = true
+    if (this.events && this.events.length > 0) {
+      this.showEvents = true
       this.setEventObserver();
+    }
   }
 
-  closeDialog($event? : Event): void {
+  closeDialog($event?: Event): void {
     this.showEvents = false;
     this.destroyEventObserver();
     $event && $event.preventDefault();
