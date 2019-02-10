@@ -92,7 +92,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   }
 
   ngOnInit() {
-    this.axLocale = 'en';
+    this.axLocale = this.axLocale || 'en';
     this.refresh();
   }
 
