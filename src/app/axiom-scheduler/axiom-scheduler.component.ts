@@ -63,7 +63,7 @@ export class AxiomSchedulerEvent {
 })
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() axSchedulerView: AxiomSchedulerView = AxiomSchedulerView.Year;
+  @Input() axSchedulerView: AxiomSchedulerView = AxiomSchedulerView.Day;
   items = [
     {id : AxiomSchedulerView.Day , title : 'Day'},
     //{id : AxiomSchedulerView.FourDay , title : '4 Days'},
