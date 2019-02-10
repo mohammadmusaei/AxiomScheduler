@@ -3,7 +3,7 @@ $event-border-color : #eee;
 
 .ax-scheduler__event {
   text-align: left;
-  overflow: hidden;
+  overflow: visible;
   >.ax-scheduler__event__content{
     display: inline-block;
     vertical-align: middle;
@@ -14,6 +14,7 @@ $event-border-color : #eee;
     font-weight:normal;
     margin: 0 10px;
     padding: 5px 10px;
+    overflow: hidden;
   }
   >p {
     vertical-align: top;
@@ -24,12 +25,14 @@ $event-border-color : #eee;
     padding: 0;
     margin: 0;
     font-size: 11px;
-    position: relative;
+    position: absolute;
     >span{
       position: absolute;
       background: #37474F;
       color: #fff;
       padding: 0 5px;
+      left: -40px;
+      border-radius: 100px;
     }
     >span:first-child{
       top: 0;

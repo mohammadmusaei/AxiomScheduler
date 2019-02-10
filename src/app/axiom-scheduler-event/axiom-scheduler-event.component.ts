@@ -21,7 +21,7 @@ import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
         animate(`${180}ms ease-in`, style({ transform: 'scale(1)' }))
       ]),
       transition(':leave', [
-        animate(`${80}ms ease-out`, style({ transform: 'translateX(-100%)' }))
+        animate(`${80}ms ease-out`, style({ opacity: '0' }))
       ])
     ])
   ]
