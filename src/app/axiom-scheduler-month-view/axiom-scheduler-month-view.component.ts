@@ -19,12 +19,12 @@ export class AxiomSchedulerMonthViewComponent extends AxiomSchedulerComponentCom
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit()  : void{
     this.refresh();
     this.refreshView();
   }
 
-  refreshView() : void{
+  public refreshView() : void{
     this.setDays();
   }
 

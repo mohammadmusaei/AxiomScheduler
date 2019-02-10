@@ -1,7 +1,8 @@
 import { AX_LOCALES } from './../locales';
-import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, ViewChildren, AfterViewInit, ViewChild, Injector } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, ViewChildren, AfterViewInit, ViewChild, Injector, Output, EventEmitter, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerService } from '../services/axiom-scheduler.service';
+import { Subscription } from 'rxjs';
 
 export enum AxiomSchedulerView {
   Day = 1,
@@ -12,16 +13,19 @@ export enum AxiomSchedulerView {
   Schedule = 6
 }
 
-export class AxiomSchedulerComponentCommon {
+export class AxiomSchedulerComponentCommon implements OnDestroy {
+
   @Input() axEvents: AxiomSchedulerEvent[];
   @Input() axStartDate: Date;
   @Input() axEventTemplate: TemplateRef<any>;
   @Input() axEventFormatter: (data: any, date?: Date) => string;
   @Input() axDragStep: number;
   @Input() axLocale: string;
-  today: moment.Moment;
-  date: moment.Moment;
-  service: AxiomSchedulerService;
+
+  public today: moment.Moment;
+  public date: moment.Moment;
+  public service: AxiomSchedulerService;
+  public subscriptionGarbageCollection: Subscription[] = [];
 
   constructor(protected injector: Injector) {
     this.today = moment();
@@ -34,25 +38,34 @@ export class AxiomSchedulerComponentCommon {
     });
     this.service.locale.subscribe((locale) => {
       moment.locale(locale);
-      if(this.date){
+      if (this.date) {
         this.date.locale(this.service.schedulerLocale);
         this.refreshView();
       }
     });
   }
 
-  refresh(): void {
+  public refresh(): void {
     this.date = this.axStartDate ? moment(this.axStartDate) : moment(Date.now());
   }
 
-  refreshView(): void { }
+  public refreshView(): void { }
+
+  public ngOnDestroy(): void {
+    if (Array.isArray(this.subscriptionGarbageCollection)) {
+      this.subscriptionGarbageCollection.forEach(g => g && g.unsubscribe());
+    }
+    this.baseDestroy();
+  }
+
+  public baseDestroy(): void { }
 
 }
 
 export class AxiomSchedulerEvent {
-  from: Date;
-  to: Date;
-  data: any;
+  public from: Date;
+  public to: Date;
+  public data: any;
   constructor(from: Date = null, to: Date = null, data: any = null) {
     this.data = data;
     this.from = from;
@@ -68,58 +81,63 @@ export class AxiomSchedulerEvent {
   providers: [AxiomSchedulerService],
   host: {
     'class': 'ax-scheduler',
-    '[class.dark]' : 'axTheme === "dark"'
+    '[class.dark]': 'axTheme === "dark"'
   }
 })
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
   @Input() axSchedulerView: AxiomSchedulerView = AxiomSchedulerView.Week;
-  @Input() axTheme : 'light' | 'dark' = 'light';
-  items = [
-    {id : AxiomSchedulerView.Day , title : 'Day'},
-    {id : AxiomSchedulerView.Week , title : 'Week'},
-    {id : AxiomSchedulerView.Month , title : 'Month'},
-    {id : AxiomSchedulerView.Year , title : 'Year'}, 
-    {id : AxiomSchedulerView.Schedule , title : 'Schedule'}
-  ];
+  @Input() axTheme: 'light' | 'dark' = 'light';
+  @Output() axEventChange = new EventEmitter<AxiomSchedulerEvent>();
 
-  locales = AX_LOCALES.map((v)=>{
-    return { id : v , title : v };
+  public items = [
+    { id: AxiomSchedulerView.Day, title: 'Day' },
+    { id: AxiomSchedulerView.Week, title: 'Week' },
+    { id: AxiomSchedulerView.Month, title: 'Month' },
+    { id: AxiomSchedulerView.Year, title: 'Year' },
+    { id: AxiomSchedulerView.Schedule, title: 'Schedule' }
+  ];
+  public locales = AX_LOCALES.map((v) => {
+    return { id: v, title: v };
   });
 
   constructor(injector: Injector) {
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void  {
     this.axLocale = this.axLocale || 'en';
     this.refresh();
+    this.subscriptionGarbageCollection.push(this.service.eventChange.subscribe(event => {
+      this.axEventChange && this.axEventChange.emit(event);
+    }));
   }
 
-  prev(): void {
+
+  public prev(): void {
     this.step(-1);
     this.service.refreshDate(this.date);
   }
 
-  next(): void {
+  public next(): void {
     this.step(1);
     this.service.refreshDate(this.date);
   }
 
-  todayF() {
+  public todayF(): void  {
     this.date = moment();
     this.service.refreshDate(this.date);
   }
 
-  modelFormatter(value : any) : any{
+  public modelFormatter(value: any): any {
     return value ? value.id : null;
   }
 
-  setLocale(locale : string):void{
+  public setLocale(locale: string): void {
     this.service.changeLocale(locale);
   }
 
-  private step(step : number) : void{
+  private step(step: number): void {
     switch (this.axSchedulerView) {
       case AxiomSchedulerView.Day:
         this.date = this.date.clone().add(step, 'days');

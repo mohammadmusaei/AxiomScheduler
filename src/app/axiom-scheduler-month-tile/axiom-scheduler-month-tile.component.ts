@@ -6,24 +6,24 @@ import { AxiomSchedulerComponentCommon } from '../axiom-scheduler/axiom-schedule
   selector: '[ax-scheduler-month-tile]',
   templateUrl: './axiom-scheduler-month-tile.component.html',
   styleUrls: ['./axiom-scheduler-month-tile.component.scss'],
-  encapsulation:ViewEncapsulation.None,
-  host:{
-    'class' : 'ax-scheduler__year-view__month'
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'ax-scheduler__year-view__month'
   }
 })
 export class AxiomSchedulerMonthTileComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() monthObject : AxiomSchedulerYearViewMonthObject;
+  @Input() monthObject: AxiomSchedulerYearViewMonthObject;
 
-  constructor(injector : Injector) { 
+  constructor(injector: Injector) {
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.refresh();
   }
 
-  refreshView() : void{
+  public refreshView(): void {
     this.monthObject.month = this.date.startOf('months');
     this.monthObject.setDays();
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, forwardRef, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, forwardRef, Input, Output, EventEmitter, ElementRef, OnDestroy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ReplaySubject, fromEvent } from 'rxjs';
@@ -16,8 +16,8 @@ import { takeUntil } from 'rxjs/operators';
       multi: true
     }
   ],
-  host:{
-    'class' : 'ax-scheduler-dropdown',
+  host: {
+    'class': 'ax-scheduler-dropdown',
     '[class.open]': 'open'
   },
   animations: [
@@ -28,35 +28,41 @@ import { takeUntil } from 'rxjs/operators';
     ])
   ]
 })
-export class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAccessor {
+export class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAccessor, OnDestroy {
 
-  @Input() dataTitle : string;
-  @Input() dataId : string;
-  @Input() items : any[] = [];
-  @Input() modelFormatter : (val:any) => any;
+  @Input() dataTitle: string;
+  @Input() dataId: string;
+  @Input() items: any[] = [];
+  @Input() modelFormatter: (val: any) => any;
   @Input() set ngModel(ngModel: any) {
     this._ngModel = ngModel;
   }
   get ngModel() {
     return this._ngModel;
   }
+
   @Output() ngModelChange = new EventEmitter<any>();
 
-  open : boolean;
+  public open: boolean;
+
   protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
-  
+
   private _ngModel: any;
 
-  constructor(private _element : ElementRef) { }
+  constructor(private _element: ElementRef) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
-  onChange() {
+  public ngOnDestroy(): void {
+    this.destroyEventObserver();
+  }
+
+  public onChange() {
     this.propagateChange(this.ngModel);
   }
 
-  public writeValue(obj: any) {
+  public writeValue(obj: any): void {
     this.ngModel = obj;
   }
 
@@ -72,35 +78,35 @@ export class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAcce
 
   public onTouched = () => { };
 
-  public toggle(toggle = !this.open) : void{
+  public toggle(toggle = !this.open): void {
     this.open = toggle;
-    if(this.open){
+    if (this.open) {
       this.setEventObserver();
     }
-    else{
+    else {
       this.destroyEventObserver();
     }
   }
 
-  public inputFormatter() : string{
-    if(this.ngModel){
-      var index = this.items.findIndex(i=>i[this.dataId] === this.ngModel);
-      if(index > -1){
+  public inputFormatter(): string {
+    if (this.ngModel) {
+      var index = this.items.findIndex(i => i[this.dataId] === this.ngModel);
+      if (index > -1) {
         return this.items[index][this.dataTitle];
       }
     }
-    else{
+    else {
       return '';
     }
   }
 
-  public select(item : any) : void{
+  public select(item: any): void {
     this.ngModel = this.modelFormatter ? this.modelFormatter(item) : item;
     this.propagateChange(this.ngModel);
     this.toggle(false);
   }
 
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget) { 
+  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget): void {
     if (targetElement) {
       const clickedInside = this._element.nativeElement.contains(targetElement);
       if (!clickedInside) {
@@ -109,7 +115,7 @@ export class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAcce
     }
   }
 
-  private closeOnGlobalKeydown(event: KeyboardEvent) { 
+  private closeOnGlobalKeydown(event: KeyboardEvent): void {
     if (event.keyCode === 27) {
       this.toggle(false);
     }
@@ -127,5 +133,6 @@ export class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAcce
       this.destroyed.complete();
     }
   }
+
 
 }

@@ -3,8 +3,8 @@ import * as moment from 'moment';
 import { AxiomSchedulerComponentCommon, AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 
 export class AxiomSchedulerHour {
-  start: moment.Moment;
-  end: moment.Moment;
+  public start: moment.Moment;
+  public end: moment.Moment;
   constructor(start: moment.Moment) {
     this.start = start;
     this.end = this.start.clone().add('hours', 1);
@@ -22,16 +22,16 @@ export class AxiomSchedulerHour {
 })
 export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  constructor(injector : Injector) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.refresh();
     this.refreshView();
   }
 
-  refreshView() : void{
+  public refreshView(): void {
     this.axDragStep = this.axDragStep || 15;
   }
 

@@ -21,12 +21,12 @@ export class AxiomSchedulerWeekViewComponent extends AxiomSchedulerComponentComm
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void  {
     this.refresh();
     this.refreshView();
   }
 
-  refreshView() : void{
+  public refreshView() : void{
     this.updateDays();
     this.setHours();
   }

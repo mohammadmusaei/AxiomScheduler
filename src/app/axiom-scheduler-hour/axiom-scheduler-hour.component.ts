@@ -8,33 +8,34 @@ import { AxiomSchedulerHour } from '../axiom-scheduler-day-view/axiom-scheduler-
   selector: '[ax-scheduler-hour]',
   templateUrl: './axiom-scheduler-hour.component.html',
   styleUrls: ['./axiom-scheduler-hour.component.scss'],
-  encapsulation : ViewEncapsulation.None,
-  host:{
-    'class' : 'ax-scheduler-hour'
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'ax-scheduler-hour'
   }
 })
 export class AxiomSchedulerHourComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() hour : AxiomSchedulerHour;
-  inRnageEvents : AxiomSchedulerEvent[];
-  minuteRows : { events : AxiomSchedulerEvent[] , minute : number }[];
+  @Input() hour: AxiomSchedulerHour;
 
-  constructor(injector : Injector) { 
+  public inRnageEvents: AxiomSchedulerEvent[];
+  public minuteRows: { events: AxiomSchedulerEvent[], minute: number }[];
+
+  constructor(injector: Injector) {
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.refreshView();
   }
 
-  refreshView() : void{
-    this.minuteRows = Array(60).fill(0).map((x,i)=>{
-      return { events : [] , minute : i };
+  public refreshView(): void {
+    this.minuteRows = Array(60).fill(0).map((x, i) => {
+      return { events: [], minute: i };
     });
     this.setInRangeEvent();
   }
 
-  private setInRangeEvent(){
+  private setInRangeEvent(): void {
     this.inRnageEvents = [];
   }
 

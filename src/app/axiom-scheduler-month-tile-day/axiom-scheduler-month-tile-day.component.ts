@@ -29,48 +29,50 @@ import { takeUntil } from 'rxjs/operators';
     ])
   ]
 })
-export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponentCommon implements OnInit, OnDestroy {
+export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
   @Input() day: moment.Moment;
-  events: AxiomSchedulerEvent[] = [];
+
+  public events: AxiomSchedulerEvent[] = [];
   public showEvents: boolean = false;
+
   protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(injector: Injector, private _renderer: Renderer2, private _element: ElementRef) {
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.refresh();
     this.refreshView();
   }
 
 
-  ngOnDestroy(): void {
+  public baseDestroy(): void {
     this.destroyEventObserver();
   }
 
-  showEventsDialog(): void {
+  public showEventsDialog(): void {
     if (this.events && this.events.length > 0) {
       this.showEvents = true
       this.setEventObserver();
     }
   }
 
-  closeDialog($event?: Event): void {
+  public closeDialog($event?: Event): void {
     this.showEvents = false;
     this.destroyEventObserver();
     $event && $event.preventDefault();
     $event && $event.stopPropagation();
   }
 
-  refreshView(): void {
+  public refreshView(): void {
     this.checkEvents();
     var text = `${this.events.length} event${this.events.length > 1 ? "s" : ""}, Click to show detail...`;
     this._renderer.setAttribute(this._element.nativeElement, 'title', text);
   }
 
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget) {
+  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget): void {
     if (targetElement) {
       const clickedInside = this._element.nativeElement.contains(targetElement);
       if (!clickedInside) {
@@ -79,7 +81,7 @@ export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponent
     }
   }
 
-  private closeOnGlobalKeydown(event: KeyboardEvent) {
+  private closeOnGlobalKeydown(event: KeyboardEvent): void {
     if (event.keyCode === 27) {
       this.closeDialog();
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input, OnDestroy, ElementRef, Injector } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, ElementRef, Injector } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerComponentCommon, AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 import { ReplaySubject, fromEvent } from 'rxjs';
@@ -26,36 +26,38 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommon implements OnInit,OnDestroy {
+export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommon implements OnInit {
   
   @Input() day: moment.Moment;
   @Input() index: number;
+
   public dayEvents: AxiomSchedulerEvent[];
   public showEvents: boolean = false;
+  
   protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(injector : Injector,private _element : ElementRef) {
     super(injector);
   }
 
-  ngOnInit() : void {
+  public ngOnInit() : void {
     this.refreshView();
   }
 
-  refreshView() : void{
+  public refreshView() : void{
     this.checkDayEvents();
   }
 
-  ngOnDestroy(): void {
+  public baseDestroy(): void {
     this.destroyEventObserver();
   }
 
-  showEventsDialog() : void{
+  public showEventsDialog() : void{
     this.showEvents = true
     this.setEventObserver();
   }
 
-  closeDialog() : void{
+  public closeDialog() : void{
     this.showEvents = false;
     this.destroyEventObserver();
   }
@@ -69,7 +71,7 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
     });
   }
 
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget) { 
+  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget) : void{ 
     if (targetElement) {
       const clickedInside = this._element.nativeElement.contains(targetElement);
       if (!clickedInside) {
@@ -78,7 +80,7 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
     }
   }
 
-  private closeOnGlobalKeydown(event: KeyboardEvent) { 
+  private closeOnGlobalKeydown(event: KeyboardEvent): void { 
     if (event.keyCode === 27) {
       this.closeDialog();
     }

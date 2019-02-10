@@ -29,61 +29,62 @@ import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
 export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon implements OnInit, AfterViewInit {
 
   @Input() event: AxiomSchedulerEvent;
-  @Input() monthMode : boolean = false;
-  ctx: any;
-  fromTime: moment.Moment;
-  toTime: moment.Moment;
-  diff: number;
-  showTime : boolean = false;
-  expired : boolean = false;
+  @Input() monthMode: boolean = false;
 
-  constructor(injector : Injector,private _renderer: Renderer2, private _element: ElementRef) {
+  public ctx: any;
+  public fromTime: moment.Moment;
+  public toTime: moment.Moment;
+  public diff: number;
+  public showTime: boolean = false;
+  public expired: boolean = false;
+
+  constructor(injector: Injector, private _renderer: Renderer2, private _element: ElementRef) {
     super(injector);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.refreshView();
   }
 
-  ngAfterViewInit(): void {
-    if(!this.monthMode){
+  public ngAfterViewInit(): void {
+    if (!this.monthMode) {
       this.checkPosition();
     }
   }
 
-  refreshView() : void{
-    this.ctx = { item : this.event };
+  public refreshView(): void {
+    this.ctx = { item: this.event };
     this.updateTime();
   }
 
-  fromTimeChanging(e: { x: number, y: number }): void {
+  public fromTimeChanging(e: { x: number, y: number }): void {
     this.fromTime = this.fromTime.clone().startOf('day').add(this.getOffsetMinute(), 'minutes');
     this.toTime = this.fromTime.clone().add(this.diff, 'minutes');
   }
 
-  fromTimeChanged(e: { x: number, y: number }): void {
+  public fromTimeChanged(e: { x: number, y: number }): void {
     this.event.from = this.fromTime.clone().toDate();
     this.event.to = this.toTime.clone().toDate();
     this.showTime = false;
   }
 
-  toTimeChanging(e: IResizeEvent): void {
+  public toTimeChanging(e: IResizeEvent): void {
     this.diff = e.size.height;
     this.fromTime = this.fromTime.clone().startOf('day').add(this.getOffsetMinute(), 'minutes');
     this.toTime = this.fromTime.clone().add(this.diff, 'minutes');
   }
 
-  toTimeChanged(e: IResizeEvent): void {
+  public toTimeChanged(e: IResizeEvent): void {
     this.event.from = this.fromTime.clone().toDate();
     this.event.to = this.toTime.clone().toDate();
     this.showTime = false;
   }
 
-  toTimeChangeStart(e: IResizeEvent): void {
+  public toTimeChangeStart(e: IResizeEvent): void {
     this.showTime = true;
   }
 
-  fromTimeChangeStart(e: IResizeEvent): void {
+  public fromTimeChangeStart(e: IResizeEvent): void {
     this.showTime = true;
   }
 
@@ -112,7 +113,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
     this.fromTime = moment(this.event.from).clone();
     this.toTime = moment(this.event.to).clone();
     this.updateDiff();
-    this.expired = moment(this.event.to).isBefore(moment(),'days');
+    this.expired = moment(this.event.to).isBefore(moment(), 'days');
   }
 
 }

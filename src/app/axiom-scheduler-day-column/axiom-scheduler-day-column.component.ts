@@ -7,42 +7,43 @@ import { AxiomSchedulerHour } from '../axiom-scheduler-day-view/axiom-scheduler-
   selector: '[ax-scheduler-day-column]',
   templateUrl: './axiom-scheduler-day-column.component.html',
   styleUrls: ['./axiom-scheduler-day-column.component.scss'],
-  encapsulation : ViewEncapsulation.None,
-  host:{
-    'class' : 'ax-scheduler__day-view__body',
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'ax-scheduler__day-view__body',
     '[class.hour-none]': '!hourColumn'
   }
 })
 export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() hourColumn : boolean = true;
-  @Input() bounds : any;
+  @Input() hourColumn: boolean = true;
+  @Input() bounds: any;
+
   public dayEvents: AxiomSchedulerEvent[];
   public hours: AxiomSchedulerHour[];
-  
-  edge = {
+
+  public edge = {
     top: true,
     bottom: true,
     left: true,
     right: true
   };
 
-  constructor(injector : Injector,public _element : ElementRef) { 
+  constructor(injector: Injector, public _element: ElementRef) {
     super(injector);
-    this.bounds  = this._element.nativeElement;
+    this.bounds = this._element.nativeElement;
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.refresh();
     this.refreshView();
   }
 
-  refreshView() : void{
+  public refreshView(): void {
     this.checkDayEvents();
     this.setHours();
   }
 
-  checkEdge(event) {
+  public checkEdge(event): void {
     this.edge = event;
   }
 
@@ -56,7 +57,7 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
   private checkDayEvents(): void {
     this.dayEvents = [];
     this.axEvents.forEach(ev => {
-      if(moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.date.clone().endOf('day'))){
+      if (moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.date.clone().endOf('day'))) {
         this.dayEvents.push(ev);
       }
     });
