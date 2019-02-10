@@ -30,19 +30,20 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
   constructor(protected injector: Injector) {
     this.today = moment();
     this.service = this.injector.get(AxiomSchedulerService);
-    this.service.refershRequest.subscribe((s) => {
+    this.subscriptionGarbageCollection.push(this.service.refershRequest.subscribe((s) => {
       if (s) {
         this.date = s.clone();
+        this.date.locale(this.service.schedulerLocale);
         this.refreshView();
       }
-    });
-    this.service.locale.subscribe((locale) => {
+    }));
+    this.subscriptionGarbageCollection.push(this.service.locale.subscribe((locale) => {
       moment.locale(locale);
       if (this.date) {
         this.date.locale(this.service.schedulerLocale);
         this.refreshView();
       }
-    });
+    }));
   }
 
   public refresh(): void {

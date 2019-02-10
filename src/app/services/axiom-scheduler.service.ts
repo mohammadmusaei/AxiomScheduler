@@ -4,9 +4,7 @@ import { Subject } from 'rxjs';
 import * as moment from 'moment';
 
 
-@Injectable({
-    providedIn : 'root'
-})
+@Injectable()
 export class AxiomSchedulerService{
 
     private _defaultLocale = 'en';

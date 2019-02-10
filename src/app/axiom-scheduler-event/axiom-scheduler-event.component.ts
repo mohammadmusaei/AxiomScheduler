@@ -68,7 +68,8 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public fromTimeChanged(e: { x: number, y: number }): void {
     this.event.from = this.fromTime.clone().toDate();
     this.event.to = this.toTime.clone().toDate();
-    this.toggleShowTime(false);;
+    this.toggleShowTime(false);
+    this.service.eventChanged(this.event);
   }
 
   public toTimeChanging(e: IResizeEvent): void {
@@ -81,6 +82,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
     this.event.from = this.fromTime.clone().toDate();
     this.event.to = this.toTime.clone().toDate();
     this.toggleShowTime(false);
+    this.service.eventChanged(this.event);
   }
 
   public toTimeChangeStart(e: IResizeEvent): void {
