@@ -7,8 +7,18 @@ body {
   background-color: #fff;
 }
 
-pre {
-  line-height: 30px;
+pre.code {
+  font-size: 13px !important;
+  border: 1px solid #333;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #444;
+  color: #eee;
+}
+
+.alert{
+  font-size: 13px;
+  padding: 5px 8px;
 }
 
 .event-template{

@@ -1,14 +1,60 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <ng-template #t let-item="item">
             <div class="event-template">
                 {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }} </b>
             </div>
         </ng-template>
-      <ax-scheduler [axEventTemplate]="t" [axShowLocale]="false" [axSchedulerView]="'week'" [axTheme]="'light'" [axEvents]="events"
-          [axDragStep]="5"></ax-scheduler>
+        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="true" [axSchedulerView]="'day'" [axTheme]="'light'"
+            [axEvents]="events" [axDragStep]="step" (axEventClick)="eventClick($event)"
+            (axEventChange)="changeEvent($event)" (axViewChange)="viewChange($event)"
+            (axDateChange)="dateChange($event)"></ax-scheduler>
     </div>
-    <div class="col-md-4">
-
+    <div class="col-md-4" style="height: 90vh;overflow: auto;">
+        <h5 class="border-bottom pb-2">Events</h5>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <h6>Event Click</h6>
+                <p>Use <mark>(axEventClick)</mark> output parameter.</p>
+                <pre class="code" *ngIf="clickEvent">{{ clickEvent | json }}</pre>
+                <div class="alert alert-info" *ngIf="!clickEvent"> Click an event ... </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <h6>Event Change</h6>
+                <p>Fire when event resized or dragged to new dates, Use <mark>(axEventChange)</mark> output parameter.
+                </p>
+                <pre class="code" *ngIf="changedEvent">{{ changedEvent | json }}</pre>
+                <div class="alert alert-info" *ngIf="!changedEvent"> Drag on resize an event ... </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <h6>Date Change</h6>
+                <p>Fire when scheduler date change by [forward-backword] navigator. Use <mark>(axDateChange)</mark>
+                    output parameter.</p>
+                <pre class="code" *ngIf="changedDate">{{ changedDate | json }} {{ changedDate | date:'medium' }}</pre>
+                <div class="alert alert-info" *ngIf="!changedDate"> Change date by navigator ... </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <h6>View Change</h6>
+                <p>Fire when scheduler view change. Use <mark>(axViewChange)</mark> output parameter.</p>
+                <pre class="code" *ngIf="view">{{ view | json }}</pre>
+                <div class="alert alert-info" *ngIf="!view"> Change scheduler view ... </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="col-md-2 border-left" style="height: 90vh;overflow: auto;">
+        <h5 class="border-bottom pb-2">Options</h5>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <h6>Event drag grid size <span class="badge badge-pill badge-dark">{{ step }}</span></h6>
+                <p>Use <mark>[axDragStep]</mark> input parameter.</p>
+                <input [(ngModel)]="step" type="range" class="custom-range" min="1" max="60" step="1" id="customRange3">
+            </div>
+        </div>
+    </div>
+</div>

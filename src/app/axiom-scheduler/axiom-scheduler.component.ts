@@ -130,6 +130,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   public todayF(): void  {
     this.date = moment();
     this.service.refreshDate(this.date);
+    this.axDateChange && this.axDateChange.emit(this.date.clone().toDate());
   }
 
   public modelFormatter(value: any): any {

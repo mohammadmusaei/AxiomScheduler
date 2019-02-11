@@ -32,11 +32,11 @@
         </div>
     </div>
     <div class="ax-scheduler__header__view-part">
-        <ax-scheduler-dropdown class="view-dropdown" [(ngModel)]="axSchedulerView" [modelFormatter]="modelFormatter" [items]="items"
+        <ax-scheduler-dropdown title="Change View" class="view-dropdown" [(ngModel)]="axSchedulerView" [modelFormatter]="modelFormatter" [items]="items"
             [dataTitle]="'title'" [dataId]="'id'">
 
         </ax-scheduler-dropdown>
-        <ax-scheduler-dropdown *ngIf="axShowLocale" [(ngModel)]="axLocale" (ngModelChange)="setLocale($event)" [modelFormatter]="modelFormatter" [items]="locales"
+        <ax-scheduler-dropdown title="Change Locale"  class="locale-dropdown" *ngIf="axShowLocale" [(ngModel)]="axLocale" (ngModelChange)="setLocale($event)" [modelFormatter]="modelFormatter" [items]="locales"
             [dataTitle]="'title'" [dataId]="'id'">
 
         </ax-scheduler-dropdown>

@@ -6,7 +6,7 @@
 @import "../themes/dark.scss";
 
 .ax-scheduler {
-  height:90vh;
+  height: 90vh;
   display: block;
   overflow: hidden;
   user-select: none;
@@ -106,7 +106,8 @@
     .ax-scheduler__header__date-part__nav {
       display: flex;
       margin-left: 15px;
-      > button,>div {
+      > button,
+      > div {
         flex: 2;
         border-left: 1px solid $border-color;
         @extend %nav-buttons;
@@ -166,15 +167,28 @@
     padding: 5px 8px;
     text-align: center;
     border: none;
-    border-bottom: 2px solid transparent;
     text-transform: uppercase;
     background: #fff;
     font-size: 13px;
     transition: all 0.1s ease-in-out;
     margin: 0 8px;
     cursor: pointer;
+    &:after {
+      content: "";
+      background: #eee;
+      width: 0;
+      position: absolute;
+      top: 100%;
+      height: 2px;
+      transition: all 0.2s ease-in-out;
+    }
     &:hover {
       color: $event-bg;
+      &:after {
+        width: auto;
+        left: 0;
+        right: 0;
+      }
     }
     &:active,
     &:focus {
@@ -185,8 +199,13 @@
       background-color: #eee;
     }
     &.active {
-      border-bottom-color: $event-bg;
       font-weight: bold;
+      &:after {
+        background: $event-bg;
+        width: auto;
+        left: 0;
+        right: 0;
+      }
     }
   }
 }
@@ -305,7 +324,7 @@
         font-weight: normal;
         color: $dayview-day-title-color;
         margin: 0;
-        &.today{
+        &.today {
           color: $today-bg-color;
         }
         > span.header_day_title {
