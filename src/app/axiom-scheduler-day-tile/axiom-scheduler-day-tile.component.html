@@ -1,5 +1,5 @@
 
-<span class="ax-scheduler__month-view__day__number" [ngClass]="{ 'today' : day.isSame(today,'days') }">
+<span class="ax-scheduler__month-view__day__number" title="Click to show events" [ngClass]="{ 'today' : day.isSame(today,'days') }"  (click)="showEventsDialog()">
     {{ day.format('DD') }}
 </span>
 <div class="ax-scheduler__month-view__day__label" *ngIf="index < 7">

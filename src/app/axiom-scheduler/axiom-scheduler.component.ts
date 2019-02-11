@@ -1,16 +1,14 @@
 import { AX_LOCALES } from './../locales';
-import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, ViewChildren, AfterViewInit, ViewChild, Injector, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, ViewChildren, AfterViewInit, ViewChild, Injector, Output, EventEmitter, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerService } from '../services/axiom-scheduler.service';
 import { Subscription } from 'rxjs';
 
 export enum AxiomSchedulerView {
-  Day = 1,
-  FourDay = 2,
-  Week = 3,
-  Month = 4,
-  Year = 5,
-  Schedule = 6
+  Day = 'day',
+  Week = 'week',
+  Month = 'month',
+  Year = 'year'
 }
 
 export class AxiomSchedulerComponentCommon implements OnDestroy {
@@ -83,38 +81,41 @@ export class AxiomSchedulerEvent {
   encapsulation: ViewEncapsulation.None,
   providers: [AxiomSchedulerService],
   host: {
-    'class': 'ax-scheduler',
-    '[class.dark]': 'axTheme === "dark"'
+    'class': 'ax-scheduler'
   }
 })
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() axSchedulerView: AxiomSchedulerView = AxiomSchedulerView.Week;
-  @Input() axTheme: 'light' | 'dark' = 'light';
+  @Input() axSchedulerView: AxiomSchedulerView;
+  @Input() axTheme: 'light' | 'dark';
+  @Input() axShowLocale : boolean = true;
+  @Input() axViews : AxiomSchedulerView[];
+  
   @Output() axEventChange = new EventEmitter<AxiomSchedulerEvent>();
+  @Output() axEventClick = new EventEmitter<AxiomSchedulerEvent>();
+  @Output() axDateChange = new EventEmitter<Date>();
+  @Output() axViewChange = new EventEmitter<AxiomSchedulerView>();
 
-  public items = [
-    { id: AxiomSchedulerView.Day, title: 'Day' },
-    { id: AxiomSchedulerView.Week, title: 'Week' },
-    { id: AxiomSchedulerView.Month, title: 'Month' },
-    { id: AxiomSchedulerView.Year, title: 'Year' }
-  ];
+  public items = [];
   public locales = AX_LOCALES.map((v) => {
     return { id: v, title: v };
   });
 
-  constructor(injector: Injector) {
+  constructor(injector: Injector,private _element:ElementRef,private _renderer : Renderer2) {
     super(injector);
   }
 
   public ngOnInit(): void  {
     this.axLocale = this.axLocale || 'en';
-    this.refresh();
-    this.subscriptionGarbageCollection.push(this.service.eventChange.subscribe(event => {
-      this.axEventChange && this.axEventChange.emit(event);
-    }));
+    this.setListeners();
+    this.refreshScheduler();
   }
 
+  public refreshScheduler(){
+    this.updateTheme(this.axTheme);
+    this.refresh();
+    this.setViews();
+  }
 
   public prev(): void {
     this.step(-1);
@@ -139,12 +140,22 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     this.service.changeLocale(locale);
   }
 
+  public updateTheme(theme:'light' | 'dark') : void{
+    if(theme){
+      this._renderer.removeClass(this._element.nativeElement,'dark');
+      this._renderer.removeClass(this._element.nativeElement,'light');
+      this._renderer.addClass(this._element.nativeElement,theme);
+    }
+  }
+
+  public changeView(view : any) : void{
+    this.axSchedulerView = view.id;
+    this.axViewChange && this.axViewChange.emit(view.id);
+  }
+
   private step(step: number): void {
     switch (this.axSchedulerView) {
       case AxiomSchedulerView.Day:
-        this.date = this.date.clone().add(step, 'days');
-        break;
-      case AxiomSchedulerView.FourDay:
         this.date = this.date.clone().add(step, 'days');
         break;
       case AxiomSchedulerView.Week:
@@ -156,9 +167,35 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
       case AxiomSchedulerView.Year:
         this.date = this.date.clone().add(step, 'years');
         break;
-      case AxiomSchedulerView.Schedule:
-        break;
     }
+    this.axDateChange && this.axDateChange.emit(this.date.clone().toDate());
+  }
+
+  private setViews() : void{
+    var def = [
+      { id: AxiomSchedulerView.Day, title: 'Day' },
+      { id: AxiomSchedulerView.Week, title: 'Week' },
+      { id: AxiomSchedulerView.Month, title: 'Month' },
+      { id: AxiomSchedulerView.Year, title: 'Year' }
+    ];
+    if(Array.isArray(this.axViews)){
+      this.items = [...def.filter(i=>this.axViews.indexOf(i.id) >= 0)];
+    }
+    else{
+      this.items = [...def];
+    }
+    if(!this.axSchedulerView){
+      this.axSchedulerView = this.items[0].id;
+    }
+  }
+
+  private setListeners() : void{
+    this.subscriptionGarbageCollection.push(this.service.eventChange.subscribe(event => {
+      this.axEventChange && this.axEventChange.emit(event);
+    }));
+    this.subscriptionGarbageCollection.push(this.service.eventClick.subscribe(event => {
+      this.axEventClick && this.axEventClick.emit(event);
+    }));
   }
 
 }

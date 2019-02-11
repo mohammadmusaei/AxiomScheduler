@@ -1,20 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
-
-body{
-    font-family: 'Open Sans', sans-serif;
-    background-color: #fff;
-}
-  
-pre{
-    line-height: 30px;
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #fff;
 }
 
-.github-me{
-    position: absolute;
-    left: auto;
-    right: 0;
+pre {
+  line-height: 30px;
+}
+
+.event-template{
+  font-size: 12px;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  padding: 0 5px;
+  margin: 0;
+  text-align: left;
+  color: #fff;
+  border-left: 2px solid #fff;
+  b{
+    display: block;
+    background: #eee;
+    color: #333;
+    border: 1px solid #111;
+    border-radius: 10px;
+    font-family: consolas;
+    margin: 5px 0;
+    padding: 0 5px;
+    font-size: 11px;
+    text-align: center;
   }
-  
+}
+
+.github-me {
+  position: absolute;
+  left: auto;
+  right: 0;
+}

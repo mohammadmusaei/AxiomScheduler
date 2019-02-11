@@ -1,17 +1,23 @@
 
-<ng-template #t let-item="item">
-    {{ item.data.title }} ({{ item.from | date:'mediumTime' }} - {{ item.to | date:'mediumTime' }})
-</ng-template>
+<div class="container-fluid pl-5 pt-3">
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" routerLinkActive="disabled">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/themes" routerLinkActive="disabled">Themes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events" routerLinkActive="disabled">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+        </li>
+      </ul>
+</div>
 
 <div class="container-fluid pt-3">
 
-<div class="row">
-    <div class="col-md-6">
-            <ax-scheduler [axEventTemplate]="t" [axTheme]="'light'" [axEvents]="events" [axDragStep]="5"></ax-scheduler>
-    </div>
-    <div class="col-md-6">
-            <ax-scheduler [axEventTemplate]="t" [axTheme]="'dark'" [axEvents]="events2" [axDragStep]="5"></ax-scheduler>
-    </div>
-</div>
+    <router-outlet></router-outlet>
   
 </div>

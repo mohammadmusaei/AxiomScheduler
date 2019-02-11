@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6">
+        <ng-template #t let-item="item">
+            <div class="event-template">
+                {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }}
+                </b>
+            </div>
+        </ng-template>
+        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="false" [axSchedulerView]="'week'" [axTheme]="'light'"
+            [axEvents]="events" [axDragStep]="5"></ax-scheduler>
+    </div>
+    <div class="col-md-6">
+        <ng-template #t2 let-item="item">
+            <div class="event-template">
+                {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }}
+                </b>
+            </div>
+        </ng-template>
+        <ax-scheduler [axEventTemplate]="t2" [axShowLocale]="false" [axTheme]="'dark'" [axSchedulerView]="'week'"
+            [axTheme]="'light'" [axEvents]="events2" [axDragStep]="5"></ax-scheduler>
+    </div>
+</div>

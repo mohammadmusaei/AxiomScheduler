@@ -27,24 +27,24 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommon implements OnInit {
-  
+
   @Input() day: moment.Moment;
   @Input() index: number;
 
   public dayEvents: AxiomSchedulerEvent[];
   public showEvents: boolean = false;
-  
+
   protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
-  constructor(injector : Injector,private _element : ElementRef) {
+  constructor(injector: Injector, private _element: ElementRef) {
     super(injector);
   }
 
-  public ngOnInit() : void {
+  public ngOnInit(): void {
     this.refreshView();
   }
 
-  public refreshView() : void{
+  public refreshView(): void {
     this.checkDayEvents();
   }
 
@@ -52,12 +52,14 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
     this.destroyEventObserver();
   }
 
-  public showEventsDialog() : void{
-    this.showEvents = true
-    this.setEventObserver();
+  public showEventsDialog(): void {
+    if (this.dayEvents && this.dayEvents.length > 0) {
+      this.showEvents = true
+      this.setEventObserver();
+    }
   }
 
-  public closeDialog() : void{
+  public closeDialog(): void {
     this.showEvents = false;
     this.destroyEventObserver();
   }
@@ -71,7 +73,7 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
     });
   }
 
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget) : void{ 
+  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget): void {
     if (targetElement) {
       const clickedInside = this._element.nativeElement.contains(targetElement);
       if (!clickedInside) {
@@ -80,7 +82,7 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
     }
   }
 
-  private closeOnGlobalKeydown(event: KeyboardEvent): void { 
+  private closeOnGlobalKeydown(event: KeyboardEvent): void {
     if (event.keyCode === 27) {
       this.closeDialog();
     }

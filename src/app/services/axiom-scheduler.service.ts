@@ -12,11 +12,13 @@ export class AxiomSchedulerService{
     locale : Subject<string>;
     refershRequest : Subject<moment.Moment>;
     eventChange : Subject<AxiomSchedulerEvent>;
+    eventClick : Subject<AxiomSchedulerEvent>;
 
     constructor() {
         this.refershRequest = new Subject<moment.Moment>();        
         this.locale = new Subject<string>();
         this.eventChange = new Subject<AxiomSchedulerEvent>();
+        this.eventClick = new Subject<AxiomSchedulerEvent>();
     }
 
     refreshDate(date : moment.Moment) : void{
@@ -30,6 +32,10 @@ export class AxiomSchedulerService{
 
     eventChanged(event : AxiomSchedulerEvent) : void{
         event && this.eventChange.next(event);
+    }
+
+    eventClicked(event : AxiomSchedulerEvent) : void{
+        event && this.eventClick.next(event);
     }
 
 }

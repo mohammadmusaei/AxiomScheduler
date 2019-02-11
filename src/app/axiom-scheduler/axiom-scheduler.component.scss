@@ -6,7 +6,7 @@
 @import "../themes/dark.scss";
 
 .ax-scheduler {
-  height: 90vh;
+  height:90vh;
   display: block;
   overflow: hidden;
   user-select: none;
@@ -500,13 +500,14 @@
   position: absolute;
   padding: 5px 10px;
   z-index: 1;
-  left: -0px;
-  right: -0px;
   background-color: #fff;
   border: 1px solid #aaa;
   border-radius: 5px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 400px;
   .ax-scheduler__month-view__day__number {
     font-weight: bold;
     position: relative;

@@ -12,7 +12,8 @@ import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'ax-scheduler__event',
-    '[class.expired]': 'expired'
+    '[class.expired]': 'expired',
+    '(click)' : 'service.eventClicked(event)'
   },
   animations: [
     trigger('timeAnimate', [
