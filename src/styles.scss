@@ -12,6 +12,7 @@ pre {
 }
 
 .event-template{
+  position: relative;
   font-size: 12px;
   width: 100%;
   overflow: hidden;
@@ -39,4 +40,5 @@ pre {
   position: absolute;
   left: auto;
   right: 0;
+  z-index: 1000;
 }

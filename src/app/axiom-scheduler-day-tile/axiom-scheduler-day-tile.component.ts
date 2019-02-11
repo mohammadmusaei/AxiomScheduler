@@ -67,8 +67,15 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
   private checkDayEvents(): void {
     this.dayEvents = [];
     this.axEvents.forEach(ev => {
-      if (moment(ev.from).isSameOrAfter(this.day.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.day.clone().endOf('day'))) {
-        this.dayEvents.push(ev);
+      if(ev.from && ev.to){
+        if (moment(ev.from).isSameOrAfter(this.day.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.day.clone().endOf('day'))) {
+          this.dayEvents.push(ev);
+        }
+      }
+      else if(ev.from && !ev.to){
+        if (moment(ev.from).isSameOrAfter(this.day.clone().startOf('day')) && moment(ev.from).isSameOrBefore(this.day.clone().endOf('day'))) {
+          this.dayEvents.push(ev);
+        }
       }
     });
   }

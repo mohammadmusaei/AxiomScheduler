@@ -103,8 +103,15 @@ export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponent
   private checkEvents(): void {
     this.events = [];
     this.axEvents.forEach(ev => {
-      if (moment(ev.from).isSameOrAfter(this.day.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.day.clone().endOf('day'))) {
-        this.events.push(ev);
+      if(ev.to && ev.from){
+        if (moment(ev.from).isSameOrAfter(this.day.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.day.clone().endOf('day'))) {
+          this.events.push(ev);
+        }
+      }
+      else if(ev.from && !ev.to){
+        if (moment(ev.from).isSameOrAfter(this.day.clone().startOf('day')) && moment(ev.from).isSameOrBefore(this.day.clone().endOf('day'))) {
+          this.events.push(ev);
+        }
       }
     });
   }
