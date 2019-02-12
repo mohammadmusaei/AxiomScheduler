@@ -1,6 +1,7 @@
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
 import { Component, OnInit, ViewEncapsulation, Injector } from '@angular/core';
 import * as moment from 'moment';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 export class AxiomSchedulerYearViewMonthObject {
 
@@ -45,17 +46,32 @@ export class AxiomSchedulerYearViewMonthObject {
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'ax-scheduler__year-view'
-  }
+  },
+  animations: [
+    trigger('slideInOutRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate(`${120}ms ease-in-out`, style({ transform: 'translateX(0%)' }))
+      ]),
+      transition(':leave', [
+        animate(`${100}ms ease-in-out`, style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class AxiomSchedulerYearViewComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  months: AxiomSchedulerYearViewMonthObject[];
+  public months: AxiomSchedulerYearViewMonthObject[];
+  public sidebar = false;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
   public ngOnInit(): void {
+    this.subscriptionGarbageCollection.push(this.sidebarService.toggle.subscribe(toggle => {
+      this.sidebar = toggle;
+    }));
     this.refresh();
     this.refreshView();
   }

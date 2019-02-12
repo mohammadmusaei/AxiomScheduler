@@ -8,7 +8,7 @@
 </svg>
 
 
-<span class="ax-scheduler__month-view__day__number" [ngClass]="{ 'today' : day.isSame(today,'days') }">
+<span class="ax-scheduler__month-view__day__number" [ngClass]="{ 'today' : day.isSame(today,'days') , 'in-month' : inMonth }">
     {{ day.format('DD') }}
 </span>
 <div class="ax-scheduler__month-view__day__label" *ngIf="index < 7">
@@ -28,20 +28,4 @@
         {{ dayEvents.length - 2 }} More ...
     </div>
 
-</div>
-
-<div class="ax-scheduler__month-view__day__events__dialog" *ngIf="showEvents" [@dialogAnimation]>
-    <span class="ax-scheduler__close-button" (click)="closeDialog()">×</span>
-    <div class="ax-scheduler__month-view__day__label">
-        <span class="ax-scheduler__month-view__day__number" [ngClass]="{ 'today' : day.isSame(today,'days') }">
-            {{ day.format('DD') }}
-        </span>
-        {{ day.format('dddd') }}
-    </div>
-    <div class="ax-scheduler__month-view__day__events_container">
-        <ng-container *ngFor="let event of dayEvents">
-            <div [event]="event" [monthMode]="true" [axEventTemplate]="axEventTemplate" ax-scheduler-event></div>
-
-        </ng-container>
-    </div>
 </div>

@@ -34,9 +34,6 @@ export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponent
   @Input() day: moment.Moment;
 
   public events: AxiomSchedulerEvent[] = [];
-  public showEvents: boolean = false;
-
-  protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(injector: Injector, private _renderer: Renderer2, private _element: ElementRef) {
     super(injector);
@@ -47,57 +44,16 @@ export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponent
     this.refreshView();
   }
 
-
-  public baseDestroy(): void {
-    this.destroyEventObserver();
-  }
-
   public showEventsDialog(): void {
     if (this.events && this.events.length > 0) {
-      this.showEvents = true
-      this.setEventObserver();
+      this.sidebarService.open({ title : `${ this.day.format('DD MMMM YYYY') }` , events : this.events });
     }
-  }
-
-  public closeDialog($event?: Event): void {
-    this.showEvents = false;
-    this.destroyEventObserver();
-    $event && $event.preventDefault();
-    $event && $event.stopPropagation();
   }
 
   public refreshView(): void {
     this.checkEvents();
     var text = `${this.events.length} event${this.events.length > 1 ? "s" : ""}, Click to show detail...`;
     this._renderer.setAttribute(this._element.nativeElement, 'title', text);
-  }
-
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget): void {
-    if (targetElement) {
-      const clickedInside = this._element.nativeElement.contains(targetElement);
-      if (!clickedInside) {
-        this.closeDialog();
-      }
-    }
-  }
-
-  private closeOnGlobalKeydown(event: KeyboardEvent): void {
-    if (event.keyCode === 27) {
-      this.closeDialog();
-    }
-  }
-
-  private setEventObserver(): void {
-    this.destroyed = new ReplaySubject<boolean>(1);
-    fromEvent(document, 'click').pipe(takeUntil(this.destroyed)).subscribe((event: MouseEvent) => this.closeOnGlobalClick(event.target));
-    fromEvent(document, 'keydown').pipe(takeUntil(this.destroyed)).subscribe((event: KeyboardEvent) => this.closeOnGlobalKeydown(event));
-  }
-
-  private destroyEventObserver(): void {
-    if (this.destroyed) {
-      this.destroyed.next(true);
-      this.destroyed.complete();
-    }
   }
 
   private checkEvents(): void {

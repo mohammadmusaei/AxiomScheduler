@@ -6,7 +6,7 @@
                 </b>
             </div>
         </ng-template>
-        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="false" [axSchedulerView]="'week'" [axTheme]="'light'"
+        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="false" [axAnimation]="'default'" [axSchedulerView]="'week'" [axTheme]="'light'"
             [axEvents]="events" [axDragStep]="5"></ax-scheduler>
     </div>
     <div class="col-md-6">
@@ -16,7 +16,7 @@
                 </b>
             </div>
         </ng-template>
-        <ax-scheduler [axEventTemplate]="t2" [axShowLocale]="false" [axTheme]="'dark'" [axSchedulerView]="'week'"
+        <ax-scheduler [axEventTemplate]="t2" [axShowLocale]="false" [axAnimation]="'default'" [axTheme]="'dark'" [axSchedulerView]="'week'"
             [axTheme]="'light'" [axEvents]="events2" [axDragStep]="5"></ax-scheduler>
     </div>
 </div>

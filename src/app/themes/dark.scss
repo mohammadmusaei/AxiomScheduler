@@ -143,4 +143,12 @@ $dark-event-tile-bg: #263238;
   .ax-scheduler__month-view__day_list{
     g{path{ stroke: #fff; }}
   }
+  .ax-scheduler__sidebar{
+    background: $dark-main-bg;
+    border-left-color: $dark-header-btn-bg-active;
+    h6{
+      color: #fff;
+      border-bottom-color: $dark-header-btn-bg-active;
+    }
+  }
 }

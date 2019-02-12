@@ -31,37 +31,27 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
   @Input() day: moment.Moment;
   @Input() index: number;
 
+  public inMonth: boolean = false;
   public dayEvents: AxiomSchedulerEvent[];
-  public showEvents: boolean = false;
-
-  protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(injector: Injector, private _element: ElementRef) {
     super(injector);
   }
 
   public ngOnInit(): void {
+    this.refresh();
     this.refreshView();
   }
 
   public refreshView(): void {
+    this.inMonth = this.day.clone().isSameOrAfter(this.date.clone().startOf('months')) && this.day.clone().isSameOrBefore(this.date.clone().endOf('months'));
     this.checkDayEvents();
-  }
-
-  public baseDestroy(): void {
-    this.destroyEventObserver();
   }
 
   public showEventsDialog(): void {
     if (this.dayEvents && this.dayEvents.length > 0) {
-      this.showEvents = true
-      this.setEventObserver();
+      this.sidebarService.open({ title : `${ this.day.format('DD MMMM YYYY') }` , events : this.dayEvents });
     }
-  }
-
-  public closeDialog(): void {
-    this.showEvents = false;
-    this.destroyEventObserver();
   }
 
   private checkDayEvents(): void {
@@ -78,34 +68,6 @@ export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommo
         }
       }
     });
-  }
-
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget): void {
-    if (targetElement) {
-      const clickedInside = this._element.nativeElement.contains(targetElement);
-      if (!clickedInside) {
-        this.closeDialog();
-      }
-    }
-  }
-
-  private closeOnGlobalKeydown(event: KeyboardEvent): void {
-    if (event.keyCode === 27) {
-      this.closeDialog();
-    }
-  }
-
-  private setEventObserver(): void {
-    this.destroyed = new ReplaySubject<boolean>(1);
-    fromEvent(document, 'click').pipe(takeUntil(this.destroyed)).subscribe((event: MouseEvent) => this.closeOnGlobalClick(event.target));
-    fromEvent(document, 'keydown').pipe(takeUntil(this.destroyed)).subscribe((event: KeyboardEvent) => this.closeOnGlobalKeydown(event));
-  }
-
-  private destroyEventObserver(): void {
-    if (this.destroyed) {
-      this.destroyed.next(true);
-      this.destroyed.complete();
-    }
   }
 
 }

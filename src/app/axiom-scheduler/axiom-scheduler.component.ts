@@ -1,8 +1,9 @@
 import { AX_LOCALES } from './../locales';
-import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, ViewChildren, AfterViewInit, ViewChild, Injector, Output, EventEmitter, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, TemplateRef,Injector, Output, EventEmitter, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import * as moment from 'moment';
-import { AxiomSchedulerService } from '../services/axiom-scheduler.service';
+import { AxiomSchedulerService } from './../services/axiom-scheduler.service';
 import { Subscription } from 'rxjs';
+import { AxiomSchedulerSidebarService } from './../services/axiom-scheduler-sidebar.service';
 
 export enum AxiomSchedulerView {
   Day = 'day',
@@ -15,6 +16,7 @@ export enum AxiomSchedulerAnimation {
   Animation2 = 'animation2',
   Animation3 = 'animation3',
   Animation4 = 'animation4',
+  Default = 'default',
   None = 'none'
 }
 
@@ -32,11 +34,13 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
   public today: moment.Moment;
   public date: moment.Moment;
   public service: AxiomSchedulerService;
+  public sidebarService: AxiomSchedulerSidebarService;
   public subscriptionGarbageCollection: Subscription[] = [];
 
   constructor(protected injector: Injector) {
     this.today = moment();
     this.service = this.injector.get(AxiomSchedulerService);
+    this.sidebarService = this.injector.get(AxiomSchedulerSidebarService);
     this.subscriptionGarbageCollection.push(this.service.refershRequest.subscribe((s) => {
       if (s) {
         this.date = s.clone();
@@ -74,8 +78,8 @@ export class AxiomSchedulerEvent {
   public from: Date;
   public to: Date;
   public data: any;
-  public color : string;
-  constructor(from: Date = null, to: Date = null, data: any = null,color : string = null) {
+  public color: string;
+  constructor(from: Date = null, to: Date = null, data: any = null, color: string = null) {
     this.data = data;
     this.from = from;
     this.to = to;
@@ -88,7 +92,7 @@ export class AxiomSchedulerEvent {
   templateUrl: './axiom-scheduler.component.html',
   styleUrls: ['./axiom-scheduler.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [AxiomSchedulerService],
+  providers: [AxiomSchedulerService,AxiomSchedulerSidebarService],
   host: {
     'class': 'ax-scheduler'
   }
@@ -98,9 +102,9 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   @Input() axSchedulerView: AxiomSchedulerView;
   @Input() axTheme: AxiomSchedulerTheme;
   @Input() axAnimation: AxiomSchedulerAnimation;
-  @Input() axShowLocale : boolean = true;
-  @Input() axViews : AxiomSchedulerView[];
-  
+  @Input() axShowLocale: boolean = true;
+  @Input() axViews: AxiomSchedulerView[];
+
   @Output() axEventChange = new EventEmitter<AxiomSchedulerEvent>();
   @Output() axEventClick = new EventEmitter<AxiomSchedulerEvent>();
   @Output() axDateChange = new EventEmitter<Date>();
@@ -111,17 +115,17 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     return { id: v, title: v };
   });
 
-  constructor(injector: Injector,private _element:ElementRef,private _renderer : Renderer2) {
+  constructor(injector: Injector, private _element: ElementRef, private _renderer: Renderer2) {
     super(injector);
   }
 
-  public ngOnInit(): void  {
+  public ngOnInit(): void {
     this.axLocale = this.axLocale || 'en';
     this.setListeners();
     this.refreshScheduler();
   }
 
-  public refreshScheduler(){
+  public refreshScheduler() {
     this.updateTheme(this.axTheme);
     this.refresh();
     this.setViews();
@@ -137,7 +141,8 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     this.service.refreshDate(this.date);
   }
 
-  public todayF(): void  {
+  public todayF(): void {
+    this.applyDefaultAnimations(this.date.clone().isBefore(moment()) ? 1 : -1);
     this.date = moment();
     this.service.refreshDate(this.date);
     this.axDateChange && this.axDateChange.emit(this.date.clone().toDate());
@@ -151,27 +156,27 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     this.service.changeLocale(locale);
   }
 
-  public updateTheme(theme:'light' | 'dark') : void{
-    if(theme){
-      this._renderer.removeClass(this._element.nativeElement,'dark');
-      this._renderer.removeClass(this._element.nativeElement,'light');
-      this._renderer.addClass(this._element.nativeElement,theme);
+  public updateTheme(theme: 'light' | 'dark'): void {
+    if (theme) {
+      this._renderer.removeClass(this._element.nativeElement, 'dark');
+      this._renderer.removeClass(this._element.nativeElement, 'light');
+      this._renderer.addClass(this._element.nativeElement, theme);
       //
-      if(this.axAnimation === 'none'){
-        Object.values(AxiomSchedulerAnimation).forEach((animation)=>{
-          this._renderer.removeClass(this._element.nativeElement,animation);
+      if (this.axAnimation === 'none') {
+        Object.values(AxiomSchedulerAnimation).forEach((animation) => {
+          this._renderer.removeClass(this._element.nativeElement, animation);
         });
       }
-      else{
-        Object.values(AxiomSchedulerAnimation).forEach((animation)=>{
-          this._renderer.removeClass(this._element.nativeElement,animation);
+      else {
+        Object.values(AxiomSchedulerAnimation).forEach((animation) => {
+          this._renderer.removeClass(this._element.nativeElement, animation);
         });
-        this._renderer.addClass(this._element.nativeElement,this.axAnimation);
+        this._renderer.addClass(this._element.nativeElement, this.axAnimation);
       }
     }
   }
 
-  public changeView(view : any) : void{
+  public changeView(view: any): void {
     this.axSchedulerView = view.id;
     this.axViewChange && this.axViewChange.emit(view.id);
   }
@@ -191,28 +196,42 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
         this.date = this.date.clone().add(step, 'years');
         break;
     }
+    this.applyDefaultAnimations(step);
     this.axDateChange && this.axDateChange.emit(this.date.clone().toDate());
   }
 
-  private setViews() : void{
+  private applyDefaultAnimations(step: number): void {
+    if (this.axAnimation === AxiomSchedulerAnimation.Default) {
+      this._renderer.removeClass(this._element.nativeElement, 'forward');
+      this._renderer.removeClass(this._element.nativeElement, 'backward');
+      if (step > 0) {
+        this._renderer.addClass(this._element.nativeElement, 'forward');
+      }
+      else {
+        this._renderer.addClass(this._element.nativeElement, 'backward');
+      }
+    }
+  }
+
+  private setViews(): void {
     var def = [
       { id: AxiomSchedulerView.Day, title: 'Day' },
       { id: AxiomSchedulerView.Week, title: 'Week' },
       { id: AxiomSchedulerView.Month, title: 'Month' },
       { id: AxiomSchedulerView.Year, title: 'Year' }
     ];
-    if(Array.isArray(this.axViews)){
-      this.items = [...def.filter(i=>this.axViews.indexOf(i.id) >= 0)];
+    if (Array.isArray(this.axViews)) {
+      this.items = [...def.filter(i => this.axViews.indexOf(i.id) >= 0)];
     }
-    else{
+    else {
       this.items = [...def];
     }
-    if(!this.axSchedulerView){
+    if (!this.axSchedulerView) {
       this.axSchedulerView = this.items[0].id;
     }
   }
 
-  private setListeners() : void{
+  private setListeners(): void {
     this.subscriptionGarbageCollection.push(this.service.eventChange.subscribe(event => {
       this.axEventChange && this.axEventChange.emit(event);
     }));

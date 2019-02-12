@@ -22,6 +22,7 @@ import { AxiomSchedulerMonthTileDayComponent } from './axiom-scheduler-month-til
 import { HomeComponent } from './routes/home/home.component';
 import { ThemeComponent } from './routes/theme/theme.component';
 import { EventDescriptionComponent } from './routes/event-description/event-description.component';
+import { AxiomSchedulerSidebarComponent } from './axiom-scheduler-sidebar/axiom-scheduler-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EventDescriptionComponent } from './routes/event-description/event-desc
     AxiomSchedulerMonthTileDayComponent,
     HomeComponent,
     ThemeComponent,
-    EventDescriptionComponent
+    EventDescriptionComponent,
+    AxiomSchedulerSidebarComponent
   ],
   imports: [
     BrowserModule, 

@@ -20,6 +20,17 @@ pre.code {
   color: #eee;
 }
 
+.nav{
+  border-bottom: 1px solid #ddd;
+}
+.nav-link{
+  text-transform: uppercase;
+  color: #666;
+}
+.nav-link.active{
+  color: #ef5350;
+}
+
 .alert{
   font-size: 13px;
   padding: 5px 8px;
