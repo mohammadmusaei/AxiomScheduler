@@ -136,8 +136,6 @@
         height: 100%;
         border: none;
         width: percentage(7/100);
-        -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         > span.header_number {
           font-size: 2.2em;
           font-weight: normal;

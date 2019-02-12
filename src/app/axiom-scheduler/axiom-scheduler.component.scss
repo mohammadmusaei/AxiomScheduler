@@ -316,9 +316,6 @@
       display: inline-block;
       height: 100%;
       border: none;
-      -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-      animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-
       > span.header_number {
         font-size: 2.2em;
         font-weight: normal;
@@ -653,4 +650,11 @@
       top: 11px;
     }
   }
+}
+
+.ax-scheduler__month-view__day_list{
+  position: absolute;
+  left: 5px;
+  width: 19px;
+  cursor: pointer;
 }

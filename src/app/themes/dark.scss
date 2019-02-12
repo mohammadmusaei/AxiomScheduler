@@ -140,4 +140,7 @@ $dark-event-tile-bg: #263238;
   .ax-scheduler__year-view__month .ax-scheduler__year-view__month__body > div > span:hover{
     background-color: $dark-header-btn-bg-active !important;
   }
+  .ax-scheduler__month-view__day_list{
+    g{path{ stroke: #fff; }}
+  }
 }

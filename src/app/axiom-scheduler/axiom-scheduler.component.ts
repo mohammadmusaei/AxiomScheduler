@@ -10,6 +10,15 @@ export enum AxiomSchedulerView {
   Month = 'month',
   Year = 'year'
 }
+export enum AxiomSchedulerAnimation {
+  Animation1 = 'animation1',
+  Animation2 = 'animation2',
+  Animation3 = 'animation3',
+  Animation4 = 'animation4',
+  None = 'none'
+}
+
+export type AxiomSchedulerTheme = 'light' | 'dark';
 
 export class AxiomSchedulerComponentCommon implements OnDestroy {
 
@@ -87,7 +96,8 @@ export class AxiomSchedulerEvent {
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
   @Input() axSchedulerView: AxiomSchedulerView;
-  @Input() axTheme: 'light' | 'dark';
+  @Input() axTheme: AxiomSchedulerTheme;
+  @Input() axAnimation: AxiomSchedulerAnimation;
   @Input() axShowLocale : boolean = true;
   @Input() axViews : AxiomSchedulerView[];
   
@@ -146,6 +156,18 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
       this._renderer.removeClass(this._element.nativeElement,'dark');
       this._renderer.removeClass(this._element.nativeElement,'light');
       this._renderer.addClass(this._element.nativeElement,theme);
+      //
+      if(this.axAnimation === 'none'){
+        Object.values(AxiomSchedulerAnimation).forEach((animation)=>{
+          this._renderer.removeClass(this._element.nativeElement,animation);
+        });
+      }
+      else{
+        Object.values(AxiomSchedulerAnimation).forEach((animation)=>{
+          this._renderer.removeClass(this._element.nativeElement,animation);
+        });
+        this._renderer.addClass(this._element.nativeElement,this.axAnimation);
+      }
     }
   }
 
