@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularDraggableModule } from 'angular2-draggable';
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +48,20 @@ import { EventDescriptionComponent } from './routes/event-description/event-desc
     FormsModule,
     ReactiveFormsModule,
     AngularDraggableModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule ,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'middle',
+          distance: 12
+        }, 
+        vertical: {
+          position: 'bottom',
+          distance: 12
+        }
+      },
+      theme:'material'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SAMPLE_EVENTS } from 'src/app/sample-events';
 import { AxiomSchedulerEvent, AxiomSchedulerView } from 'src/app/axiom-scheduler/axiom-scheduler.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-event-description',
@@ -9,29 +10,33 @@ import { AxiomSchedulerEvent, AxiomSchedulerView } from 'src/app/axiom-scheduler
 })
 export class EventDescriptionComponent implements OnInit {
 
-  events  = [...SAMPLE_EVENTS];
-  clickEvent : AxiomSchedulerEvent;
-  changedEvent : AxiomSchedulerEvent;
-  changedDate : Date;
-  view : AxiomSchedulerView;
+  events = [...SAMPLE_EVENTS];
+  clickEvent: AxiomSchedulerEvent;
+  changedEvent: AxiomSchedulerEvent;
+  changedDate: Date;
+  view: AxiomSchedulerView;
   step = 15;
 
-  constructor() { }
+  constructor(private readonly _notifier: NotifierService) { }
 
   ngOnInit() {
   }
 
-  eventClick($event : AxiomSchedulerEvent) : void{
+  eventClick($event: AxiomSchedulerEvent): void {
     this.clickEvent = $event;
+    this._notifier.notify('default', `${$event.data.title} clicked!`);
   }
-  changeEvent($event : AxiomSchedulerEvent) : void{
+  changeEvent($event: AxiomSchedulerEvent): void {
     this.changedEvent = $event;
+    this._notifier.notify('default', `${$event.data.title} changed to ( ${$event.from.toDateString() + '-' + $event.to.toDateString()} )`);
   }
-  dateChange($event : Date) : void{
+  dateChange($event: Date): void {
     this.changedDate = $event;
+    this._notifier.notify('default', `Date changed to ${$event.toDateString()}`);
   }
-  viewChange($event : AxiomSchedulerView) : void{
+  viewChange($event: AxiomSchedulerView): void {
     this.view = $event;
+    this._notifier.notify('default', `View changed to "${$event}"`);
   }
 
 }

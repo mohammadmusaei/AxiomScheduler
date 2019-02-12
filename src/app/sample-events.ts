@@ -4,135 +4,132 @@ import { AxiomSchedulerEvent } from './axiom-scheduler/axiom-scheduler.component
 var colors = ['#673AB7','#E91E63','#795548','#009688','#03A9F4','#FF9800','#004D40','#FF4081','#00B8D4','#795548','#00E676','#ff5252','#424242','#7E57C2','#FFC107','#8D6E63'];
 
 export var SAMPLE_EVENTS = [
-    {
-      from: moment().add(8,'days').startOf('days').add(1,'hours'),
-      to: moment().add(8,'days').startOf('days'),
-      color : colors[0],
-      data : {
-        title : 'Call Mary Johnson'
-      }
+  {
+    "data": {
+      "title": "Call Mary Johnson"
     },
-    {
-      from: moment().add(6,'days').startOf('days').add(1,'hours'),
-      to: moment().add(6,'days').startOf('days'),
-      color : colors[2],
-      data : {
-        title : 'StartUp Meeting'
-      }
+    "from": "2019-02-19T21:30:00.000Z",
+    "to": "2019-02-20T01:05:00.000Z",
+    "color": "#673AB7"
+  },
+  {
+    "data": {
+      "title": "StartUp Meeting"
     },
-    {
-      from: moment().add(4,'days').startOf('days').add(1,'hours').add(5,'minutes'),
-      to: moment().add(4,'days').startOf('days').add(5,'minutes'),
-      color : colors[1],
-      data : {
-        title : 'Send email to production team'
-      }
+    "from": "2019-02-17T21:30:00.000Z",
+    "to": "2019-02-17T23:30:00.000Z",
+    "color": "#795548"
+  },
+  {
+    "data": {
+      "title": "Send email to production team"
     },
-    {
-      from: moment().add(1,'days').startOf('days').add(1,'hours').add(20,'minutes'),
-      to: moment().add(1,'days').startOf('days').add(20,'minutes'),
-      color : colors[3],
-      data : {
-        title : 'Buy some stuff'
-      }
+    "from": "2019-02-15T21:35:00.000Z",
+    "to": "2019-02-16T01:00:00.000Z",
+    "color": "#E91E63"
+  },
+  {
+    "data": {
+      "title": "Buy some stuff"
     },
-    {
-      from: moment().add(2,'days').startOf('days').add(1,'hours').add(2,'minutes'),
-      to: moment().add(2,'days').startOf('days').add(2,'hours').add(40,'minutes'),
-      color : colors[4],
-      data : {
-        title : 'Drive to airport'
-      }
+    "from": "2019-02-12T22:10:00.000Z",
+    "to": "2019-02-12T23:55:00.000Z",
+    "color": "#009688"
+  },
+  {
+    "data": {
+      "title": "Drive to airport"
     },
-    {
-      from: moment().add(2,'days').startOf('days').add(2,'hours').add(45,'minutes'),
-      to: moment().add(2,'days').startOf('days').add(14,'hours').add(10,'minutes'),
-      color : colors[5],
-      data : {
-        title : 'Meeting #5003'
-      }
+    "from": "2019-02-13T20:32:00.000Z",
+    "to": "2019-02-13T22:10:00.000Z",
+    "color": "#03A9F4"
+  },
+  {
+    "data": {
+      "title": "Meeting #5003"
     },
-    {
-      from: moment().add(5,'days').startOf('days').add(4,'hours').add(50,'minutes'),
-      to: moment().add(5,'days').startOf('days').add(4,'hours'),
-      color : colors[6],
-      data : {
-        title : 'Flight reservation'
-      }
+    "from": "2019-02-14T00:55:00.000Z",
+    "to": "2019-02-14T05:20:00.000Z",
+    "color": "#FF9800"
+  },
+  {
+    "data": {
+      "title": "Flight reservation"
     },
-    {
-      from: moment().add(-5,'days').startOf('days').add(14,'hours'),
-      to: moment().add(-5,'days').startOf('days').add(22,'hours'),
-      color : colors[7],
-      data : {
-        title : 'Financial team meeting'
-      }
+    "from": "2019-02-17T01:30:00.000Z",
+    "to": "2019-02-17T06:40:00.000Z",
+    "color": "#004D40"
+  },
+  {
+    "data": {
+      "title": "Financial team meeting"
     },
-    {
-      from: moment().add(-5,'days').startOf('days').add(2,'hours'),
-      to: moment().add(-5,'days').startOf('days').add(5,'hours'),
-      color : colors[8],
-      data : {
-        title : 'Sale meeting'
-      }
+    "from": "2019-02-07T07:00:00.000Z",
+    "to": "2019-02-07T11:20:00.000Z",
+    "color": "#FF4081"
+  },
+  {
+    "data": {
+      "title": "Sale meeting"
     },
-    {
-      from: moment().add(-5,'days').startOf('days').add(7,'hours'),
-      to: moment().add(-5,'days').startOf('days').add(2,'hours'),
-      color : colors[9],
-      data : {
-        title : 'Call Customer #005'
-      }
+    "from": "2019-02-06T22:30:00.000Z",
+    "to": "2019-02-07T01:30:00.000Z",
+    "color": "#00B8D4"
+  },
+  {
+    "data": {
+      "title": "Call Customer #005"
     },
-    {
-      from: moment().add(-3,'days').startOf('days').add(4,'hours'),
-      to: moment().add(-3,'days').startOf('days').add(2,'hours'),
-      color : colors[10],
-      data : {
-        title : 'Meeting reminder'
-      }
+    "from": "2019-02-07T03:30:00.000Z",
+    "to": "2019-02-07T06:40:00.000Z",
+    "color": "#795548"
+  },
+  {
+    "data": {
+      "title": "Meeting reminder"
     },
-    {
-      from: moment().add(-2,'days').startOf('days').add(4,'hours'),
-      to: moment().add(-2,'days').startOf('days').add(1,'hours'),
-      color : colors[11],
-      data : {
-        title : 'Music class'
-      }
-    }
-    ,
-    {
-      from: moment().startOf('days').add(14,'hours'),
-      to: moment().startOf('days').add(18,'hours'),
-      color : colors[12],
-      data : {
-        title : 'Software presentation'
-      }
-    }
-    ,
-    {
-      from: moment().startOf('days').add(2,'hours'),
-      to: moment().startOf('days').add(1,'hours'),
-      color : colors[13],
-      data : {
-        title : 'Production team meeting'
-      }
-    }
-    ,
-    {
-      from: moment().startOf('days').add(6,'hours'),
-      to: moment().startOf('days').add(1,'hours'),
-      color : colors[14],
-      data : {
-        title : 'Set an appointment with Mike'
-      }
-    } ,
-    {
-      from: moment().startOf('days').add(1,'hours'),
-      to: moment().startOf('days').add(1,'minutes'),
-      color : colors[15],
-      data : {
-        title : 'Software demo reminder'
-      }
-    }
-  ].map(i=>new AxiomSchedulerEvent(i.from && i.from.toDate(),i.to && i.to.toDate(),i.data,i.color));
+    "from": "2019-02-08T23:40:00.000Z",
+    "to": "2019-02-09T05:50:00.000Z",
+    "color": "#00E676"
+  },
+  {
+    "data": {
+      "title": "Music class"
+    },
+    "from": "2019-02-09T20:50:00.000Z",
+    "to": "2019-02-10T02:25:00.000Z",
+    "color": "#ff5252"
+  },
+  {
+    "data": {
+      "title": "Software presentation"
+    },
+    "from": "2019-02-12T08:10:00.000Z",
+    "to": "2019-02-12T11:35:00.000Z",
+    "color": "#424242"
+  },
+  {
+    "data": {
+      "title": "Production team meeting"
+    },
+    "from": "2019-02-11T23:35:00.000Z",
+    "to": "2019-02-12T01:50:00.000Z",
+    "color": "#7E57C2"
+  },
+  {
+    "data": {
+      "title": "Set an appointment with Mike"
+    },
+    "from": "2019-02-12T02:30:00.000Z",
+    "to": "2019-02-11T21:30:00.000Z",
+    "color": "#FFC107"
+  },
+  {
+    "data": {
+      "title": "Software demo reminder"
+    },
+    "from": "2019-02-11T20:45:00.000Z",
+    "to": "2019-02-11T22:34:00.000Z",
+    "color": "#8D6E63"
+  }
+].map(i=>new AxiomSchedulerEvent(i.from && moment(i.from).toDate(),i.to && moment(i.to).toDate(),i.data,i.color));

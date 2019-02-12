@@ -5,7 +5,7 @@
                 {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }} </b>
             </div>
         </ng-template>
-        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="true" [axSchedulerView]="'day'" [axTheme]="'light'"
+        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="true" [axSchedulerView]="'week'" [axTheme]="'dark'"
             [axEvents]="events" [axDragStep]="step" (axEventClick)="eventClick($event)"
             (axEventChange)="changeEvent($event)" (axViewChange)="viewChange($event)"
             (axDateChange)="dateChange($event)"></ax-scheduler>
