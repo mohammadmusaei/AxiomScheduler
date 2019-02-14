@@ -1,11 +1,14 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-9">
     <ng-template #t let-item="item">
       <div class="event-template">
         {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }} </b>
       </div>
     </ng-template>
-    <ax-scheduler [axEventTemplate]="t" [axSchedulerView]="'month'" [axAnimation]="'default'" [axTheme]="'light'" [axEvents]="events"
+    <ax-scheduler [axEventTemplate]="t" [axSchedulerView]="'week'" [axAnimation]="'default'" [axTheme]="'light'" [axEvents]="events"
       [axDragStep]="5"></ax-scheduler>
+  </div>
+  <div class="col-md-3">
+    <h6 class="border-bottom pb-3 pt-3">Options</h6>
   </div>
 </div>

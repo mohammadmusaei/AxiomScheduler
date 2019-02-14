@@ -79,11 +79,13 @@ export class AxiomSchedulerEvent {
   public to: Date;
   public data: any;
   public color: string;
-  constructor(from: Date = null, to: Date = null, data: any = null, color: string = null) {
+  public locked : boolean;
+  constructor(from: Date = null, to: Date = null, data: any = null, color: string = null, locked : boolean = false) {
     this.data = data;
     this.from = from;
     this.to = to;
     this.color = color;
+    this.locked = locked;
   }
 }
 

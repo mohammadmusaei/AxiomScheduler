@@ -1,7 +1,8 @@
-import { AxiomSchedulerSidebarService, AxiomSchedulerSidebarData } from './../services/axiom-scheduler-sidebar.service';
 import { Component, OnInit, OnDestroy, ElementRef, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { ReplaySubject, fromEvent, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { AxiomSchedulerSidebarService, AxiomSchedulerSidebarData } from './../services/axiom-scheduler-sidebar.service';
 
 @Component({
   selector: '[ax-scheduler-sidebar]',
@@ -10,7 +11,18 @@ import { takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'ax-scheduler__sidebar'
-  }
+  },
+  animations: [
+    trigger('slideInOutRight', [
+      transition(':enter', [
+          style({ transform: 'translateX(100%)' }),
+          animate(`${150}ms ease-in`, style({ transform: 'translateX(0%)' }))
+      ]),
+      transition(':leave', [
+          animate(`${240}ms ease-out`, style({ transform: 'translateX(100%)' }))
+      ])
+  ])
+  ]
 })
 export class AxiomSchedulerSidebarComponent implements OnInit, OnDestroy {
 

@@ -5,6 +5,6 @@
 
 <ng-container *ngIf="data">
 
-    <div *ngFor="let event of data.events" [event]="event" [monthMode]="true" [axEventTemplate]="axEventTemplate" ax-scheduler-event></div>
+    <div [@slideInOutRight] *ngFor="let event of data.events" [event]="event" [monthMode]="true" [axEventTemplate]="axEventTemplate" ax-scheduler-event></div>
 
 </ng-container>
