@@ -1,6 +1,6 @@
 # Axiom Scheduler
 
-Axiom scheduler is an angular base scheduler component use [Momentjs](https://momentjs.com/).
+Axiom scheduler is an angular scheduler component use [Momentjs](https://momentjs.com/).
 
 
 ### Usage
