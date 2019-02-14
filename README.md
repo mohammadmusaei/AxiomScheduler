@@ -1,5 +1,7 @@
 # Axiom Scheduler
 
+Axiom scheduler is an angular base scheduler component powered by [Momentjs](https://momentjs.com/).
+
 
 ### Usage
 
@@ -101,5 +103,10 @@ For change scheduler theme just pass available animations shown in [Input params
 | axEventEditClick | AxiomSchedulerEvent | Fire when edit button clicked from event's toolbar  |
 | axDateChange | Date | Fire when date of scheduler changed by navigator  |
 | axViewChange | AxiomSchedulerView | Fire when view of scheduler changed  |
+
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
 
 
