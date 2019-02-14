@@ -14,6 +14,51 @@ Use `ax-scheduler` tag to user scheduler.
 
 ```
 
+### Custom event template
+
+For customizing events to show you can use `[axEventTemplate]` parameter and design your events template.
+
+```html
+
+<ng-template #t let-item="item">
+   <div class="event-template">
+      {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }} </b>
+   </div>
+</ng-template>
+
+<ax-scheduler [axEventTemplate]="t" [axSchedulerView]="'week'"
+      [axEventToolbar]="true" [axAnimation]="'default" [axTheme]="'light'" [axEvents]="events"
+      [axDragStep]="5" [axShowLocale]="true">
+</ax-scheduler>
+
+```
+
+As shown above, `#t` template passed to `[axEventTemplate]`, `item` variable provide entire event to use in your template.
+
+### Localization
+
+For change scheduler locale just pass your locale to `[axLocale]`, Always you can check available locales in [Momentjs i18n document](https://momentjs.com/docs/#/i18n/). 
+
+```html
+
+<ax-scheduler [axLocale]="'bm'">
+</ax-scheduler>
+
+```
+
+### Themes
+
+For change scheduler theme just pass 'light' or 'dark' to `[axTheme]`. 
+
+```html
+
+<ax-scheduler [axTheme]="'dark'">
+</ax-scheduler>
+
+```
+
+
+
 ### @Input() Params
 
 | Name | Type | Default | Usage |
