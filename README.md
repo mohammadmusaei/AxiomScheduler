@@ -57,7 +57,16 @@ For change scheduler theme just pass 'light' or 'dark' to `[axTheme]`.
 
 ```
 
+### Animations
 
+For change scheduler theme just pass available animations shown in [Input params table](###@Input()-Params)  to `[axAnimation]`. 
+
+```html
+
+<ax-scheduler [axAnimation]="'animation4'">
+</ax-scheduler>
+
+```
 
 ### @Input() Params
 
