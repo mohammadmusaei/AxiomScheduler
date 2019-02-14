@@ -4,7 +4,8 @@ $event-border-color : #eee;
 .ax-scheduler__event {
   text-align: left;
   overflow: visible;
-  cursor: move;
+  cursor: pointer;
+  position: relative;
   >.ax-scheduler__event__content{
     display: inline-block;
     vertical-align: middle;

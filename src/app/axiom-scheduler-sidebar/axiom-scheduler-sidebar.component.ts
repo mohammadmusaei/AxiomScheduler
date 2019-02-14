@@ -27,6 +27,7 @@ import { AxiomSchedulerSidebarService, AxiomSchedulerSidebarData } from './../se
 export class AxiomSchedulerSidebarComponent implements OnInit, OnDestroy {
 
   @Input() axEventTemplate: TemplateRef<any>;
+  @Input() axEventToolbar: boolean = true;
   public data: AxiomSchedulerSidebarData;
 
   protected destroyed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);

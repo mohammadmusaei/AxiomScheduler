@@ -46,19 +46,19 @@
 <div class="ax-scheduler__body" [ngSwitch]="axSchedulerView">
 
     <div *ngSwitchCase="'day'" ax-scheduler-day-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
-        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()" [axEventToolbar]="axEventToolbar">
 
     </div>
     <div *ngSwitchCase="'week'" ax-scheduler-week-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
-        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()" [axEventToolbar]="axEventToolbar">
 
     </div>
     <div *ngSwitchCase="'month'" ax-scheduler-month-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
-        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()" [axEventToolbar]="axEventToolbar">
 
     </div>
     <div *ngSwitchCase="'year'" ax-scheduler-year-view [axEvents]="axEvents" [axEventTemplate]="axEventTemplate"
-        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()">
+        [axEventFormatter]="axEventFormatter" [axDragStep]="axDragStep" [axStartDate]="date.toDate()" [axEventToolbar]="axEventToolbar">
 
     </div>
 

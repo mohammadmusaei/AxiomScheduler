@@ -93,6 +93,14 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public fromTimeChangeStart(e: IResizeEvent): void {
     this.toggleShowTime(true);
   }
+  
+  public deleteEevent(): void {
+    this.service.eventDeleteClick.next(this.event);
+  }
+
+  public editEevent(): void {
+    this.service.eventEditClick.next(this.event);
+  }
 
   private checkPosition(): void {
     setTimeout(() => {

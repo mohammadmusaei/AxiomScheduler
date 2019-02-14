@@ -26,28 +26,27 @@
 @-webkit-keyframes slide-in-right {
   0% {
     -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    transform: translateX(100px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }
 @keyframes slide-in-right {
   0% {
     -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    transform: translateX(100px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }
-
 
 @-webkit-keyframes slit-in-vertical {
   0% {
@@ -400,6 +399,31 @@
   }
 }
 
+@-webkit-keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+
 // scheduler animation
 $month-view-animation-delay: 0.03s;
 $month-view-animation-timeout: 0.3s;
@@ -414,12 +438,16 @@ $month-view-animation-size: 42;
   animation: fade-in-right $delay cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 @mixin scheduler-slide-in-left($delay: 0.2s) {
-  -webkit-animation: slide-in-left $delay cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-left $delay cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-in-left $delay cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-left $delay cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 @mixin scheduler-slide-in-right($delay: 0.2s) {
-  -webkit-animation: slide-in-right $delay cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: slide-in-right $delay cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-in-right $delay cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-right $delay cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@mixin scheduler-slide-out-right($delay: 0.2s) {
+  -webkit-animation: slide-out-right $delay cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: slide-out-right $delay cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 
 %scheduler-animation-scale {
@@ -522,7 +550,7 @@ $month-view-animation-size: 42;
     @extend %scheduler-flip-in-ver-right;
   }
   .ax-scheduler__day-view__body {
-    @extend %scheduler-slide-in-fwd-left;
+    @extend %scheduler-animation-scale;
   }
   .ax-scheduler__day-view__header .header_number {
     @extend %scheduler-animation-flip;
@@ -533,7 +561,7 @@ $month-view-animation-size: 42;
 }
 
 .ax-scheduler.default {
-  &.backward{
+  &.backward {
     .ax-scheduler__week-view__header > div > div {
       @include scheduler-fade-in-left;
     }
@@ -550,7 +578,7 @@ $month-view-animation-size: 42;
       @include scheduler-fade-in-left;
     }
   }
-  &.forward{
+  &.forward {
     .ax-scheduler__week-view__header > div > div {
       @include scheduler-fade-in-right;
     }

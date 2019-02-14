@@ -34,7 +34,8 @@ export var SAMPLE_EVENTS = [
     },
     "from": "2019-02-12T22:10:00.000Z",
     "to": "2019-02-12T23:55:00.000Z",
-    "color": "#009688"
+    "color": "#009688",
+    "locked" : true
   },
   {
     "data": {
@@ -132,4 +133,4 @@ export var SAMPLE_EVENTS = [
     "to": "2019-02-11T22:34:00.000Z",
     "color": "#8D6E63"
   }
-].map(i=>new AxiomSchedulerEvent(i.from && moment(i.from).toDate(),i.to && moment(i.to).toDate(),i.data,i.color));
+].map(i=>new AxiomSchedulerEvent(i.data.title,i.from && moment(i.from).toDate(),i.to && moment(i.to).toDate(),i.data,i.color,i.locked));

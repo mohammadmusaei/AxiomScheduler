@@ -7,20 +7,20 @@ import { AxiomSchedulerHour } from '../axiom-scheduler-day-view/axiom-scheduler-
   selector: '[ax-scheduler-day-column]',
   templateUrl: './axiom-scheduler-day-column.component.html',
   styleUrls: ['./axiom-scheduler-day-column.component.scss'],
-  encapsulation : ViewEncapsulation.None,
-  host:{
-    'class' : 'ax-scheduler__day-view__body',
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'ax-scheduler__day-view__body',
     '[class.hour-none]': '!hourColumn'
   }
 })
 export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() hourColumn : boolean = true;
-  @Input() bounds : any;
+  @Input() hourColumn: boolean = true;
+  @Input() bounds: any;
 
   public dayEvents: AxiomSchedulerEvent[];
   public hours: AxiomSchedulerHour[];
-  
+
   public edge = {
     top: true,
     bottom: true,
@@ -28,17 +28,17 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
     right: true
   };
 
-  constructor(injector : Injector,public _element : ElementRef) { 
+  constructor(injector: Injector, public _element: ElementRef) {
     super(injector);
-    this.bounds  = this._element.nativeElement;
+    this.bounds = this._element.nativeElement;
   }
 
-  public ngOnInit() : void{
+  public ngOnInit(): void {
     this.refresh();
     this.refreshView();
   }
 
-  public refreshView() : void{
+  public refreshView(): void {
     this.checkDayEvents();
     this.setHours();
   }
@@ -57,13 +57,13 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
   private checkDayEvents(): void {
     this.dayEvents = [];
     this.axEvents.forEach(ev => {
-      if(ev.from && ev.to){
-        if(moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.date.clone().endOf('day'))){
+      if (ev.from && ev.to) {
+        if (moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.date.clone().endOf('day'))) {
           this.dayEvents.push(ev);
         }
       }
-      else if(ev.from && !ev.to){
-        if(moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.from).isSameOrBefore(this.date.clone().endOf('day'))){
+      else if (ev.from && !ev.to) {
+        if (moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.from).isSameOrBefore(this.date.clone().endOf('day'))) {
           this.dayEvents.push(ev);
         }
       }

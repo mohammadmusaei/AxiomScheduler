@@ -6,6 +6,7 @@ ax-scheduler-day-tile
 [axEventFormatter] = "axEventFormatter"
 [axDragStep]="axDragStep"
 [axStartDate]="axStartDate"
+[axEventToolbar]="axEventToolbar"
 [day]="day" 
 [index]="index">
 
@@ -14,4 +15,4 @@ ax-scheduler-day-tile
 </div>
 
 
-<div ax-scheduler-sidebar *ngIf="sidebar" [@slideInOutRight] [axEventTemplate]="axEventTemplate"></div>
+<div ax-scheduler-sidebar *ngIf="sidebar" [@slideInOutRight] [axEventTemplate]="axEventTemplate" [axEventToolbar]="axEventToolbar"></div>

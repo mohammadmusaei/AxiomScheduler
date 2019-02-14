@@ -1,14 +1,75 @@
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-10">
     <ng-template #t let-item="item">
       <div class="event-template">
         {{ item.data.title }} at <b> {{ item.from | date:'HH:mm' }} {{ item.to | date:'HH:mm' }} </b>
       </div>
     </ng-template>
-    <ax-scheduler [axEventTemplate]="t" [axSchedulerView]="'week'" [axAnimation]="'default'" [axTheme]="'light'" [axEvents]="events"
-      [axDragStep]="5"></ax-scheduler>
+    <ax-scheduler [axEventTemplate]="model.eventTemplate ? t : null" [axSchedulerView]="'week'"
+      [axEventToolbar]="model.toolbar" [axAnimation]="model.animation" [axTheme]="model.theme" [axEvents]="events"
+      [axDragStep]="model.step" [axShowLocale]="model.locale"></ax-scheduler>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2" style="padding-top: 70px">
     <h6 class="border-bottom pb-3 pt-3">Options</h6>
+    <table class="table table-bordered table-striped table-dark table-sm" style="user-select: none">
+      <tbody>
+        <tr>
+          <td>
+            <label for="eventTemplate">Theme</label>
+          </td>
+          <td>
+            <select class="form-control form-control-sm" [(ngModel)]="model.theme">
+              <option *ngFor="let t of themes" [ngValue]="t">{{t}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="eventTemplate">Animation</label>
+          </td>
+          <td>
+            <select class="form-control form-control-sm" [(ngModel)]="model.animation">
+              <option *ngFor="let a of animations" [ngValue]="a">{{a}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              Drag grid size
+              <span class="badge badge-pill badge-danger">{{ model.step }}</span>
+            </label>
+          </td>
+          <td>
+            <input [(ngModel)]="model.step" type="range" class="custom-range" min="1" max="60" step="1"
+              id="customRange3">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="toolbar">Event toolbar</label>
+          </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="model.toolbar" id="toolbar">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="eventTemplate">Event template</label>
+          </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="model.eventTemplate" id="eventTemplate">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="showLocale">Show locale</label>
+          </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="model.locale" id="showLocale">
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

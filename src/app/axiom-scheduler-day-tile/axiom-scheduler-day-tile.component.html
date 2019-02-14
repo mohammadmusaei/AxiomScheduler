@@ -19,7 +19,7 @@
 <div class="ax-scheduler__month-view__day__events">
     <div class="ax-scheduler__month-view__day__events_container">
         <ng-container *ngFor="let event of dayEvents;let index=index">
-            <div *ngIf="index < 2" [event]="event" [monthMode]="true" [axEventTemplate]="axEventTemplate"
+            <div *ngIf="index < 2" [event]="event" [monthMode]="true" [axEventToolbar]="axEventToolbar" [axEventTemplate]="axEventTemplate"
                 ax-scheduler-event></div>
 
         </ng-container>

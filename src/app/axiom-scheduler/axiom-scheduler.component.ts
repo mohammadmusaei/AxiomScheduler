@@ -1,5 +1,5 @@
 import { AX_LOCALES } from './../locales';
-import { Component, OnInit, ViewEncapsulation, Input, TemplateRef,Injector, Output, EventEmitter, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, Injector, Output, EventEmitter, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import * as moment from 'moment';
 import { AxiomSchedulerService } from './../services/axiom-scheduler.service';
 import { Subscription } from 'rxjs';
@@ -30,6 +30,7 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
   @Input() axEventFormatter: (data: any, date?: Date) => string;
   @Input() axDragStep: number;
   @Input() axLocale: string;
+  @Input() axEventToolbar: boolean = true;
 
   public today: moment.Moment;
   public date: moment.Moment;
@@ -79,13 +80,15 @@ export class AxiomSchedulerEvent {
   public to: Date;
   public data: any;
   public color: string;
-  public locked : boolean;
-  constructor(from: Date = null, to: Date = null, data: any = null, color: string = null, locked : boolean = false) {
+  public locked: boolean;
+  public title: string;
+  constructor(title: string = null, from: Date = null, to: Date = null, data: any = null, color: string = null, locked: boolean = false) {
     this.data = data;
     this.from = from;
     this.to = to;
     this.color = color;
     this.locked = locked;
+    this.title = title;
   }
 }
 
@@ -94,7 +97,7 @@ export class AxiomSchedulerEvent {
   templateUrl: './axiom-scheduler.component.html',
   styleUrls: ['./axiom-scheduler.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [AxiomSchedulerService,AxiomSchedulerSidebarService],
+  providers: [AxiomSchedulerService, AxiomSchedulerSidebarService],
   host: {
     'class': 'ax-scheduler'
   }
@@ -102,13 +105,21 @@ export class AxiomSchedulerEvent {
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
   @Input() axSchedulerView: AxiomSchedulerView;
-  @Input() axTheme: AxiomSchedulerTheme;
-  @Input() axAnimation: AxiomSchedulerAnimation;
+  @Input() set axTheme(axTheme: AxiomSchedulerTheme){
+    this._axTheme = axTheme;
+    this.updateTheme(this._axTheme);
+  }
+  @Input() set axAnimation(axAnimation: AxiomSchedulerAnimation){
+    this._axAnimation = axAnimation;
+    this.updateTheme(this._axTheme);
+  }
   @Input() axShowLocale: boolean = true;
   @Input() axViews: AxiomSchedulerView[];
 
   @Output() axEventChange = new EventEmitter<AxiomSchedulerEvent>();
   @Output() axEventClick = new EventEmitter<AxiomSchedulerEvent>();
+  @Output() axEventDeleteClick = new EventEmitter<AxiomSchedulerEvent>();
+  @Output() axEventEditClick = new EventEmitter<AxiomSchedulerEvent>();
   @Output() axDateChange = new EventEmitter<Date>();
   @Output() axViewChange = new EventEmitter<AxiomSchedulerView>();
 
@@ -116,6 +127,9 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   public locales = AX_LOCALES.map((v) => {
     return { id: v, title: v };
   });
+
+  private _axTheme: AxiomSchedulerTheme;
+  private _axAnimation: AxiomSchedulerAnimation;
 
   constructor(injector: Injector, private _element: ElementRef, private _renderer: Renderer2) {
     super(injector);
@@ -128,7 +142,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   }
 
   public refreshScheduler() {
-    this.updateTheme(this.axTheme);
+    this.updateTheme(this._axTheme);
     this.refresh();
     this.setViews();
   }
@@ -164,7 +178,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
       this._renderer.removeClass(this._element.nativeElement, 'light');
       this._renderer.addClass(this._element.nativeElement, theme);
       //
-      if (this.axAnimation === 'none') {
+      if (this._axAnimation === 'none') {
         Object.values(AxiomSchedulerAnimation).forEach((animation) => {
           this._renderer.removeClass(this._element.nativeElement, animation);
         });
@@ -173,7 +187,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
         Object.values(AxiomSchedulerAnimation).forEach((animation) => {
           this._renderer.removeClass(this._element.nativeElement, animation);
         });
-        this._renderer.addClass(this._element.nativeElement, this.axAnimation);
+        this._renderer.addClass(this._element.nativeElement, this._axAnimation);
       }
     }
   }
@@ -203,7 +217,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   }
 
   private applyDefaultAnimations(step: number): void {
-    if (this.axAnimation === AxiomSchedulerAnimation.Default) {
+    if (this._axAnimation === AxiomSchedulerAnimation.Default) {
       this._renderer.removeClass(this._element.nativeElement, 'forward');
       this._renderer.removeClass(this._element.nativeElement, 'backward');
       if (step > 0) {
@@ -239,6 +253,12 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     }));
     this.subscriptionGarbageCollection.push(this.service.eventClick.subscribe(event => {
       this.axEventClick && this.axEventClick.emit(event);
+    }));
+    this.subscriptionGarbageCollection.push(this.service.eventDeleteClick.subscribe(event => {
+      this.axEventDeleteClick && this.axEventDeleteClick.emit(event);
+    }));
+    this.subscriptionGarbageCollection.push(this.service.eventEditClick.subscribe(event => {
+      this.axEventEditClick && this.axEventEditClick.emit(event);
     }));
   }
 

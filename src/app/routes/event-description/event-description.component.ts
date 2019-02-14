@@ -12,7 +12,9 @@ export class EventDescriptionComponent implements OnInit {
 
   events = [...SAMPLE_EVENTS];
   clickEvent: AxiomSchedulerEvent;
-  changedEvent: AxiomSchedulerEvent;
+  changedEvent: AxiomSchedulerEvent; 
+  deleteClicked: AxiomSchedulerEvent;
+  editClicked: AxiomSchedulerEvent;
   changedDate: Date;
   view: AxiomSchedulerView;
   step = 15;
@@ -29,6 +31,14 @@ export class EventDescriptionComponent implements OnInit {
   changeEvent($event: AxiomSchedulerEvent): void {
     this.changedEvent = $event;
     this._notifier.notify('default', `${$event.data.title} changed to ( ${$event.from.toDateString() + '-' + $event.to.toDateString()} )`);
+  }
+  deleteClick($event: AxiomSchedulerEvent): void {
+    this.deleteClicked = $event;
+    this._notifier.notify('default', `${$event.data.title} delete click!`);
+  }
+  editClick($event: AxiomSchedulerEvent): void {
+    this.editClicked = $event;
+    this._notifier.notify('default', `${$event.data.title} edit click!`);
   }
   dateChange($event: Date): void {
     this.changedDate = $event;

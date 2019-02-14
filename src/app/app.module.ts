@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularDraggableModule } from 'angular2-draggable';
+
 import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +52,7 @@ import { AxiomSchedulerSidebarComponent } from './axiom-scheduler-sidebar/axiom-
     ReactiveFormsModule,
     AngularDraggableModule,
     BrowserAnimationsModule ,
+
     NotifierModule.withConfig({
       position: {
         horizontal: {
