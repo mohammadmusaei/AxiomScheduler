@@ -37,6 +37,12 @@ For customizing events to show you can use `[axEventTemplate]` parameter and des
 
 As shown above, `#t` template passed to `[axEventTemplate]`, `item` variable provide entire event to use in your template.
 
+### Events drag and resize
+
+You can drag and resize events to new hours easily. For lock an event and disable drag and resize features just in event object set `lock` property to `True`.
+
+![Alt Text](http://app.musaei.me/angular/scheduler/drag.gif)
+
 ### Localization
 
 For change scheduler locale just pass your locale to `[axLocale]`, Always you can check available locales in [Momentjs i18n document](https://momentjs.com/docs/#/i18n/). 
