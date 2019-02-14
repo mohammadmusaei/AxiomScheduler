@@ -3,7 +3,7 @@
 
 ### Usage
 
-User `ax-scheduler` tag to user scheduler.
+Use `ax-scheduler` tag to user scheduler.
 
 ```html
 
@@ -30,3 +30,16 @@ User `ax-scheduler` tag to user scheduler.
 | axAnimation | AxiomSchedulerAnimation | 'default' | Set default scheduler animation effects, Available animations : 'animation1', 'animation2', 'animation3', 'animation4', 'default', 'none'  |
 | axShowLocale | boolean | true | Show/Hide locale dropdown  |
 | axShowLocale | boolean | true | Show/Hide locale dropdown  |
+
+### @Output() Params
+
+| Name | Event Paramaters | Description
+| ------ | ------ | ------ |
+| axEventChange | AxiomSchedulerEvent | Fire when an event changed by dragging, resizing, or ...  |
+| axEventClick | AxiomSchedulerEvent | Fire when an event clicked  |
+| axEventDeleteClick | AxiomSchedulerEvent | Fire when remove button clicked from event's toolbar  |
+| axEventEditClick | AxiomSchedulerEvent | Fire when edit button clicked from event's toolbar  |
+| axDateChange | Date | Fire when date of scheduler changed by navigator  |
+| axViewChange | AxiomSchedulerView | Fire when view of scheduler changed  |
+
+
