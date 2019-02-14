@@ -1,0 +1,42 @@
+<div class="ax-scheduler__week-view__header">
+  <div>
+
+  </div>
+  <div>
+    <div *ngFor="let day of days">
+      <span class="header_number" [ngClass]="{ 'today' : day.isSame(today,'days') }">
+        {{ day.format('D') }}
+        <span class="header_day_title">
+          <p>th</p>
+          <p>{{ day.format('dddd') }}</p>
+        </span>
+      </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="ax-scheduler__week-view__body">
+    <div class="ax-scheduler__week-view__body__hour-column">
+        <div *ngFor="let hour of hours;let index = index">
+            <div>
+              <span *ngIf="index > 0">
+                {{ hour.start.format('HH:mm') }}
+              </span>
+            </div>
+          </div>
+    </div>
+    <div class="ax-scheduler__week-view__body__day-column">
+        <div>
+            <div *ngFor="let day of days"
+            ax-scheduler-day-column
+            [axEvents]="axEvents" 
+            [hourColumn]="false"
+            [axEventTemplate] = "axEventTemplate"
+            [axEventFormatter] = "axEventFormatter"
+            [axEventToolbar]="axEventToolbar"
+            [axDragStep]="axDragStep"
+            [axStartDate]="day.toDate()"></div>
+        </div>
+    </div>
+</div>

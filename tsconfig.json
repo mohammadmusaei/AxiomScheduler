@@ -24,6 +24,12 @@
       ],
       "axiom-toggle/*": [
         "dist/axiom-scheduler/*"
+      ],
+      "axiom-scheduler": [
+        "dist/axiom-scheduler"
+      ],
+      "axiom-scheduler/*": [
+        "dist/axiom-scheduler/*"
       ]
     }
   }

@@ -1,0 +1,10 @@
+<span class="ax-scheduler__close-button" (click)="close()">×</span>
+
+<h6 *ngIf="data">{{ data.title }}</h6>
+
+<ng-container *ngIf="data">
+
+    <div [@slideInOutRight] *ngFor="let event of data.events" [event]="event" [monthMode]="true"
+        [axEventToolbar]="axEventToolbar" [axEventTemplate]="axEventTemplate" ax-scheduler-event></div>
+
+</ng-container>

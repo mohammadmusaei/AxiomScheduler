@@ -1,0 +1,50 @@
+@import "~include-media/dist/_include-media.scss";
+
+$breakpoints: (
+  phone: 320px,
+  tablet: 768px,
+  desktop: 1024px
+);
+
+@include media(">phone", "<=tablet") {
+  .header_number {
+    font-size: 1.8em !important;
+    margin-top: 10px !important;
+    display: inline-block;
+  }
+}
+@include media("<=560px") {
+  .header_number {
+    text-indent: 10px !important;
+  }
+  .header_day_title {
+    display: none !important;
+  }
+  .ax-scheduler__event__content {
+    font-size: 11px !important;
+  }
+}
+@include media("<=tablet") {
+  .ax-scheduler__event__content {
+    font-size: 10px !important;
+  }
+  .ax-scheduler__header {
+    padding-left: 0 !important;
+  }
+}
+@include media(">1000px") {
+  .view-dropdown{
+    display: none !important;
+  }
+}
+@include media("<1000px") {
+  .view-dropdown{
+    display: inline-block;
+  }
+  .ax-scheduler__header__nav-view-part{
+    display: none !important;
+  }
+  .locale-dropdown{
+    display: none !important;
+  }
+}

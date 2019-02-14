@@ -1,0 +1,15 @@
+
+<div *ngFor="let month of months">
+  <div ax-scheduler-month-tile
+  [monthObject]="month"
+  [axEvents]="axEvents" 
+  [axEventTemplate] = "axEventTemplate"
+  [axEventFormatter] = "axEventFormatter"
+  [axDragStep]="axDragStep"
+  [axEventToolbar]="axEventToolbar"
+  [axStartDate]="axStartDate"></div>
+</div>
+
+
+
+<div ax-scheduler-sidebar *ngIf="sidebar" [@slideInOutRight] [axEventTemplate]="axEventTemplate" [axEventToolbar]="axEventToolbar"></div>

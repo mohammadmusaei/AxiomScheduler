@@ -1,0 +1,32 @@
+
+{
+  "name": "axiom-scheduler",
+  "version": "1.0.0",
+  "description": "An Angular Scheduler component with multiple view modes,themes and animations.",
+  "author": "Mohammad Musaei",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohammadmusaei/AxiomScheduler"
+  },
+  "keywords": [
+    "angular",
+    "scheduler",
+    "component",
+    "angular-scheduler",
+    "momentjs",
+    "typescript",
+    "javascript",
+    "axiom",
+    "calender"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "moment": "^2.24.0",
+    "angular2-draggable": "^2.2.1"
+  }
+}
+
+
+

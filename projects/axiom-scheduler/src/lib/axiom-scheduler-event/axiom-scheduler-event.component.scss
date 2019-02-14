@@ -1,0 +1,47 @@
+$event-border-left-color : #FF5722;
+$event-border-color : #eee;
+
+.ax-scheduler__event {
+  text-align: left;
+  overflow: visible;
+  cursor: pointer;
+  position: relative;
+  >.ax-scheduler__event__content{
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    position: relative;
+    color: #eee;
+    font-size: 13px;
+    font-weight:normal;
+    margin: 0 10px;
+    padding: 5px 8px;
+    overflow: hidden;
+  }
+  >p {
+    vertical-align: top;
+    display: inline-block;
+    height: 100%;
+    width: 50px;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+    position: absolute;
+    >span{
+      position: absolute;
+      background: #333;
+      color: #fff;
+      padding: 0 5px;
+      left: -40px;
+      border-radius: 100px;
+      z-index: 200;
+    }
+    >span:first-child{
+      top: 0;
+    }
+    >span:last-child{
+      bottom: 0;
+    }
+  }
+}

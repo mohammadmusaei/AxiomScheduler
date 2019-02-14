@@ -1,0 +1,59 @@
+.ax-scheduler-dropdown {
+  display: inline-block;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  &.open{
+    .ax-scheduler-dropdown__model{
+        border-radius: 5px 5px  0 0;
+        border-bottom: none;
+    }
+  }
+  .ax-scheduler-dropdown__model{
+      display: block;
+      margin: 0;
+      padding: 5px 8px;
+      padding-right: 13px;
+      border:1px solid #ddd;
+      width: 100%;
+      border-radius: 5px;
+      min-width: 100px;
+      svg{
+        height: 16px;
+        width: 16px;
+        position: relative;
+        right: -7px;
+        top: 2px;
+        float: right;
+      }
+  }
+  .ax-scheduler-dropdown__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    background-color: #fff;
+    max-height: 300px;
+    overflow: auto;
+    div {
+      flex: 1;
+      padding: 5px 8px;
+      text-align: left;
+      font-size: 13px;
+      cursor: pointer;
+      &:hover{
+          background-color: #eee;
+      }
+      &:last-child{
+        border-radius: 0 0 5px 5px;
+      }
+    }
+  }
+}
