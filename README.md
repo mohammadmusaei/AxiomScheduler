@@ -2,6 +2,43 @@
 
 Axiom scheduler is an angular scheduler component use [Momentjs](https://momentjs.com/).
 
+### Online Demo
+
+[Usage Demo](http://app.musaei.me/angular/scheduler/)
+
+### Stackblitz Source Demo
+
+[Stackblitz Demo](https://stackblitz.com/edit/axiom-scheduler)
+
+
+##### Install component package from npm :
+
+`npm install axiom-scheduler moment angular2-draggable`
+
+Axiom Scheduler also need to install `@angular/animations`.
+(By default angular will install animation module when you create a new angular project using angular CLI)
+
+##### Import component module :
+
+```typescript
+
+import { AxiomSchedulerModule } from 'axiom-scheduler';
+
+...
+
+@NgModule({
+  imports: [
+    AxiomSchedulerModule
+  ], 
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
+})
+
+...
+
+```
 
 ### Usage
 
