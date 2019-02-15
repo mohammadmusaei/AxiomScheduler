@@ -1,4 +1,4 @@
-# Axiom Scheduler
+# Axiom Scheduler (beta)
 
 Axiom scheduler is an angular scheduler component use [Momentjs](https://momentjs.com/).
 
