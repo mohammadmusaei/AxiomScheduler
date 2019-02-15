@@ -2,6 +2,45 @@
 
 Axiom scheduler is an angular scheduler component use [Momentjs](https://momentjs.com/).
 
+### Online Demo
+
+[Usage Demo](http://app.musaei.me/angular/scheduler/)
+
+### Stackblitz Source Demo
+
+[Stackblitz Demo](https://stackblitz.com/edit/axiom-scheduler)
+
+
+##### Install component package from npm :
+
+`npm install axiom-scheduler moment angular2-draggable`
+
+Axiom Scheduler also need to install `@angular/animations`.
+`(By default angular will install animation module when you create a new angular project using angular CLI)`
+
+For drag and resizing feature Axiom scheduler using [angular2-draggable](https://github.com/xieziyu/angular2-draggable), Thanks to [xieziyu](https://github.com/xieziyu) :blush:.
+
+##### Import component module :
+
+```typescript
+
+import { AxiomSchedulerModule } from 'axiom-scheduler';
+
+...
+
+@NgModule({
+  imports: [
+    AxiomSchedulerModule
+  ], 
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
+})
+
+...
+
+```
 
 ### Usage
 
@@ -41,7 +80,7 @@ As shown above, `#t` template passed to `[axEventTemplate]`, `item` variable pro
 
 You can drag and resize events to new hours easily. For lock an event and disable drag and resize features just in event object set `lock` property to `True`.
 
-![Alt Text](http://app.musaei.me/angular/scheduler/drag.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/drag.gif)
 
 ### Localization
 
@@ -54,7 +93,7 @@ For change scheduler locale just pass your locale to `[axLocale]`, Always you ca
 
 ```
 
-![Alt Text](http://app.musaei.me/angular/scheduler/locales.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/locales.gif)
 
 ### Themes
 
@@ -67,7 +106,7 @@ For change scheduler theme just pass 'light' or 'dark' to `[axTheme]`.
 
 ```
 
-![Alt Text](http://app.musaei.me/angular/scheduler/themes.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/themes.gif)
 
 ### Animations
 
@@ -80,7 +119,7 @@ For change scheduler theme just pass available animations shown in [Input params
 
 ```
 
-![Alt Text](http://app.musaei.me/angular/scheduler/animations.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/animations.gif)
 
 ### @Input() Params
 
