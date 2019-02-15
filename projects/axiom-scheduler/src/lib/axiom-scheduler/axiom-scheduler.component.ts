@@ -1,6 +1,6 @@
 import { AX_LOCALES } from './../locales';
 import { Component, OnInit, ViewEncapsulation, Input, TemplateRef, Injector, Output, EventEmitter, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerService } from './../services/axiom-scheduler.service';
 import { Subscription } from 'rxjs';
 import { AxiomSchedulerSidebarService } from './../services/axiom-scheduler-sidebar.service';
@@ -32,8 +32,8 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
   @Input() axLocale: string;
   @Input() axEventToolbar: boolean = true;
 
-  public today: moment.Moment;
-  public date: moment.Moment;
+  public today: momentNs.Moment;
+  public date: momentNs.Moment;
   public service: AxiomSchedulerService;
   public sidebarService: AxiomSchedulerSidebarService;
   public subscriptionGarbageCollection: Subscription[] = [];
@@ -105,11 +105,11 @@ export class AxiomSchedulerEvent {
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
   @Input() axSchedulerView: AxiomSchedulerView;
-  @Input() set axTheme(axTheme: AxiomSchedulerTheme){
+  @Input() set axTheme(axTheme: AxiomSchedulerTheme) {
     this._axTheme = axTheme;
     this.updateTheme(this._axTheme);
   }
-  @Input() set axAnimation(axAnimation: AxiomSchedulerAnimation){
+  @Input() set axAnimation(axAnimation: AxiomSchedulerAnimation) {
     this._axAnimation = axAnimation;
     this.updateTheme(this._axTheme);
   }

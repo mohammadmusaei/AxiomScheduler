@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Injector } from '@angular/core';
 import { transition, style, animate, trigger } from '@angular/animations';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
 
 @Component({
@@ -25,7 +25,7 @@ import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-schedu
 })
 export class AxiomSchedulerMonthViewComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  public days: moment.Moment[];
+  public days: momentNs.Moment[];
   public sidebar = false;
 
   constructor(injector: Injector) {

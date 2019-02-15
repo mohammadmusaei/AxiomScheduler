@@ -1,7 +1,7 @@
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
 import { Component, OnInit, Input, ViewEncapsulation, Renderer2, ElementRef, AfterViewInit, Injector } from '@angular/core';
 import { AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { trigger, style, transition, animate } from '@angular/animations';
 import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
 
@@ -33,8 +33,8 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   @Input() monthMode: boolean = false;
 
   public ctx: any;
-  public fromTime: moment.Moment;
-  public toTime: moment.Moment;
+  public fromTime: momentNs.Moment;
+  public toTime: momentNs.Moment;
   public diff: number;
   public showTime: boolean = false;
   public expired: boolean = false;

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, ElementRef, Injector } from '@angular/core';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerComponentCommon, AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 
@@ -26,7 +26,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class AxiomSchedulerDayTileComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() day: moment.Moment;
+  @Input() day: momentNs.Moment;
   @Input() index: number;
 
   public inMonth: boolean = false;

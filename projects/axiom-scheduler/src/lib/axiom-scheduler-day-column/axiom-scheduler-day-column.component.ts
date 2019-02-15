@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ElementRef, Input, Injector } from '@angular/core';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerComponentCommon, AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 import { AxiomSchedulerHour } from './../axiom-scheduler-day-view/axiom-scheduler-day-view.component';
 

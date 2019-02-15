@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation, Injector } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
 
 export class AxiomSchedulerYearViewMonthObject {
 
-  public month: moment.Moment;
-  public days: moment.Moment[];
+  public month: momentNs.Moment;
+  public days: momentNs.Moment[];
 
-  constructor(month: moment.Moment) {
+  constructor(month: momentNs.Moment) {
     this.month = month.clone();
     this.setDays();
   }

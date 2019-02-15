@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Injector } from '@angular/core';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
 import { AxiomSchedulerHour } from './../axiom-scheduler-day-view/axiom-scheduler-day-view.component';
 
@@ -14,7 +14,7 @@ import { AxiomSchedulerHour } from './../axiom-scheduler-day-view/axiom-schedule
 })
 export class AxiomSchedulerWeekViewComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  public days: moment.Moment[];
+  public days: momentNs.Moment[];
   public hours: AxiomSchedulerHour[];
 
   constructor(injector : Injector) {

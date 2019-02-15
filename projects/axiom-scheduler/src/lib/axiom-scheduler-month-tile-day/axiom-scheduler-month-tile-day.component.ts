@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector, ViewEncapsulation, Input, Renderer2, ElementRef } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import * as moment from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
 import { AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
 import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
 
@@ -29,7 +29,7 @@ import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-schedu
 })
 export class AxiomSchedulerMonthTileDayComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
-  @Input() day: moment.Moment;
+  @Input() day: momentNs.Moment;
 
   public events: AxiomSchedulerEvent[] = [];
 
