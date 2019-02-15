@@ -44,7 +44,7 @@ import { AxiomSchedulerModule } from 'axiom-scheduler';
 
 ### Usage
 
-Use `ax-scheduler` tag to user scheduler.
+Add `ax-scheduler` tag to use scheduler.
 
 ```html
 
