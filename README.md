@@ -78,7 +78,7 @@ As shown above, `#t` template passed to `[axEventTemplate]`, `item` variable pro
 
 You can drag and resize events to new hours easily. For lock an event and disable drag and resize features just in event object set `lock` property to `True`.
 
-![Alt Text](http://app.musaei.me/angular/scheduler/drag.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/drag.gif)
 
 ### Localization
 
