@@ -91,7 +91,7 @@ For change scheduler locale just pass your locale to `[axLocale]`, Always you ca
 
 ```
 
-![Alt Text](http://app.musaei.me/angular/scheduler/locales.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/locales.gif)
 
 ### Themes
 
@@ -104,7 +104,7 @@ For change scheduler theme just pass 'light' or 'dark' to `[axTheme]`.
 
 ```
 
-![Alt Text](http://app.musaei.me/angular/scheduler/themes.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/themes.gif)
 
 ### Animations
 
@@ -117,7 +117,7 @@ For change scheduler theme just pass available animations shown in [Input params
 
 ```
 
-![Alt Text](http://app.musaei.me/angular/scheduler/animations.gif)
+![Alt Text](http://app.musaei.me/angular/scheduler/gif/animations.gif)
 
 ### @Input() Params
 
