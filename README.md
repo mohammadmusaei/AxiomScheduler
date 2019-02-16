@@ -6,10 +6,7 @@ Axiom scheduler is an angular scheduler component use [Momentjs](https://momentj
 
 [Usage Demo](http://app.musaei.me/angular/scheduler/)
 
-### Stackblitz Source Demo
-
-[Stackblitz Demo](https://stackblitz.com/edit/axiom-scheduler)
-
+Demo source is available here : [Source](https://github.com/mohammadmusaei/AxiomScheduler/tree/master/src)
 
 ##### Install component package from npm :
 
@@ -54,6 +51,20 @@ Add `ax-scheduler` tag to use scheduler.
 </ax-scheduler>
 
 ```
+
+### Events
+
+Axiom scheduler using an `AxiomSchedulerEvent` array to view events. `AxiomSchedulerEvent` is a class that contains these members :
+
+| Name | Type | Default | Description |
+| ------ | ------ | ------ | ------ |
+| _id | Symbol | this member is readonly | provide a unique id for each event and could be use in delete and edit operations |
+| from | Date | null | start date of event |
+| to | Date | null | end date of event |
+| data | Date | null | provide an object to store event additional data |
+| color | string | null | color of event |
+| locked | boolean | false | when it is true event will be locked |
+| title | string | null | default title of event |
 
 ### Custom event template
 
