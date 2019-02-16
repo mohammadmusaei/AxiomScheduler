@@ -19,6 +19,9 @@ export class EventWindowComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(!this.model){
+      this.model = new AxiomSchedulerEvent('New Event',new Date(Date.now()),new Date(Date.now()),{});
+    }
     if (this.model.from) {
       var from = moment(this.model.from);
       this.fromTime = from.format('HH:mm:ss');

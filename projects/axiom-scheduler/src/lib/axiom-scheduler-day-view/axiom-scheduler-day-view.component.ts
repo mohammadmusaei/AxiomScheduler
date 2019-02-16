@@ -28,11 +28,6 @@ export class AxiomSchedulerDayViewComponent extends AxiomSchedulerComponentCommo
 
   public ngOnInit(): void {
     this.refresh();
-    this.refreshView();
-  }
-
-  public refreshView(): void {
-    this.axDragStep = this.axDragStep || 15;
   }
 
 }

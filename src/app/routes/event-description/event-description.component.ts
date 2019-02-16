@@ -22,6 +22,7 @@ export class EventDescriptionComponent implements OnInit {
   constructor(private readonly _notifier: NotifierService) { }
 
   ngOnInit() {
+    
   }
 
   eventClick($event: AxiomSchedulerEvent): void {

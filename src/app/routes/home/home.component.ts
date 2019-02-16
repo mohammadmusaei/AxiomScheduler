@@ -14,11 +14,11 @@ import { AxiomSchedulerComponent } from 'axiom-scheduler';
 })
 export class HomeComponent implements OnInit {
 
-  public events  = [...SAMPLE_EVENTS];
-  public model : any = {};
-  public themes = ['dark','light'];
+  public events = [...SAMPLE_EVENTS];
+  public model: any = {};
+  public themes = ['dark', 'light'];
   public animations = Object.values(AxiomSchedulerAnimation);
-  @ViewChild(AxiomSchedulerComponent)  scheduler : AxiomSchedulerComponent;
+  @ViewChild(AxiomSchedulerComponent) scheduler: AxiomSchedulerComponent;
 
   constructor(private _modalService: NgbModal) { }
 
@@ -31,22 +31,30 @@ export class HomeComponent implements OnInit {
     this.model.animation = AxiomSchedulerAnimation.Default;
   }
 
-  public editEvent($event : AxiomSchedulerEvent) : void{
-    var instance = this._modalService.open(EventWindowComponent,{ size:'sm' });
-    instance.componentInstance.model = {...$event};
-    instance.result.then((model)=>{
-      var index = this.events.findIndex(e=>e.data.id === $event.data.id);
-      if(index > -1){
-        this.events[index] = model;
+  public editEvent($event: AxiomSchedulerEvent): void {
+    var instance = this._modalService.open(EventWindowComponent, { size: 'sm', centered: true });
+    if($event){
+      instance.componentInstance.model = { ...$event }
+    }
+    instance.result.then((model) => {
+      if ($event) {
+        var index = this.events.findIndex(e => e._id === $event._id);
+        if (index > -1) {
+          this.events[index] = model;
+          this.scheduler.refreshScheduler();
+        }
+      }
+      else {
+        this.events.push(model);
         this.scheduler.refreshScheduler();
       }
     });
   }
 
-  public removeEvent($event : AxiomSchedulerEvent) : void{
-    var index = this.events.findIndex(e=>e._id === $event._id);
-    if(index > -1){
-      this.events.splice(index,1);
+  public removeEvent($event: AxiomSchedulerEvent): void {
+    var index = this.events.findIndex(e => e._id === $event._id);
+    if (index > -1) {
+      this.events.splice(index, 1);
       this.scheduler.refreshScheduler();
     }
   }

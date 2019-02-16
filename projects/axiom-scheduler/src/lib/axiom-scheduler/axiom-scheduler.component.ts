@@ -75,7 +75,7 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
 }
 
 export class AxiomSchedulerEvent {
-  public _id : Symbol;
+  public readonly _id : Symbol;
   public from: Date;
   public to: Date;
   public data: any;

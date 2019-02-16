@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{ model.title }}</h4>
+  <h6 class="modal-title">{{ model.title }}</h6>
   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -26,9 +26,8 @@
         </div>
       </div>
       <div class="form-group col-md-6">
-        <label for="fromDate">From Time</label>
         <div class="form-group">
-          <ngb-timepicker [(ngModel)]="fromTime" name="fromTime" [spinners]="false"></ngb-timepicker>
+          <ngb-timepicker class="tm-picker" [(ngModel)]="fromTime" name="fromTime" [spinners]="true"></ngb-timepicker>
         </div>
       </div>
     </div>
@@ -46,9 +45,8 @@
         </div>
       </div>
       <div class="form-group col-md-6">
-        <label for="fromDate">To Time</label>
         <div class="form-group">
-          <ngb-timepicker [(ngModel)]="toTime" name="toTime" [spinners]="false"></ngb-timepicker>
+          <ngb-timepicker class="tm-picker" [(ngModel)]="toTime" name="toTime" [spinners]="true"></ngb-timepicker>
         </div>
       </div>
     </div>

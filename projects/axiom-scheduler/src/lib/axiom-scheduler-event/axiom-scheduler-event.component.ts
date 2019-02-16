@@ -46,7 +46,9 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   }
 
   public ngOnInit(): void {
-    this.refreshView();
+    this.ctx = { item: this.event };
+    this.updateTime();
+    this.applyColor();
   }
 
   public ngAfterViewInit(): void {
@@ -56,9 +58,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   }
 
   public refreshView(): void {
-    this.ctx = { item: this.event };
-    this.updateTime();
-    this.applyColor();
+    
   }
 
   public fromTimeChanging(e: { x: number, y: number }): void {
@@ -100,6 +100,11 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
 
   public editEevent(): void {
     this.service.eventEditClick.next(this.event);
+  }
+
+  public mouseDown(ev : MouseEvent): void {
+    ev && ev.preventDefault();
+    ev && ev.stopPropagation();
   }
 
   private checkPosition(): void {
