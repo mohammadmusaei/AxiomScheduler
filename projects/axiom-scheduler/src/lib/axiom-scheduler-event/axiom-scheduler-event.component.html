@@ -45,7 +45,7 @@
         </g>
 </svg>
 
-<div class="ax-scheduler__event__toolbar" *ngIf="axEventToolbar">
+<div class="ax-scheduler__event__toolbar" *ngIf="axEventToolbar && !event.locked">
         <div>
                 <div class="ax-scheduler__event__toolbar-trash" title="Remove" click="deleteEevent()">
                         <svg height="512px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1"

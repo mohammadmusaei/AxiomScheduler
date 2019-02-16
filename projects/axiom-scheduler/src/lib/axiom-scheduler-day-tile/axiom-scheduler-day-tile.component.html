@@ -1,14 +1,14 @@
-<svg *ngIf="dayEvents && dayEvents.length > 0" title="Click to show events" class="ax-scheduler__month-view__day_list"
-    (click)="showEventsDialog()" height="24px" version="1.1" viewBox="0 0 24 24" width="24px"
+
+<svg *ngIf="dayEvents && dayEvents.length > 0" (click)="showEventsDialog()" title="Click to show events" class="ax-scheduler__month-view__day_list"
+    enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve"
     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g fill="none" fill-rule="evenodd" id="icon/hamburger-menu" stroke="none" stroke-linecap="round"
-        stroke-linejoin="round" stroke-width="1">
-        <path d="M2.5,16.5 L20.5,16.5 M2.5,11.5 L20.5,11.5 M2.5,6.5 L20.5,6.5" id="lineart" stroke="#000000" />
-    </g>
+    <circle cx="12" cy="12" r="2" />
+    <circle cx="12" cy="5" r="2" />
+    <circle cx="12" cy="19" r="2" />
 </svg>
 
-
-<span class="ax-scheduler__month-view__day__number" [ngClass]="{ 'today' : day.isSame(today,'days') , 'in-month' : inMonth }">
+<span class="ax-scheduler__month-view__day__number"
+    [ngClass]="{ 'today' : day.isSame(today,'days') , 'in-month' : inMonth }">
     {{ day.format('DD') }}
 </span>
 <div class="ax-scheduler__month-view__day__label" *ngIf="index < 7">
@@ -19,8 +19,8 @@
 <div class="ax-scheduler__month-view__day__events">
     <div class="ax-scheduler__month-view__day__events_container">
         <ng-container *ngFor="let event of dayEvents;let index=index">
-            <div *ngIf="index < 2" [event]="event" [monthMode]="true" [axEventToolbar]="axEventToolbar" [axEventTemplate]="axEventTemplate"
-                ax-scheduler-event></div>
+            <div *ngIf="index < 2" [event]="event" [monthMode]="true" [axEventToolbar]="axEventToolbar"
+                [axEventTemplate]="axEventTemplate" ax-scheduler-event></div>
 
         </ng-container>
     </div>

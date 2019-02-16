@@ -656,9 +656,13 @@
 
 .ax-scheduler__month-view__day_list {
   position: absolute;
-  left: 5px;
+  left: 0;
+  top: 4px;
   width: 19px;
   cursor: pointer;
+  circle{
+    fill: #aaa;
+  }
 }
 
 .ax-scheduler__sidebar {

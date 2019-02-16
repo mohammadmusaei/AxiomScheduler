@@ -1,4 +1,4 @@
-import { AxiomSchedulerAnimation } from './../../axiom-scheduler/axiom-scheduler.component';
+import { AxiomSchedulerAnimation } from 'axiom-scheduler';
 
 import { Component, OnInit } from '@angular/core';
 import { SAMPLE_EVENTS } from 'src/app/sample-events';

@@ -11,6 +11,9 @@ $dark-event-tile-bg: #263238;
 
 .ax-scheduler.dark {
   background-color: $dark-main-bg !important;
+  .ax-scheduler__month-view__day_list circle{
+    fill: #fff !important;
+  }
   .ax-scheduler__header {
     button {
       background: $dark-header-btn-bg !important;
@@ -139,9 +142,6 @@ $dark-event-tile-bg: #263238;
   }
   .ax-scheduler__year-view__month .ax-scheduler__year-view__month__body > div > span:hover{
     background-color: $dark-header-btn-bg-active !important;
-  }
-  .ax-scheduler__month-view__day_list{
-    g{path{ stroke: #fff; }}
   }
   .ax-scheduler__sidebar{
     background: $dark-main-bg;

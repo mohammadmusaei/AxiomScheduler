@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
-import { AxiomSchedulerEvent } from './axiom-scheduler/axiom-scheduler.component';
 import { SAMPLE_EVENTS } from './sample-events';
 
 @Component({

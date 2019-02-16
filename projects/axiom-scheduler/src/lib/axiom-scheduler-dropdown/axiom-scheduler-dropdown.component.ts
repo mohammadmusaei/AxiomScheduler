@@ -106,10 +106,11 @@ export class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAcce
     this.toggle(false);
   }
 
-  private closeOnGlobalClick(targetElement: HTMLElement | EventTarget): void {
+  private closeOnGlobalClick(targetElement: any): void {
     if (targetElement) {
+      const arrow = targetElement.id === 'ax-dropdown-arr';
       const clickedInside = this._element.nativeElement.contains(targetElement);
-      if (!clickedInside) {
+      if (!clickedInside && !arrow) {
         this.toggle(false);
       }
     }
