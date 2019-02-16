@@ -55,6 +55,20 @@ Add `ax-scheduler` tag to use scheduler.
 
 ```
 
+### Events
+
+Axiom scheduler using an `AxiomSchedulerEvent` array to view events. `AxiomSchedulerEvent` is a class that contains these members :
+
+| Name | Type | Default | Description |
+| ------ | ------ | ------ | ------ |
+| _id | Symbol | this member is readonly | provide a unique id for each event and could be use in delete and edit operations |
+| from | Date | null | start date of event |
+| to | Date | null | end date of event |
+| data | Date | null | provide an object to store event additional data |
+| color | string | null | color of event |
+| locked | boolean | false | when it is true event will be locked |
+| title | string | null | default title of event |
+
 ### Custom event template
 
 For customizing events to show you can use `[axEventTemplate]` parameter and design your events template.
