@@ -6,8 +6,9 @@
                 </b>
             </div>
         </ng-template>
-        <ax-scheduler [axEventTemplate]="t" [axShowLocale]="false" [axAnimation]="'default'" [axSchedulerView]="'week'" [axTheme]="'light'"
-            [axEvents]="events" [axDragStep]="5"></ax-scheduler>
+        <ax-scheduler #sch1 [axEventTemplate]="t" [axShowLocale]="false" [axAnimation]="'default'" [axSchedulerView]="'week'" [axTheme]="'light'"
+            [axEvents]="events" [axDragStep]="5" (axEventEditClick)="editEvent($event)"
+            (axEventDeleteClick)="removeEvent($event)"></ax-scheduler>
     </div>
     <div class="col-md-6">
         <ng-template #t2 let-item="item">
@@ -16,7 +17,13 @@
                 </b>
             </div>
         </ng-template>
-        <ax-scheduler [axEventTemplate]="t2" [axShowLocale]="false" [axAnimation]="'default'" [axTheme]="'dark'" [axSchedulerView]="'week'"
-            [axTheme]="'light'" [axEvents]="events2" [axDragStep]="5"></ax-scheduler>
+        <ax-scheduler #sch2 [axEventTemplate]="t2" [axShowLocale]="false" [axAnimation]="'default'" [axTheme]="'dark'" [axSchedulerView]="'week'"
+            [axTheme]="'light'" [axEvents]="events" [axDragStep]="5" (axEventEditClick)="editEvent($event)"
+            (axEventDeleteClick)="removeEvent($event)"></ax-scheduler>
     </div>
 </div>
+
+
+<a (click)="editEvent()" class="float-button">
+    <i class="fa fa-plus my-float"></i>
+  </a>

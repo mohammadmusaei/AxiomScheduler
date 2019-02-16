@@ -1,4 +1,4 @@
-<div class="ax-scheduler__event-tile" *ngFor="let event of dayEvents;trackBy: trackByFn" [ngDraggable]="!event.locked"
+<div class="ax-scheduler__event-tile" *ngFor="let event of dayEvents" [ngDraggable]="!event.locked"
   (movingOffset)="ev.fromTimeChanging($event)" (endOffset)="ev.fromTimeChanged($event)"
   (started)="ev.fromTimeChangeStart($event)" (edge)="checkEdge($event)" [gridSize]="axDragStep" [bounds]="bounds"
   [lockAxis]="'x'" [inBounds]="true" [zIndexMoving]="'1000'" [preventDefaultEvent]="true" [ngResizable]="!event.locked"

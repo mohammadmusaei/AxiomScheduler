@@ -36,16 +36,15 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
   public ngOnInit(): void {
     this.refresh();
     this.refreshView();
+  }
+
+  public refreshView(): void {
     this.checkDayEvents();
     this.setHours();
   }
 
   public checkEdge(event): void {
     this.edge = event;
-  }
-
-  public trackByFn(index, item: AxiomSchedulerEvent) {
-    return index;
   }
 
   private setHours(): void {

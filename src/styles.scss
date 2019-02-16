@@ -55,15 +55,20 @@ button{
 	color:#FFF !important;
 	border-radius:50px;
 	text-align:center;
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 2px 2px 3px #555;
   transition: all .2s ease-in-out;
   cursor: pointer;
+  z-index:10000;
   &:hover{
     background-color: #e53935;
   }
   >i{
     margin-top:22px;
   }
+}
+
+.form-group{
+  margin-bottom: 0;
 }
 
 .form-group label{

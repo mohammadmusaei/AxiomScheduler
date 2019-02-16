@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AxiomSchedulerModule } from 'axiom-scheduler';
 import { NgbModule, NgbDateAdapter, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { NotifierModule } from 'angular-notifier';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { NgbTimeStringAdapter } from './timeAdapter';
     ReactiveFormsModule,
     AxiomSchedulerModule,
     BrowserAnimationsModule,
+    ColorPickerModule,
     NgbModule,
     NotifierModule.withConfig({
       position: {
@@ -47,11 +49,11 @@ import { NgbTimeStringAdapter } from './timeAdapter';
   ],
   providers: [
     { provide: NgbDateAdapter, useClass: DateNativeAdapter },
-    {provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}
+    { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[
+  entryComponents: [
     EventWindowComponent
   ]
-}) 
+})
 export class AppModule { }

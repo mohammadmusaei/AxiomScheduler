@@ -1,7 +1,7 @@
 
 {
   "name": "axiom-scheduler",
-  "version": "2.1.2",
+  "version": "2.1.4",
   "description": "An Angular Scheduler component with multiple view modes,themes and animations.",
   "author": "Mohammad Musaei",
   "repository": {

@@ -20,7 +20,7 @@
             ngbDatepicker #fromDatePicker="ngbDatepicker" #c2="ngModel">
           <div class="input-group-append">
             <button class="btn btn-sm btn-outline-secondary calendar" (click)="fromDatePicker.toggle()" type="button">
-                <i class="fa fa-calendar"></i>
+              <i class="fa fa-calendar"></i>
             </button>
           </div>
         </div>
@@ -50,9 +50,17 @@
         </div>
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="fromDate">Color</label>
+        <input [style.background]="model.color" [style.width.px]="'30'"
+          [cpPresetColors]="['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)']"
+          [(colorPicker)]="model.color" />
+      </div>
+    </div>
   </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-primary" (click)="save()">Save</button>
-  <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-light" (click)="modal.close()">Close</button>
 </div>
