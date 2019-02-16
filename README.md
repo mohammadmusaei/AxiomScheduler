@@ -1,4 +1,4 @@
-# Axiom Scheduler
+# Axiom Scheduler (beta)
 
 Axiom scheduler is an angular scheduler component use [Momentjs](https://momentjs.com/).
 
@@ -44,7 +44,7 @@ import { AxiomSchedulerModule } from 'axiom-scheduler';
 
 ### Usage
 
-Use `ax-scheduler` tag to user scheduler.
+Add `ax-scheduler` tag to use scheduler.
 
 ```html
 
