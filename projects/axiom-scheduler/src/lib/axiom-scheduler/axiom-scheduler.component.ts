@@ -24,7 +24,6 @@ export type AxiomSchedulerTheme = 'light' | 'dark';
 
 export class AxiomSchedulerComponentCommon implements OnDestroy {
 
-  @Input() axEvents: AxiomSchedulerEvent[];
   @Input() axStartDate: Date;
   @Input() axEventTemplate: TemplateRef<any>;
   @Input() axEventFormatter: (data: any, date?: Date) => string;
@@ -76,6 +75,7 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
 }
 
 export class AxiomSchedulerEvent {
+  public _id : Symbol;
   public from: Date;
   public to: Date;
   public data: any;
@@ -89,6 +89,7 @@ export class AxiomSchedulerEvent {
     this.color = color;
     this.locked = locked;
     this.title = title;
+    this._id = Symbol();
   }
 }
 
@@ -104,6 +105,7 @@ export class AxiomSchedulerEvent {
 })
 export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon implements OnInit {
 
+  @Input() axEvents: AxiomSchedulerEvent[];
   @Input() axSchedulerView: AxiomSchedulerView;
   @Input() set axTheme(axTheme: AxiomSchedulerTheme) {
     this._axTheme = axTheme;
@@ -138,14 +140,15 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   public ngOnInit(): void {
     this.axLocale = this.axLocale || 'en';
     this.setListeners();
+    this.updateTheme(this._axTheme);
+    this.refresh();
+    this.setViews();
     this.refreshScheduler();
   }
 
   public refreshScheduler() {
-    this.updateTheme(this._axTheme);
-    this.refresh();
-    this.setViews();
     this.setLocale(this.axLocale);
+    this.service.axEvents = this.axEvents;
   }
 
   public prev(): void {

@@ -6,6 +6,7 @@ var colors = ['#673AB7','#E91E63','#795548','#009688','#03A9F4','#FF9800','#004D
 export var SAMPLE_EVENTS = [
   {
     "data": {
+      "id" : "32f1822f-e404-4812-9cbd-9a61280adfb3",
       "title": "Call Mary Johnson"
     },
     "from": "2019-02-19T21:30:00.000Z",
@@ -14,7 +15,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "StartUp Meeting"
+      "title": "StartUp Meeting",
+      "id" : "32f1822f-e404-4812-9cbd-9a612802dfb3"
     },
     "from": "2019-02-17T21:30:00.000Z",
     "to": "2019-02-17T23:30:00.000Z",
@@ -22,7 +24,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Send email to production team"
+      "title": "Send email to production team",
+      "id" : "32f1822f-e404-4812-9cbd-9a62280adfb3"
     },
     "from": "2019-02-15T21:35:00.000Z",
     "to": "2019-02-16T01:00:00.000Z",
@@ -30,7 +33,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Buy some stuff"
+      "title": "Buy some stuff",
+      "id" : "32f1822f-e404-1812-9cbd-9a61280adfb3"
     },
     "from": "2019-02-12T22:10:00.000Z",
     "to": "2019-02-12T23:55:00.000Z",
@@ -39,7 +43,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Drive to airport"
+      "title": "Drive to airport",
+      "id" : "3ef1822f-e404-4812-9cbd-9a61280adfb3"
     },
     "from": "2019-02-13T20:32:00.000Z",
     "to": "2019-02-13T22:10:00.000Z",
@@ -47,7 +52,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Meeting #5003"
+      "title": "Meeting #5003",
+      "id" : "a2f1822f-e404-4812-9cbd-9a61280adfb3"
     },
     "from": "2019-02-14T00:55:00.000Z",
     "to": "2019-02-14T05:20:00.000Z",
@@ -55,7 +61,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Flight reservation"
+      "title": "Flight reservation",
+      "id" : "32f1822f-e404-4811-9cbd-9a61280adfb3"
     },
     "from": "2019-02-17T01:30:00.000Z",
     "to": "2019-02-17T06:40:00.000Z",
@@ -63,7 +70,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Financial team meeting"
+      "title": "Financial team meeting",
+      "id" : "32f1822f-e404-4812-9cbd-9a61280ayfb3"
     },
     "from": "2019-02-07T07:00:00.000Z",
     "to": "2019-02-07T11:20:00.000Z",
@@ -71,7 +79,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Sale meeting"
+      "title": "Sale meeting",
+      "id" : "32f1822f-e404-4812-9cbd-9z61280adfb3"
     },
     "from": "2019-02-06T22:30:00.000Z",
     "to": "2019-02-07T01:30:00.000Z",
@@ -79,7 +88,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Call Customer #005"
+      "title": "Call Customer #005",
+      "id" : "32f1822f-e404-4812-90bd-9a61280adfb3"
     },
     "from": "2019-02-07T03:30:00.000Z",
     "to": "2019-02-07T06:40:00.000Z",
@@ -87,7 +97,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Meeting reminder"
+      "title": "Meeting reminder",
+      "id" : "32f1822f-e904-4812-9cbd-9a61280adfb3"
     },
     "from": "2019-02-08T23:40:00.000Z",
     "to": "2019-02-09T05:50:00.000Z",
@@ -95,7 +106,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Music class"
+      "title": "Music class",
+      "id" : "32f1822f-e404-4812-9cbd-9a6p280adfb3"
     },
     "from": "2019-02-09T20:50:00.000Z",
     "to": "2019-02-10T02:25:00.000Z",
@@ -103,7 +115,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Software presentation"
+      "title": "Software presentation",
+      "id" : "32f1822f-e404-4812-9cbd-9a61281adfb3"
     },
     "from": "2019-02-12T08:10:00.000Z",
     "to": "2019-02-12T11:35:00.000Z",
@@ -111,7 +124,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Production team meeting"
+      "title": "Production team meeting",
+      "id" : "32f1822f-e404-4882-9cbd-9a61280adfb3"
     },
     "from": "2019-02-11T23:35:00.000Z",
     "to": "2019-02-12T01:50:00.000Z",
@@ -119,7 +133,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Set an appointment with Mike"
+      "title": "Set an appointment with Mike",
+      "id" : "32f1822f-e404-4812-9cbd-9a61280wdfb3"
     },
     "from": "2019-02-12T02:30:00.000Z",
     "to": "2019-02-11T21:30:00.000Z",
@@ -127,7 +142,8 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
-      "title": "Software demo reminder"
+      "title": "Software demo reminder",
+      "id" : "32f1822f-e404-4812-9cbd-9a61286adfb3"
     },
     "from": "2019-02-11T20:45:00.000Z",
     "to": "2019-02-11T22:34:00.000Z",

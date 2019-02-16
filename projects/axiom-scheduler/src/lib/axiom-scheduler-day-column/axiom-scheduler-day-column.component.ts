@@ -47,6 +47,10 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
     this.edge = event;
   }
 
+  public trackByFn(index, item: AxiomSchedulerEvent) {
+    return item._id;
+  }
+
   private setHours(): void {
     this.hours = [];
     for (let hour = 0; hour <= 23; hour++) {
@@ -56,7 +60,7 @@ export class AxiomSchedulerDayColumnComponent extends AxiomSchedulerComponentCom
 
   private checkDayEvents(): void {
     this.dayEvents = [];
-    this.axEvents.forEach(ev => {
+    this.service.axEvents.forEach(ev => {
       if (ev.from && ev.to) {
         if (moment(ev.from).isSameOrAfter(this.date.clone().startOf('day')) && moment(ev.to).isSameOrBefore(this.date.clone().endOf('day'))) {
           this.dayEvents.push(ev);

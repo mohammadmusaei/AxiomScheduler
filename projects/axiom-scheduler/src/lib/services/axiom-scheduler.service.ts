@@ -15,8 +15,10 @@ export class AxiomSchedulerService{
     eventClick : Subject<AxiomSchedulerEvent>;
     eventDeleteClick : Subject<AxiomSchedulerEvent>;
     eventEditClick : Subject<AxiomSchedulerEvent>;
+    axEvents: AxiomSchedulerEvent[];
 
     constructor() {
+        this.axEvents = [];
         this.refershRequest = new Subject<momentNs.Moment>();        
         this.locale = new Subject<string>();
         this.eventChange = new Subject<AxiomSchedulerEvent>();

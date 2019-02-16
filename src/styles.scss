@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
 @import "~angular-notifier/styles/core.css";
 @import "~angular-notifier/styles/themes/theme-material.css";
 @import "~angular-notifier/styles/types/type-default.css";
@@ -20,23 +21,42 @@ pre.code {
   color: #eee;
 }
 
-.nav{
+.ngb-tp-input {
+  height: calc(1.8125rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+button{
+  &:active,&:focus{
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.form-group label{
+  font-size: 13px;
+}
+
+.nav {
   border-bottom: 1px solid #ddd;
 }
-.nav-link{
+.nav-link {
   text-transform: uppercase;
   color: #666;
 }
-.nav-link.active{
-  color: #2196F3;
+.nav-link.active {
+  color: #2196f3;
 }
 
-.alert{
+.alert {
   font-size: 13px;
   padding: 5px 8px;
 }
 
-.event-template{
+.event-template {
   position: relative;
   font-size: 12px;
   width: 100%;
@@ -47,7 +67,7 @@ pre.code {
   text-align: left;
   color: #fff;
   border-left: 2px solid #fff;
-  b{
+  b {
     display: block;
     background: #eee;
     color: #333;

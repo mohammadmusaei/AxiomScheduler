@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ model.title }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="title">Title</label>
+        <input type="text" class="form-control form-control-sm" name="title" [(ngModel)]="model.title">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fromDate">From Date</label>
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" name="fromDate" [(ngModel)]="model.from"
+            ngbDatepicker #fromDatePicker="ngbDatepicker" #c2="ngModel">
+          <div class="input-group-append">
+            <button class="btn btn-sm btn-outline-secondary calendar" (click)="fromDatePicker.toggle()" type="button">
+                <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fromDate">From Time</label>
+        <div class="form-group">
+          <ngb-timepicker [(ngModel)]="fromTime" name="fromTime" [spinners]="false"></ngb-timepicker>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fromDate">To Date</label>
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" name="toDate" [(ngModel)]="model.to"
+            ngbDatepicker #toDatePicker="ngbDatepicker" #c2="ngModel">
+          <div class="input-group-append">
+            <button class="btn btn-sm btn-outline-secondary calendar" (click)="toDatePicker.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fromDate">To Time</label>
+        <div class="form-group">
+          <ngb-timepicker [(ngModel)]="toTime" name="toTime" [spinners]="false"></ngb-timepicker>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+</div>

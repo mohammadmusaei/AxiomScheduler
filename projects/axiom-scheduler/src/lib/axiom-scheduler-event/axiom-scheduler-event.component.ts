@@ -13,7 +13,7 @@ import { IResizeEvent } from 'angular2-draggable/lib/models/resize-event';
   host: {
     'class': 'ax-scheduler__event',
     '[class.expired]': 'expired',
-    '(click)' : 'service.eventClicked(event)'
+    '(click)': 'service.eventClicked(event)'
   },
   animations: [
     trigger('timeAnimate', [
@@ -39,7 +39,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public showTime: boolean = false;
   public expired: boolean = false;
 
-  private timeout : any;
+  private timeout: any;
 
   constructor(injector: Injector, private _renderer: Renderer2, private _element: ElementRef) {
     super(injector);
@@ -93,7 +93,7 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
   public fromTimeChangeStart(e: IResizeEvent): void {
     this.toggleShowTime(true);
   }
-  
+
   public deleteEevent(): void {
     this.service.eventDeleteClick.next(this.event);
   }
@@ -130,19 +130,19 @@ export class AxiomSchedulerEventComponent extends AxiomSchedulerComponentCommon 
     this.expired = moment(this.event.to).isBefore(moment(), 'days');
   }
 
-  private applyColor() : void{
-    if(this.event.color){
-      this._renderer.setStyle(this._element.nativeElement,'background',this.event.color);
+  private applyColor(): void {
+    if (this.event.color) {
+      this._renderer.setStyle(this._element.nativeElement, 'background', this.event.color);
     }
   }
 
-  private toggleShowTime(toggle : boolean) : void{
-    if(toggle){
+  private toggleShowTime(toggle: boolean): void {
+    if (toggle) {
       this.timeout = setTimeout(() => {
         this.showTime = toggle;
       }, 200);
     }
-    else{
+    else {
       clearTimeout(this.timeout);
       this.showTime = toggle;
     }
