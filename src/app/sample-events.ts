@@ -151,6 +151,42 @@ export var SAMPLE_EVENTS = [
   },
   {
     "data": {
+      "title": "Software demo reminder #98",
+      "id": "31f1822f-e404-4812-9cq2-9a61206adfb3"
+    },
+    "from": moment(Date.now()).startOf('weeks').add('days', -5).add('hours', 0).toISOString(),
+    "to": moment(Date.now()).startOf('weeks').add('days', -5).add('hours', 5).toISOString(),
+    "color": "#8D6003"
+  },
+  {
+    "data": {
+      "title": "Software demo reminder #98",
+      "id": "31f1822f-e404-4812-9cq2-9a61206adfb3"
+    },
+    "from": moment(Date.now()).startOf('weeks').add('days', -3).add('hours', 3).toISOString(),
+    "to": moment(Date.now()).startOf('weeks').add('days', -3).add('hours', 6).toISOString(),
+    "color": "#006863"
+  },
+  {
+    "data": {
+      "title": "Production team meeting #45",
+      "id": "31f1822f-e404-4812-9cqd-9a61286adfb3"
+    },
+    "from": moment(Date.now()).startOf('weeks').add('days', -2).add('hours', 5).toISOString(),
+    "to": moment(Date.now()).startOf('weeks').add('days', -2).add('hours', 9).toISOString(),
+    "color": "#8D6863"
+  },
+  {
+    "data": {
+      "title": "Production team meeting #45",
+      "id": "31f1822f-e404-4812-9cqd-9a61286adfb3"
+    },
+    "from": moment(Date.now()).startOf('weeks').add('days', -1).add('hours', 2).toISOString(),
+    "to": moment(Date.now()).startOf('weeks').add('days', -1).add('hours', 8).toISOString(),
+    "color": "#8D6E63"
+  },
+  {
+    "data": {
       "title": "Software demo reminder",
       "id": "31f1822f-e404-4812-9cbd-9a61286adfb3"
     },
