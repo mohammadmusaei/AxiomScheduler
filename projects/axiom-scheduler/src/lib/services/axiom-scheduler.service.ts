@@ -1,4 +1,4 @@
-import { AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
+import {AxiomHourSteps, AxiomSchedulerEvent} from './../axiom-scheduler/axiom-scheduler.component';
 import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
 import * as momentNs from 'moment'; const moment = momentNs;
@@ -16,15 +16,17 @@ export class AxiomSchedulerService{
     eventDeleteClick : Subject<AxiomSchedulerEvent>;
     eventEditClick : Subject<AxiomSchedulerEvent>;
     axEvents: AxiomSchedulerEvent[];
+    hourStepClick: Subject<momentNs.Moment>;
 
     constructor() {
         this.axEvents = [];
-        this.refershRequest = new Subject<momentNs.Moment>();        
+        this.refershRequest = new Subject<momentNs.Moment>();
         this.locale = new Subject<string>();
         this.eventChange = new Subject<AxiomSchedulerEvent>();
         this.eventClick = new Subject<AxiomSchedulerEvent>();
         this.eventDeleteClick = new Subject<AxiomSchedulerEvent>();
         this.eventEditClick = new Subject<AxiomSchedulerEvent>();
+        this.hourStepClick = new Subject<momentNs.Moment>();
     }
 
     refreshDate(date : momentNs.Moment) : void{
@@ -44,4 +46,7 @@ export class AxiomSchedulerService{
         event && this.eventClick.next(event);
     }
 
+    hourStepClicked(event : momentNs.Moment) : void{
+        event && this.hourStepClick.next(event);
+    }
 }

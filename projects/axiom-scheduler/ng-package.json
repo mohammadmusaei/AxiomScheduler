@@ -1,7 +1,8 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/axiom-scheduler",
+  "$schema": "node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "C:/Users/kport/Development/operator-portal/src/assets/libs/axiom-scheduler",
   "lib": {
+    "languageLevel": ["es2017"],
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
       "moment": "moment",

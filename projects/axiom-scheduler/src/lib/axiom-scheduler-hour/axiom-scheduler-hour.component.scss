@@ -1,6 +1,24 @@
 
-.ax-scheduler__event__row{
-    display: flex;
-    padding: 0;
-    margin: 1px 0;
+.ax-scheduler__event__row {
+  display: flex;
+  padding: 0;
+  margin: 1px 0;
+}
+
+.ax-scheduler-hour-steps {
+  &:hover {
+    background-color: rgba(0, 200, 255, 0.5)
+  }
+}
+
+.dark {
+  .ax-scheduler-hour .ax-scheduler-hour-steps:not(:last-of-type) {
+    border-bottom: 1px solid rgba(220, 220, 220, 0.05);
+  }
+}
+
+.light {
+  .ax-scheduler-hour .ax-scheduler-hour-steps:not(:last-of-type) {
+    border-bottom: 1px solid rgba(220, 220, 220, 0.3);
+  }
 }

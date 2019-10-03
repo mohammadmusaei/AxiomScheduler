@@ -11,6 +11,7 @@ export enum AxiomSchedulerView {
   Month = 'month',
   Year = 'year'
 }
+
 export enum AxiomSchedulerAnimation {
   Animation1 = 'animation1',
   Animation2 = 'animation2',
@@ -18,6 +19,12 @@ export enum AxiomSchedulerAnimation {
   Animation4 = 'animation4',
   Default = 'default',
   None = 'none'
+}
+
+export enum AxiomHourSteps {
+  Hour = 1,
+  HalfHour = 2,
+  QuarterHour = 4
 }
 
 export type AxiomSchedulerTheme = 'light' | 'dark';
@@ -30,6 +37,7 @@ export class AxiomSchedulerComponentCommon implements OnDestroy {
   @Input() axDragStep: number = 5;
   @Input() axLocale: string;
   @Input() axEventToolbar: boolean = true;
+  @Input() axHourStep: AxiomHourSteps = AxiomHourSteps.HalfHour;
 
   public today: momentNs.Moment;
   public date: momentNs.Moment;
@@ -118,6 +126,7 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
   @Input() axShowLocale: boolean = true;
   @Input() axViews: AxiomSchedulerView[];
 
+  @Output() axHourStepClick = new EventEmitter<momentNs.Moment>();
   @Output() axEventChange = new EventEmitter<AxiomSchedulerEvent>();
   @Output() axEventClick = new EventEmitter<AxiomSchedulerEvent>();
   @Output() axEventDeleteClick = new EventEmitter<AxiomSchedulerEvent>();
@@ -263,6 +272,9 @@ export class AxiomSchedulerComponent extends AxiomSchedulerComponentCommon imple
     }));
     this.subscriptionGarbageCollection.push(this.service.eventEditClick.subscribe(event => {
       this.axEventEditClick && this.axEventEditClick.emit(event);
+    }));
+    this.subscriptionGarbageCollection.push(this.service.hourStepClick.subscribe(event => {
+      this.axHourStepClick && this.axHourStepClick.emit(event);
     }));
   }
 

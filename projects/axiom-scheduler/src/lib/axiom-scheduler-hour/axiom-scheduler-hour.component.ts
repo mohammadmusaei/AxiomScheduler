@@ -1,7 +1,10 @@
-import { Component, OnInit, Input, ViewEncapsulation, Injector } from '@angular/core';
-import { AxiomSchedulerComponentCommon } from './../axiom-scheduler/axiom-scheduler.component';
-import { AxiomSchedulerEvent } from './../axiom-scheduler/axiom-scheduler.component';
-import { AxiomSchedulerHour } from './../axiom-scheduler-day-view/axiom-scheduler-day-view.component';
+import {Component, OnInit, Input, ViewEncapsulation, Injector} from '@angular/core';
+import {AxiomSchedulerComponentCommon} from './../axiom-scheduler/axiom-scheduler.component';
+import {AxiomSchedulerHour} from './../axiom-scheduler-day-view/axiom-scheduler-day-view.component';
+import {AxiomSchedulerService} from "../services/axiom-scheduler.service";
+import * as momentNs from 'moment';
+
+const moment = momentNs;
 
 @Component({
   selector: '[ax-scheduler-hour]',
@@ -16,26 +19,30 @@ export class AxiomSchedulerHourComponent extends AxiomSchedulerComponentCommon i
 
   @Input() hour: AxiomSchedulerHour;
 
-  public inRnageEvents: AxiomSchedulerEvent[];
-  public minuteRows: { events: AxiomSchedulerEvent[], minute: number }[];
+  public service: AxiomSchedulerService;
+
+  maxHeight: number;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
-  public ngOnInit(): void {
+  public stepList = [];
+
+  ngOnInit(): void {
+    this.stepList = new Array(2).fill(0).map((value, index) => index);
+    this.maxHeight = 100 / this.stepList.length;
     this.refreshView();
   }
 
-  public refreshView(): void {
-    this.minuteRows = Array(60).fill(0).map((x, i) => {
-      return { events: [], minute: i };
-    });
-    this.setInRangeEvent();
+  refreshView(): void {
+    this.stepList = new Array(2).fill(0).map((value, index) => index);
+    this.maxHeight = 100 / this.stepList.length;
   }
 
-  private setInRangeEvent(): void {
-    this.inRnageEvents = [];
+  clicked(number: number) {
+    const minute = (60 / 2) * number;
+    this.service.hourStepClicked(moment(this.hour.start).set({minute}));
   }
 
 }
