@@ -1,0 +1,35 @@
+import { OnInit, EventEmitter, ElementRef, OnDestroy } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { ReplaySubject } from 'rxjs';
+import * as i0 from "@angular/core";
+export declare class AxiomSchedulerDropdownComponent implements OnInit, ControlValueAccessor, OnDestroy {
+    private _element;
+    dataTitle: string;
+    dataId: string;
+    items: any[];
+    modelFormatter: (val: any) => any;
+    set ngModel(ngModel: any);
+    get ngModel(): any;
+    ngModelChange: EventEmitter<any>;
+    open: boolean;
+    protected destroyed: ReplaySubject<boolean>;
+    private _ngModel;
+    constructor(_element: ElementRef);
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+    onChange(): void;
+    writeValue(obj: any): void;
+    registerOnChange(fn: (_: any) => void): void;
+    registerOnTouched(fn: () => void): void;
+    propagateChange: (_: any) => void;
+    onTouched: () => void;
+    toggle(toggle?: boolean): void;
+    inputFormatter(): string;
+    select(item: any): void;
+    private closeOnGlobalClick;
+    private closeOnGlobalKeydown;
+    private setEventObserver;
+    private destroyEventObserver;
+    static ɵfac: i0.ɵɵFactoryDef<AxiomSchedulerDropdownComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<AxiomSchedulerDropdownComponent, "ax-scheduler-dropdown", never, { "dataTitle": "dataTitle"; "dataId": "dataId"; "items": "items"; "modelFormatter": "modelFormatter"; "ngModel": "ngModel"; }, { "ngModelChange": "ngModelChange"; }, never, never>;
+}

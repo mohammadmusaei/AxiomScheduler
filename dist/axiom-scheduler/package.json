@@ -1,0 +1,42 @@
+{
+  "name": "axiom-scheduler",
+  "version": "2.1.4",
+  "description": "An Angular Scheduler component with multiple view modes,themes and animations.",
+  "author": "Mohammad Musaei",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohammadmusaei/AxiomScheduler"
+  },
+  "keywords": [
+    "angular",
+    "scheduler",
+    "component",
+    "angular-scheduler",
+    "momentjs",
+    "typescript",
+    "javascript",
+    "axiom",
+    "calender"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^10.0.14",
+    "@angular/core": "^10.0.14",
+    "@angular/animations": "~7.2.0",
+    "moment": "^2.24.0",
+    "angular2-draggable": "^2.2.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "main": "bundles/axiom-scheduler.umd.js",
+  "module": "fesm2015/axiom-scheduler.js",
+  "es2015": "fesm2015/axiom-scheduler.js",
+  "esm2015": "esm2015/axiom-scheduler.js",
+  "fesm2015": "fesm2015/axiom-scheduler.js",
+  "typings": "axiom-scheduler.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
+}

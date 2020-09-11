@@ -165,4 +165,3 @@ For change scheduler theme just pass available animations shown in [Input params
 
 [MIT](http://opensource.org/licenses/MIT)
 
-
