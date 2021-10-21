@@ -4,7 +4,7 @@ Axiom scheduler is an angular scheduler component use [Momentjs](https://momentj
 
 ### Online Demo
 
-[Usage Demo](http://app.musaei.me/angular/scheduler/)
+[Usage Demo](https://mohammadmusaei.github.io/axiom-scheduler-demo)
 
 Demo source is available here : [Source](https://github.com/mohammadmusaei/AxiomScheduler/tree/master/src)
 
